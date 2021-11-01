@@ -6,8 +6,6 @@ import {
   Section,
   GridSection,
   GridText,
-  TrackList,
-  Agenda,
   Contact,
 } from 'components/home';
 import { Header, Footer } from 'components/layout';
@@ -20,7 +18,6 @@ import {
   ourSupportersData,
   ourSpeakersData,
   ourTeamData,
-  trackList,
 } from 'data';
 
 const Home = () => {
@@ -62,8 +59,6 @@ const Home = () => {
       <Section data={about} />
       <GridText title='Our Speakers' data={ourSpeakersData} link='Speakers' />
       <Section data={invite} />
-      <Agenda />
-      <TrackList data={trackList} /> */}
       <GridText title='Our Team' data={ourTeamData} link='Team' />
       <Contact onSubmit={sendContact} success={sentSuccess} />
       <Footer />

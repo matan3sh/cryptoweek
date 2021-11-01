@@ -15,7 +15,7 @@ const Feature = () => {
         <Title>
           Crypto <span>Week</span>
         </Title>
-        <Subtitle>13th December - 16th December</Subtitle>
+        <Subtitle>7th December - 9th December</Subtitle>
         <Description>
           Join global crypto leaders, VC firms and promising blockchain
           companies unveiling the future trends from the world’s top Crypto

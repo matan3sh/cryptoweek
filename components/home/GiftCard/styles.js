@@ -29,7 +29,7 @@ export const Container = styled.section`
     margin: auto;
     text-align: center;
     h5 {
-      font-family: 'CircularStd-Bold';
+      font-family: 'Moderat-Bold';
       margin-bottom: 2rem;
       font-size: 34px;
       @media screen and (max-width: 1195px) {

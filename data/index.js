@@ -455,13 +455,3 @@ export const headerLinks = [
   { title: 'Speakers', link: '#Speakers' },
   { title: 'Discord', link: 'https://discord.gg/fUaJesQkFb' },
 ];
-
-export const trackList = [
-  'BlockChain',
-  'NFT',
-  'Crypto',
-  'DeFi',
-  'CBDCs',
-  'E-Wallets',
-  'Blockchain for Good',
-];

@@ -8,7 +8,7 @@ export const Container = styled.div`
   flex-direction: column;
   background: #fff;
   > h1 {
-    font-family: 'CircularStd-Bold';
+    font-family: 'Moderat-Bold';
     color: #2f154a;
     margin-top: 5rem;
     font-size: 50px;

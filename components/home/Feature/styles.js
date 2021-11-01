@@ -10,8 +10,8 @@ export const Container = styled.div`
   margin: auto;
 
   @media screen and (max-width: 860px) {
-    background-size: 600px;
-    background-position: center 30px;
+    background-size: 450px;
+    background-position: 150% 10%;
     height: 100%;
   }
 `;
@@ -24,7 +24,7 @@ export const Wrapper = styled.div`
   height: 100vh;
 
   @media screen and (max-width: 860px) {
-    transform: translateY(155px);
+    transform: translateY(100px);
   }
 `;
 
