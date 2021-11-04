@@ -10,7 +10,7 @@ export const Container = styled.div`
   margin: auto;
 
   @media screen and (max-width: 860px) {
-    background-size: 450px;
+    background-size: 420px;
     background-position: 150% 10%;
     height: 100%;
   }
@@ -87,6 +87,7 @@ export const Subtitle = styled.h3`
   margin-top: 20px;
 
   @media screen and (max-width: 860px) {
+    margin-top: 15px;
     font-size: 20px;
     text-align: center;
   }
@@ -105,5 +106,35 @@ export const Description = styled.h5`
     font-size: 18px;
     text-align: center;
     margin-top: 15px;
+  }
+`;
+
+export const FeatureButton = styled.a`
+  font-family: 'Moderat-Medium';
+  background-color: #1d1d27;
+  width: 246px;
+  height: 70px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 25px;
+  border-radius: 55px;
+  font-size: 20px;
+  gap: 15px;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  @media screen and (max-width: 860px) {
+    font-size: 16px;
+    width: 199px;
+    height: 45px;
+    margin: 15px auto;
+  }
+
+  svg {
+    transform: translateY(3px);
   }
 `;

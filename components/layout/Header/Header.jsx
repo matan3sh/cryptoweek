@@ -51,7 +51,7 @@ const Header = () => {
               </div>
             ))}
             <NavButton
-              href='https://next.brella.io/join/CoinNations2021'
+              href='https://hopin.com/events/israel-crypto-week'
               target='_blank'
               rel='noopener noreferrer'>
               <span>Get Early Access</span>
