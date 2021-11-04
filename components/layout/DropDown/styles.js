@@ -62,21 +62,34 @@ export const DropDownLink = styled.a`
   }
 `;
 
-export const BtnWrap = styled.div`
-  display: flex;
-  justify-content: center;
-`;
-
-export const Button = styled.div`
-  background: linear-gradient(120deg, #ab4e88, #ce8f6b);
-  padding: 15px 20px;
-  border-radius: 35px;
-  font-size: 19px;
+export const DropDownButton = styled.a`
+  font-size: 1.5rem;
   transition: 0.3s;
-  margin-top: 25px;
-
+  margin-top: 10px;
   &:hover {
     cursor: pointer;
-    transform: translateY(-2px);
+  }
+  span {
+    background: #3d68ff;
+    background: -webkit-linear-gradient(
+      to right,
+      #3d68ff 42%,
+      #966be2 62%,
+      #e27b73 88%
+    );
+    background: -moz-linear-gradient(
+      to right,
+      #3d68ff 42%,
+      #966be2 62%,
+      #e27b73 88%
+    );
+    background: linear-gradient(
+      to right,
+      #3d68ff 42%,
+      #966be2 62%,
+      #e27b73 88%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 `;

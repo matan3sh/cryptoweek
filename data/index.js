@@ -453,5 +453,4 @@ export const headerLinks = [
   { title: 'Partners', link: '#Partners' },
   { title: 'Supporters', link: '#Supporters' },
   { title: 'Speakers', link: '#Speakers' },
-  { title: 'Discord', link: 'https://discord.gg/fUaJesQkFb' },
 ];

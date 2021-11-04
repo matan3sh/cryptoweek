@@ -24,7 +24,7 @@ export const Wrapper = styled.div`
   height: 100vh;
 
   @media screen and (max-width: 860px) {
-    transform: translateY(100px);
+    transform: translateY(110px);
   }
 `;
 
@@ -84,7 +84,7 @@ export const Title = styled.h1`
 export const Subtitle = styled.h3`
   font-size: 28px;
   font-family: 'Moderat-Light';
-  margin-top: 20px;
+  margin-top: 15px;
 
   @media screen and (max-width: 860px) {
     margin-top: 15px;
@@ -96,7 +96,7 @@ export const Subtitle = styled.h3`
 export const Description = styled.h5`
   font-size: 22px;
   font-family: 'Moderat-Light';
-  margin-top: 20px;
+  margin-top: 15px;
   width: 484px;
   line-height: 28px;
 

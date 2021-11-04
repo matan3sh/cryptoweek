@@ -5,6 +5,7 @@ import {
   DropDownWrapper,
   DropDownMenu,
   DropDownLink,
+  DropDownButton,
 } from './styles';
 
 const DropDown = ({ toggle, isOpen, data }) => {
@@ -21,6 +22,12 @@ const DropDown = ({ toggle, isOpen, data }) => {
               {item.title}
             </DropDownLink>
           ))}
+          <DropDownButton
+            href='https://hopin.com/events/israel-crypto-week'
+            target='_blank'
+            rel='noopener noreferrer'>
+            <span>Get Early Access</span>
+          </DropDownButton>
         </DropDownMenu>
       </DropDownWrapper>
     </DropDownContainer>
