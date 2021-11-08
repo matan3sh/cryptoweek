@@ -15,8 +15,8 @@ export const Container = styled.div`
     height: 100%;
   }
   @media screen and (max-width: 520px) {
-    background-size: 260px;
-    background-position: 25% 10%;
+    background-size: 275px;
+    background-position: 20% 10%;
   }
 `;
 
@@ -114,6 +114,12 @@ export const Description = styled.h5`
     text-align: center;
     margin-top: 15px;
   }
+  @media screen and (max-width: 520px) {
+    line-height: 22px;
+    font-size: 14px;
+    width: 100%;
+    padding: 0 1rem;
+  }
 `;
 
 export const FeatureButton = styled.a`
@@ -140,9 +146,17 @@ export const FeatureButton = styled.a`
     height: 45px;
     margin: 15px auto;
   }
+  @media screen and (max-width: 520px) {
+    font-size: 14px;
+    width: 159px;
+    height: 35px;
+  }
 
   svg {
     transform: translateY(3px);
+    @media screen and (max-width: 520px) {
+      transform: translateY(0px);
+    }
   }
 `;
 
