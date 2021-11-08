@@ -3,7 +3,8 @@ import { MenuIcon } from 'components/icons';
 
 export const NavContainer = styled.header`
   position: fixed;
-  max-width: 1620px;
+  /* max-width: 1620px; */
+  width: 100%;
   margin: auto;
   left: 0;
   right: 0;
@@ -35,7 +36,8 @@ export const NavContainer = styled.header`
 `;
 
 export const NavWrapper = styled.nav`
-  width: 100%;
+  width: 1620px;
+  margin: auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -44,7 +46,7 @@ export const NavWrapper = styled.nav`
 
 export const Logo = styled.img`
   object-fit: contain;
-  transform: translateX(100px);
+  transform: translateX(80px);
 
   @media screen and (max-width: 860px) {
     transform: translateX(10px);
@@ -56,7 +58,7 @@ export const NavLinks = styled.div`
   align-items: center;
   gap: 75px;
   font-size: 18px;
-  padding-top: 0px;
+  padding-right: 25px;
   @media screen and (max-width: 1684px) {
     padding-right: 75px;
   }

@@ -29,11 +29,12 @@ export const Wrapper = styled.div`
   justify-content: center;
   height: 100vh;
 
-  position: absolute;
-  top: 50%;
-  left: 20%;
-  transform: translate(-50%, -50%);
-
+  @media screen and (min-width: 1920px) {
+    position: absolute;
+    top: 50%;
+    left: 20%;
+    transform: translate(-50%, -50%);
+  }
   @media screen and (max-width: 860px) {
     transform: translateY(70px);
   }
