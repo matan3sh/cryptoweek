@@ -14,6 +14,10 @@ export const Container = styled.div`
     background-position: -100% 10%;
     height: 100%;
   }
+  @media screen and (max-width: 520px) {
+    background-size: 260px;
+    background-position: 25% 10%;
+  }
 `;
 
 export const Wrapper = styled.div`
@@ -25,6 +29,9 @@ export const Wrapper = styled.div`
 
   @media screen and (max-width: 860px) {
     transform: translateY(70px);
+  }
+  @media screen and (max-width: 520px) {
+    transform: translateY(25px);
   }
 `;
 
@@ -151,5 +158,8 @@ export const FeaturePartners = styled.div`
 
   img {
     object-fit: contain;
+    @media screen and (max-width: 520px) {
+      width: 35%;
+    }
   }
 `;
