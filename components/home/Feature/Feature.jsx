@@ -6,7 +6,10 @@ import {
   Subtitle,
   Description,
   FeatureButton,
+  FeaturePartners,
 } from './styles';
+
+import { featurPartners } from 'data';
 
 const Feature = () => {
   return (
@@ -36,6 +39,17 @@ const Feature = () => {
             <path d='M1 1L6 7.25L1 13.5' stroke='white' strokeWidth='2.5' />
           </svg>
         </FeatureButton>
+
+        <FeaturePartners>
+          {featurPartners.map((logo) => (
+            <img
+              src={`/static/images/feature/partners/${logo.name}.png`}
+              alt={`${logo.name}`}
+              height={`${logo.height}`}
+              width={`${logo.width}`}
+            />
+          ))}
+        </FeaturePartners>
       </Wrapper>
     </Container>
   );

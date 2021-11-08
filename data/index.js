@@ -454,3 +454,8 @@ export const headerLinks = [
   { title: 'Supporters', link: '#Supporters' },
   { title: 'Speakers', link: '#Speakers' },
 ];
+
+export const featurPartners = [
+  { name: 'WeDiggIT', height: '53px', width: '250px' },
+  { name: 'Celsius', height: '53px', width: '180px' },
+];

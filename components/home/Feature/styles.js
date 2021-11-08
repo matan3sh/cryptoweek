@@ -138,3 +138,17 @@ export const FeatureButton = styled.a`
     transform: translateY(3px);
   }
 `;
+
+export const FeaturePartners = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 55px;
+  @media screen and (max-width: 860px) {
+    justify-content: center;
+  }
+
+  img {
+    object-fit: contain;
+  }
+`;
