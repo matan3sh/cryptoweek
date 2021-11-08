@@ -9,6 +9,8 @@ export const Container = styled.div`
   background-size: cover;
   margin: auto;
 
+  position: relative;
+
   @media screen and (max-width: 860px) {
     background-size: 380px;
     background-position: -100% 10%;
@@ -26,6 +28,11 @@ export const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   height: 100vh;
+
+  position: absolute;
+  top: 50%;
+  left: 20%;
+  transform: translate(-50%, -50%);
 
   @media screen and (max-width: 860px) {
     transform: translateY(70px);

@@ -44,6 +44,7 @@ export const NavWrapper = styled.nav`
 
 export const Logo = styled.img`
   object-fit: contain;
+  transform: translateX(100px);
 
   @media screen and (max-width: 860px) {
     transform: translateX(10px);
