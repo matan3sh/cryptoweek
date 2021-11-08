@@ -10,8 +10,8 @@ export const Container = styled.div`
   margin: auto;
 
   @media screen and (max-width: 860px) {
-    background-size: 420px;
-    background-position: 150% 10%;
+    background-size: 380px;
+    background-position: -100% 10%;
     height: 100%;
   }
 `;
@@ -24,7 +24,7 @@ export const Wrapper = styled.div`
   height: 100vh;
 
   @media screen and (max-width: 860px) {
-    transform: translateY(110px);
+    transform: translateY(70px);
   }
 `;
 
@@ -51,8 +51,8 @@ export const Title = styled.h1`
 
   @media screen and (max-width: 860px) {
     width: 100%;
-    font-size: 70px;
-    line-height: 76px;
+    font-size: 48px;
+    line-height: 56px;
     text-align: center;
   }
 
@@ -103,7 +103,7 @@ export const Description = styled.h5`
   @media screen and (max-width: 860px) {
     width: 95%;
     line-height: 24px;
-    font-size: 18px;
+    font-size: 16px;
     text-align: center;
     margin-top: 15px;
   }
@@ -146,6 +146,7 @@ export const FeaturePartners = styled.div`
   margin-top: 55px;
   @media screen and (max-width: 860px) {
     justify-content: center;
+    margin-top: 10px;
   }
 
   img {
