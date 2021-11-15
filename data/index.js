@@ -432,6 +432,11 @@ export const ourTeamData = [
     role: 'Founder of Coin Nations',
   },
   {
+    name: 'Shahar Ami Mizrahi',
+    image: '/images/our_team/Shahar_Ami_Mizrahi.jpg',
+    role: 'Technology Guru',
+  },
+  {
     name: 'Ignacio Agramont',
     image:
       '/images/our_team/136158881_872894413470639_7092431772786744317_n.jpg',
@@ -458,4 +463,5 @@ export const headerLinks = [
 export const featurPartners = [
   { name: 'WeDiggIT', height: '53px', width: '250px' },
   { name: 'Celsius', height: '53px', width: '180px' },
+  { name: 'Digital_Bank', height: '52px', width: '121px' },
 ];

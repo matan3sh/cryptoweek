@@ -15,24 +15,6 @@ export const NavContainer = styled.header`
   color: black;
   transition: 0.3s ease-in;
   z-index: 100;
-  @media screen and (max-width: 1820px) {
-    padding-left: 100px;
-  }
-  @media screen and (max-width: 1748px) {
-    padding-left: 55px;
-  }
-  @media screen and (max-width: 1700px) {
-    padding-left: 25px;
-  }
-  @media screen and (max-width: 1684px) {
-    padding-left: 75px;
-  }
-  @media screen and (max-width: 1220px) {
-    padding-left: 25px;
-  }
-  @media screen and (max-width: 935px) {
-    padding-left: 0px;
-  }
 `;
 
 export const NavWrapper = styled.nav`
@@ -42,12 +24,14 @@ export const NavWrapper = styled.nav`
   align-items: center;
   justify-content: space-between;
   margin-top: 15px;
+  @media screen and (max-width: 1820px) {
+    width: 95%;
+  }
 `;
 
 export const Logo = styled.img`
   object-fit: contain;
   transform: translateX(80px);
-
   @media screen and (max-width: 860px) {
     transform: translateX(10px);
   }
