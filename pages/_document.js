@@ -35,7 +35,9 @@ export default class MyDocument extends Document {
           <meta itemProp='name' content='Cryptoweek.co.il' />
           <meta
             itemProp='description'
-            content='This Is The New Coin Nations Economy. We’re bringing creators, crypto natives and new coin possibilies together to move the future forward.'
+            content='Join global crypto leaders, VC firms and promising blockchain
+          companies unveiling the future trends from the world’s top Crypto
+          Week!'
           />
           <meta itemProp='image' content='/static/images/metadata_img.png' />
 
@@ -44,7 +46,9 @@ export default class MyDocument extends Document {
           <meta property='og:title' content='Cryptoweek.co.il' />
           <meta
             property='og:description'
-            content='Coin Nations We’re showcasing the best crypto companies, leaders on one Coin Nations Global Summit'
+            content='Join global crypto leaders, VC firms and promising blockchain
+          companies unveiling the future trends from the world’s top Crypto
+          Week!'
           />
           <meta property='og:image' content='/static/images/metadata_img.png' />
 
@@ -52,11 +56,44 @@ export default class MyDocument extends Document {
           <meta name='twitter:title' content='Cryptoweek.co.il' />
           <meta
             name='twitter:description'
-            content='Coin Nations Trading digital assets is changing the way the world thinks about money and finance. Join the best 2021 Coin Nations Summit to take part of the new world economy.'
+            content='Join global crypto leaders, VC firms and promising blockchain
+          companies unveiling the future trends from the world’s top Crypto
+          Week!'
           />
           <meta
             name='twitter:image'
             content='/static/images/metadata_img.png'
+          />
+
+          {/* Facebook Pixel Code */}
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `!function(f,b,e,v,n,t,s)
+                {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+                n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+                if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+                n.queue=[];t=b.createElement(e);t.async=!0;
+                t.src=v;s=b.getElementsByTagName(e)[0];
+                s.parentNode.insertBefore(t,s)}(window, document,'script',
+                'https://connect.facebook.net/en_US/fbevents.js');
+                fbq('init', '1271768096535536');
+                fbq('track', 'PageView');`,
+            }}
+          />
+
+          {/* Global site tag (gtag.js) - Google Ads: 433885515 */}
+          <script
+            async
+            src='https://www.googletagmanager.com/gtag/js?id=AW-804331550'></script>
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `      window.dataLayer = window.dataLayer || [];
+              function gtag() {
+                dataLayer.push(arguments);
+              }
+              gtag('js', new Date());
+              gtag('config', 'AW-804331550');`,
+            }}
           />
         </Head>
         <body>

@@ -34,10 +34,12 @@ const Home = () => {
   return (
     <>
       <Head>
-        <title>Coin Nations Summit 2021</title>
+        <title>Cryptoweek.co.il - Calling Israel’s Top Crypto Talents</title>
         <meta
           name='description'
-          content='Coin Nations We’re showcasing the best crypto companies, leaders on one Coin Nations Global Summit'
+          content='Join global crypto leaders, VC firms and promising blockchain
+          companies unveiling the future trends from the world’s top Crypto
+          Week!'
         />
         <meta
           name='keywords'
