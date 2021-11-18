@@ -461,7 +461,8 @@ export const headerLinks = [
 ];
 
 export const featurPartners = [
-  { name: 'WeDiggIT', height: '53px', width: '250px' },
-  { name: 'Celsius', height: '53px', width: '180px' },
-  { name: 'Digital_Bank', height: '52px', width: '121px' },
+  { name: 'WeDiggIT', height: '45px', width: '242px' },
+  { name: 'Celsius', height: '38px', width: '165px' },
+  { name: 'Digital_Bank', height: '44px', width: '113px' },
+  { name: 'ZenGo', height: '52px', width: '121px' },
 ];

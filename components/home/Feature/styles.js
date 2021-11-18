@@ -173,9 +173,11 @@ export const FeaturePartners = styled.div`
   flex-wrap: wrap;
   gap: 20px;
   margin-top: 55px;
+  align-items: center;
   @media screen and (max-width: 860px) {
     justify-content: center;
     margin-top: 10px;
+    width: 95%;
   }
 
   img {
