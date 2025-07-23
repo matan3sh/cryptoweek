@@ -1,21 +1,30 @@
-export const about = {
+import type {
+  FeaturePartner,
+  HeaderLink,
+  SectionData,
+  SpeakerData,
+  TeamMember,
+} from '@/types'
+
+export const about: SectionData = {
   title:
     'New to cryptocurrency? No problem. Digital assets are here to stay, join us to learn & connect.',
   subtitle:
-    'We’re showcasing the best crypto companies, leaders on one Coin Nations Global Summit',
+    "We're showcasing the best crypto companies, leaders on one Coin Nations Global Summit",
   color: '#3f354d',
   bg: '/static/images/about/bg.png',
-};
-export const invite = {
+}
+
+export const invite: SectionData = {
   title:
     'Coin Nations Summit invites you to discover a whole new world of crypto possibilities.',
   subtitle:
-    'Trading digital assets is changing the way the world thinks about money and finance. Join the best 2021 Coin Nations Summit to take part of the new world economy.',
+    'Trading digital assets is changing the way the world thinks about money and finance. Join the best 2021 Coin Nations Summit to take part in the new world economy.',
   color: '#fff',
   bg: '/static/images/invite/bg.png',
-};
+}
 
-export const ourPartnersData = [
+export const ourPartnersData: string[] = [
   // '/images/our_partners/Money2020_ByAscential_Logo_BlackRGB-2.jpeg',
   // '/images/our_partners/IHK-FHK-vertical.png',
   // '/images/our_partners/forein-affairs.png',
@@ -28,9 +37,9 @@ export const ourPartnersData = [
   '/images/our_partners/Nuvei.png',
   '/images/our_supporters/black-mp-logo.png',
   '/images/our_partners/celsius.png',
-];
+]
 
-export const ourSupportersData = [
+export const ourSupportersData: string[] = [
   '/images/our_supporters/MoonWhiteOnBlackSquare.png',
   // '/images/our_supporters/Collider_Labs.png',
   '/images/our_supporters/Draper.png',
@@ -73,9 +82,9 @@ export const ourSupportersData = [
   '/images/our_supporters/BAS_logo_FA_-Horizontal_RGB-Web.png',
   '/images/our_supporters/etoro.jpeg',
   '/images/our_supporters/H_Logomark_Lockup_black.png',
-];
+]
 
-export const ourSpeakersData = [
+export const ourSpeakersData: SpeakerData[] = [
   {
     name: 'Catherine Gu',
     image: '/images/our_speakers/Catherine_Gu.png',
@@ -255,7 +264,7 @@ export const ourSpeakersData = [
   {
     name: 'Jeff Marsilio',
     image: '/images/our_speakers/Jeff_Marsilio.png',
-    role: 'CEO, Co-Founder at Nifty’s, Inc.',
+    role: "CEO, Co-Founder at Nifty's, Inc.",
   },
   {
     name: 'Raphael Tetro',
@@ -328,7 +337,7 @@ export const ourSpeakersData = [
     role: 'CMO Coin Creator & Serial Marketers community',
   },
   {
-    name: 'Jesse “Aggroed” Reich',
+    name: 'Jesse "Aggroed" Reich',
     image: '/images/our_speakers/Jesse_Aggroed_Reich.png',
     role: 'Founder Splinterlands',
   },
@@ -422,9 +431,9 @@ export const ourSpeakersData = [
     image: '/images/our_speakers/Jordan_Fried.png',
     role: 'Chairman & CEO of Immutable Holdings',
   },
-];
+]
 
-export const ourTeamData = [
+export const ourTeamData: TeamMember[] = [
   {
     name: 'Nir Kouris',
     image:
@@ -452,17 +461,16 @@ export const ourTeamData = [
     image: '/images/our_team/Ivan.png',
     role: 'Video Manager - Coin Nations',
   },
-];
+]
 
-export const headerLinks = [
-  { title: 'Partners', link: '#Partners' },
-  { title: 'Supporters', link: '#Supporters' },
+export const headerLinks: HeaderLink[] = [
   { title: 'Speakers', link: '#Speakers' },
-];
+  { title: 'Discord', link: '#Discord' },
+]
 
-export const featurPartners = [
+export const featurPartners: FeaturePartner[] = [
   { name: 'WeDiggIT', height: '45px', width: '242px' },
   { name: 'Celsius', height: '38px', width: '165px' },
   { name: 'Digital_Bank', height: '44px', width: '113px' },
   { name: 'ZenGo', height: '52px', width: '121px' },
-];
+]

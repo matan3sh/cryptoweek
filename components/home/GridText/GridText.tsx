@@ -1,6 +1,18 @@
-import { Container, List } from './styles';
+import { Container, List } from './styles'
 
-const GridText = ({ title, data, link }) => {
+interface GridTextItem {
+  image: string
+  name: string
+  role: string
+}
+
+interface GridTextProps {
+  title: string
+  data: GridTextItem[]
+  link: string
+}
+
+const GridText: React.FC<GridTextProps> = ({ title, data, link }) => {
   return (
     <Container id={link}>
       <h1>{title}</h1>
@@ -14,7 +26,7 @@ const GridText = ({ title, data, link }) => {
         ))}
       </List>
     </Container>
-  );
-};
+  )
+}
 
-export default GridText;
+export default GridText
