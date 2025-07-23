@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const Container = styled.section`
   display: flex;
@@ -15,6 +15,13 @@ export const Container = styled.section`
     width: 580px;
     object-fit: contain;
     border-radius: 10px;
+    transition: box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+      transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 16px 0 rgba(171, 78, 136, 0.1);
+    &:hover {
+      transform: scale(1.04) rotate(-2deg);
+      box-shadow: 0 8px 32px 0 rgba(171, 78, 136, 0.18);
+    }
     @media screen and (max-width: 1290px) {
       width: 460px;
     }
@@ -28,6 +35,12 @@ export const Container = styled.section`
     align-items: center;
     margin: auto;
     text-align: center;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    &:hover {
+      transform: scale(1.03);
+      box-shadow: 0 4px 32px 0 rgba(171, 78, 136, 0.1);
+    }
     h5 {
       font-family: 'Moderat-Bold';
       margin-bottom: 2rem;
@@ -37,4 +50,4 @@ export const Container = styled.section`
       }
     }
   }
-`;
+`

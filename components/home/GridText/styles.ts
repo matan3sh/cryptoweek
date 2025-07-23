@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const Container = styled.div`
   display: flex;
@@ -18,7 +18,7 @@ export const Container = styled.div`
       font-size: 10.6041666666666665vw;
     }
   }
-`;
+`
 
 export const List = styled.div`
   display: grid;
@@ -37,15 +37,28 @@ export const List = styled.div`
     min-width: 260px;
     max-width: 160px;
     text-align: center;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     @media screen and (max-width: 575px) {
       width: 100%;
+    }
+    &:hover {
+      transform: scale(1.04);
+      box-shadow: 0 4px 32px 0 rgba(171, 78, 136, 0.1);
     }
     > img {
       width: 220px;
       object-fit: contain;
       border-radius: 10px;
+      transition: box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+        transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 2px 16px 0 rgba(171, 78, 136, 0.1);
       @media screen and (max-width: 575px) {
         width: 90%;
+      }
+      &:hover {
+        transform: scale(1.07) rotate(-2deg);
+        box-shadow: 0 8px 32px 0 rgba(171, 78, 136, 0.18);
       }
     }
     > h2 {
@@ -89,4 +102,4 @@ export const List = styled.div`
       width: 75%;
     }
   }
-`;
+`

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const Container = styled.div`
   display: flex;
@@ -19,7 +19,7 @@ export const Container = styled.div`
       font-size: 10.6041666666666665vw;
     }
   }
-`;
+`
 
 export const List = styled.div`
   display: grid;
@@ -48,11 +48,15 @@ export const List = styled.div`
     padding: 20px;
     min-height: 160px;
     object-fit: contain;
+    transition: box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+      transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 16px 0 rgba(171, 78, 136, 0.1);
     &:hover {
-      transform: scale(1.02);
+      transform: scale(1.07) rotate(-2deg);
+      box-shadow: 0 8px 32px 0 rgba(171, 78, 136, 0.18);
     }
     @media screen and (max-width: 475px) {
       width: 75%;
     }
   }
-`;
+`

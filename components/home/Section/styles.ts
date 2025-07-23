@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const Container = styled.div`
   height: 98vh;
@@ -6,7 +6,7 @@ export const Container = styled.div`
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
-`;
+`
 
 export const Wrapper = styled.div`
   height: 100%;
@@ -15,6 +15,15 @@ export const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   padding-left: 175px;
+  opacity: 0;
+  transform: translateY(40px);
+  animation: fadeInUp 1.1s cubic-bezier(0.4, 0, 0.2, 1) 0.2s forwards;
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
   @media screen and (max-width: 1820px) {
     padding-left: 100px;
   }
@@ -62,4 +71,4 @@ export const Wrapper = styled.div`
       line-height: 22px;
     }
   }
-`;
+`
