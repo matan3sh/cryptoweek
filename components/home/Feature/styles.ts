@@ -235,30 +235,38 @@ export const FeatureButton = styled.a`
 export const FeaturePartners = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 24px;
   margin-top: 55px;
   align-items: center;
 
   @media screen and (max-width: 860px) {
     justify-content: center;
-    margin-top: 30px;
-    width: 95%;
+    margin-top: 40px;
+    gap: 20px;
+  }
+
+  @media screen and (max-width: 520px) {
+    gap: 16px;
+    margin-top: 32px;
   }
 
   img {
     object-fit: contain;
-    transition: transform 0.2s ease-in-out;
-    opacity: 0.7;
-    filter: grayscale(20%);
+    opacity: 0.8;
+    filter: grayscale(10%);
+    border-radius: 8px;
+    padding: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
 
-    &:hover {
-      transform: scale(1.05);
-      opacity: 1;
-      filter: grayscale(0%);
+    @media screen and (max-width: 768px) {
+      padding: 6px;
+      border-radius: 6px;
     }
 
     @media screen and (max-width: 520px) {
       width: 35%;
+      padding: 4px;
     }
   }
 `

@@ -7,99 +7,128 @@ export const Container = styled.div`
   align-items: center;
   margin: auto;
   background: #fff;
+  padding: 0 20px;
+
   > h1 {
     font-family: 'Moderat-Bold';
     color: #2f154a;
     margin-top: 5rem;
     font-size: 50px;
-    margin-bottom: 1.5rem;
+    margin-bottom: 3rem;
     font-weight: 900;
+    text-align: center;
+
+    @media screen and (max-width: 768px) {
+      font-size: 8vw;
+      margin-top: 3rem;
+      margin-bottom: 2rem;
+    }
+
     @media screen and (max-width: 475px) {
-      font-size: 10.6041666666666665vw;
+      font-size: 9vw;
+      margin-bottom: 1.5rem;
     }
   }
 `
 
 export const List = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
   place-items: center;
-  width: 70%;
+  max-width: 1200px;
+  width: 100%;
+  padding: 0 1rem;
+  margin-bottom: 4rem;
 
-  > h1 {
-    @media screen and (max-width: 575px) {
-      font-size: 12.6041666666666665vw;
-    }
-  }
-  > div {
-    min-height: 350px;
-    min-width: 260px;
-    max-width: 160px;
-    text-align: center;
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-      box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    @media screen and (max-width: 575px) {
-      width: 100%;
-    }
-    &:hover {
-      transform: scale(1.04);
-      box-shadow: 0 4px 32px 0 rgba(171, 78, 136, 0.1);
-    }
-    > img {
-      width: 220px;
-      object-fit: contain;
-      border-radius: 10px;
-      transition: box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-        transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      box-shadow: 0 2px 16px 0 rgba(171, 78, 136, 0.1);
-      @media screen and (max-width: 575px) {
-        width: 90%;
-      }
-      &:hover {
-        transform: scale(1.07) rotate(-2deg);
-        box-shadow: 0 8px 32px 0 rgba(171, 78, 136, 0.18);
-      }
-    }
-    > h2 {
-      font-size: 21px;
-      margin: 5px 0;
-      color: #000;
-    }
-    > h3 {
-      font-size: 15px;
-      color: #555;
-      line-height: 18px;
-    }
+  @media screen and (max-width: 768px) {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
   }
 
-  @media screen and (max-width: 1185px) {
-    width: 90%;
-  }
-  @media screen and (max-width: 920px) {
-    width: 95%;
-  }
-  @media screen and (max-width: 870px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
   @media screen and (max-width: 575px) {
-    grid-template-columns: repeat(1, 1fr);
-    grid-gap: 0rem;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    margin-bottom: 2rem;
   }
 
-  > img {
-    width: 200px;
-    box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1),
-      0 0 0 1px rgba(10, 10, 10, 0.02);
-    border-radius: 0.5rem;
-    padding: 20px;
-    min-height: 140px;
-    object-fit: contain;
-    &:hover {
-      transform: scale(1.02);
+  > div {
+    width: 100%;
+    max-width: 280px;
+    text-align: center;
+    background: #fff;
+    border-radius: 16px;
+    padding: 24px;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+
+    @media screen and (max-width: 768px) {
+      max-width: 240px;
+      padding: 20px;
+      border-radius: 12px;
     }
-    @media screen and (max-width: 475px) {
-      width: 75%;
+
+    @media screen and (max-width: 575px) {
+      max-width: 100%;
+      padding: 16px;
+      border-radius: 8px;
+    }
+
+    > img {
+      width: 100%;
+      max-width: 180px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 16px;
+
+      @media screen and (max-width: 768px) {
+        max-width: 160px;
+        height: 160px;
+        border-radius: 8px;
+        margin-bottom: 12px;
+      }
+
+      @media screen and (max-width: 575px) {
+        max-width: 140px;
+        height: 140px;
+        margin-bottom: 8px;
+      }
+    }
+
+    > h2 {
+      font-size: 18px;
+      font-weight: 600;
+      margin: 12px 0 8px 0;
+      color: #1a202c;
+      line-height: 1.3;
+
+      @media screen and (max-width: 768px) {
+        font-size: 16px;
+        margin: 10px 0 6px 0;
+      }
+
+      @media screen and (max-width: 575px) {
+        font-size: 15px;
+        margin: 8px 0 4px 0;
+      }
+    }
+
+    > h3 {
+      font-size: 14px;
+      color: #718096;
+      line-height: 1.4;
+      font-weight: 400;
+      margin: 0;
+
+      @media screen and (max-width: 768px) {
+        font-size: 13px;
+      }
+
+      @media screen and (max-width: 575px) {
+        font-size: 12px;
+        line-height: 1.3;
+      }
     }
   }
 `

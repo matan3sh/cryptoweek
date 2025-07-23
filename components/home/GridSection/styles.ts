@@ -7,16 +7,27 @@ export const Container = styled.div`
   margin: auto;
   flex-direction: column;
   background: #fff;
+  padding: 0 20px;
+
   > h1 {
     font-family: 'Moderat-Bold';
     color: #2f154a;
     margin-top: 5rem;
     font-size: 50px;
-    margin-bottom: 1.5rem;
+    margin-bottom: 3rem;
     font-weight: 900;
+    text-align: center;
+
+    @media screen and (max-width: 768px) {
+      font-size: 8vw;
+      margin-top: 3rem;
+      margin-bottom: 2rem;
+    }
+
     @media screen and (max-width: 475px) {
+      font-size: 9vw;
       padding-top: 25px;
-      font-size: 10.6041666666666665vw;
+      margin-bottom: 1.5rem;
     }
   }
 `
@@ -24,39 +35,45 @@ export const Container = styled.div`
 export const List = styled.div`
   display: grid;
   place-items: center;
-  grid-template-columns: repeat(4, 1fr);
-  width: 70%;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  max-width: 1200px;
+  width: 100%;
   gap: 2rem;
-  margin-bottom: 3.5rem;
-  @media screen and (max-width: 1250px) {
-    width: 90%;
+  margin-bottom: 4rem;
+  padding: 0 1rem;
+
+  @media screen and (max-width: 768px) {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
   }
-  @media screen and (max-width: 1100px) {
-    width: 97%;
-  }
-  @media screen and (max-width: 985px) {
-    grid-template-columns: repeat(3, 1fr);
-  }
-  @media screen and (max-width: 710px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
+
   @media screen and (max-width: 475px) {
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
   }
+
   > img {
-    width: 210px;
-    padding: 20px;
-    min-height: 160px;
+    width: 100%;
+    max-width: 200px;
+    padding: 24px;
+    min-height: 140px;
     object-fit: contain;
-    transition: box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-      transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 2px 16px 0 rgba(171, 78, 136, 0.1);
-    &:hover {
-      transform: scale(1.07) rotate(-2deg);
-      box-shadow: 0 8px 32px 0 rgba(171, 78, 136, 0.18);
+    background: #fff;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+
+    @media screen and (max-width: 768px) {
+      padding: 20px;
+      min-height: 120px;
+      border-radius: 8px;
     }
+
     @media screen and (max-width: 475px) {
-      width: 75%;
+      padding: 16px;
+      min-height: 100px;
+      max-width: 100%;
     }
   }
 `
