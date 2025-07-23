@@ -1,3 +1,7 @@
+'use client'
+import { fadeInUp, staggerContainer, textReveal } from '@/components/animations'
+import { motion, useInView } from 'framer-motion'
+import { useRef } from 'react'
 import { Container, List } from './styles'
 
 interface GridTextItem {
@@ -13,16 +17,67 @@ interface GridTextProps {
 }
 
 const GridText: React.FC<GridTextProps> = ({ title, data, link }) => {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, margin: '-100px' })
+
   return (
-    <Container id={link}>
-      <h1>{title}</h1>
-      <List>
+    <Container
+      as={motion.div}
+      ref={ref}
+      id={link}
+      initial="hidden"
+      animate={isInView ? 'visible' : 'hidden'}
+      variants={staggerContainer}
+    >
+      <motion.h1 variants={fadeInUp}>{title}</motion.h1>
+
+      <List as={motion.div} variants={staggerContainer}>
         {data.map((item, key) => (
-          <div key={key}>
-            <img src={item.image} alt={item.name} />
-            <h2>{item.name}</h2>
-            <h3>{item.role}</h3>
-          </div>
+          <motion.div
+            key={key}
+            variants={fadeInUp}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+              scale: 1,
+              transition: {
+                delay: key * 0.05,
+                duration: 0.6,
+                ease: [0.25, 0.46, 0.45, 0.94],
+              },
+            }}
+            initial={{
+              opacity: 0,
+              y: 40,
+              scale: 0.95,
+            }}
+            viewport={{ once: true, margin: '-50px' }}
+            whileHover={{
+              y: -10,
+              scale: 1.03,
+              boxShadow: '0 20px 40px rgba(102, 126, 234, 0.15)',
+              transition: {
+                duration: 0.3,
+                ease: [0.25, 0.46, 0.45, 0.94],
+              },
+            }}
+            whileTap={{
+              scale: 0.98,
+              transition: { duration: 0.1 },
+            }}
+          >
+            <motion.img
+              src={item.image}
+              alt={item.name}
+              whileHover={{
+                scale: 1.05,
+                rotate: [0, -1, 1, 0],
+                transition: { duration: 0.3 },
+              }}
+            />
+            <motion.h2 variants={textReveal}>{item.name}</motion.h2>
+            <motion.h3 variants={textReveal}>{item.role}</motion.h3>
+          </motion.div>
         ))}
       </List>
     </Container>
