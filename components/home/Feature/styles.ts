@@ -9,8 +9,18 @@ export const Container = styled.div`
   align-items: center;
   overflow: hidden;
 
+  @media screen and (max-width: 1200px) {
+    height: auto;
+    min-height: 80vh;
+  }
+
   @media screen and (max-width: 860px) {
     background: linear-gradient(135deg, #f8faff 0%, #ffffff 100%);
+    min-height: 70vh;
+  }
+
+  @media screen and (max-width: 520px) {
+    min-height: 60vh;
   }
 `
 
@@ -35,8 +45,16 @@ export const Wrapper = styled.div`
   @media screen and (max-width: 1200px) {
     flex-direction: column-reverse;
     text-align: center;
-    padding-top: 80px;
+    padding-top: 90px;
     min-height: auto;
+  }
+
+  @media screen and (max-width: 860px) {
+    padding-top: 80px;
+  }
+
+  @media screen and (max-width: 520px) {
+    padding-top: 70px;
   }
 `
 
@@ -47,7 +65,11 @@ export const ContentSection = styled.div`
 
   @media screen and (max-width: 1200px) {
     max-width: 100%;
-    margin-top: 40px;
+    margin-top: 10px;
+  }
+
+  @media screen and (max-width: 520px) {
+    margin-top: 5px;
   }
 `
 
@@ -64,14 +86,16 @@ export const HeroImageSection = styled.div`
   }
   @media screen and (max-width: 1200px) {
     margin-left: 0;
-    margin: 0 auto;
+    margin: 0 auto 20px auto;
     justify-content: center;
   }
   @media screen and (max-width: 860px) {
-    max-width: 450px;
+    max-width: 350px;
+    margin-bottom: 15px;
   }
   @media screen and (max-width: 520px) {
-    max-width: 320px;
+    max-width: 280px;
+    margin-bottom: 10px;
   }
 `
 
@@ -99,14 +123,14 @@ export const HeroImage = styled.img`
     min-width: 400px;
   }
   @media screen and (max-width: 1200px) {
-    max-width: 600px;
+    max-width: 500px;
     min-width: 0;
   }
   @media screen and (max-width: 860px) {
-    max-width: 450px;
+    max-width: 350px;
   }
   @media screen and (max-width: 520px) {
-    max-width: 320px;
+    max-width: 280px;
   }
 `
 
