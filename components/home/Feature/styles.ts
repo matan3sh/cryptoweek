@@ -88,14 +88,19 @@ export const HeroImageSection = styled.div`
     margin-left: 0;
     margin: 0 auto 20px auto;
     justify-content: center;
+    width: 100%;
   }
   @media screen and (max-width: 860px) {
     max-width: 350px;
-    margin-bottom: 15px;
+    margin: 0 auto 15px auto;
+    justify-content: center;
+    width: 100%;
   }
   @media screen and (max-width: 520px) {
     max-width: 280px;
-    margin-bottom: 10px;
+    margin: 0 auto 10px auto;
+    justify-content: center;
+    width: 100%;
   }
 `
 
@@ -105,18 +110,8 @@ export const HeroImage = styled.img`
   max-width: 1100px;
   min-width: 700px;
   object-fit: contain;
-  animation: floatAnimation 6s ease-in-out infinite;
   filter: drop-shadow(0 20px 40px rgba(102, 126, 234, 0.15));
-
-  @keyframes floatAnimation {
-    0%,
-    100% {
-      transform: translateY(0px) rotate(0deg);
-    }
-    50% {
-      transform: translateY(-10px) rotate(1deg);
-    }
-  }
+  transform: translateX(-20px);
 
   @media screen and (max-width: 1400px) {
     max-width: 800px;
