@@ -3,7 +3,7 @@ import type { FC } from 'react'
 import { useCallback, useEffect, useState } from 'react'
 import DropDown from '../DropDown/DropDown'
 import {
-  Logo,
+  LogoText,
   MenuBars,
   NavButton,
   NavContainer,
@@ -41,7 +41,9 @@ const Header: FC = () => {
       <NavContainer $scrollNav={scrollNav}>
         <NavWrapper>
           <a href="#Feature">
-            <Logo src="/static/images/header/logo.png" alt="Cryptoweek logo" />
+            <LogoText $scrollNav={scrollNav}>
+              Crypto<span>Week</span>
+            </LogoText>
           </a>
           <NavLinks>
             {headerLinks.map((link, key) => (

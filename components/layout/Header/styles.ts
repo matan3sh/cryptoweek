@@ -45,13 +45,34 @@ export const NavWrapper = styled.nav`
   }
 `
 
-export const Logo = styled.img`
-  width: 170px;
-  height: auto;
-  object-fit: contain;
+export const LogoText = styled.h1<NavItemProps>`
+  font-family: 'Moderat-Bold', sans-serif;
+  font-size: 32px;
+  font-weight: 900;
+  color: ${({ $scrollNav }) => ($scrollNav ? '#1a202c' : '#1a202c')};
+  text-decoration: none;
+  margin: 0;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
 
-  @media screen and (max-width: 720px) {
-    width: 130px;
+  span {
+    color: #667eea;
+  }
+
+  &:hover {
+    transform: scale(1.02);
+
+    span {
+      color: #5a67d8;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    font-size: 28px;
+  }
+
+  @media screen and (max-width: 520px) {
+    font-size: 24px;
   }
 `
 
