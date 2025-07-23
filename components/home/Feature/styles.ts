@@ -33,7 +33,7 @@ export const Wrapper = styled.div`
   }
 
   @media screen and (max-width: 1200px) {
-    flex-direction: column;
+    flex-direction: column-reverse;
     text-align: center;
     padding-top: 80px;
     min-height: auto;
@@ -47,7 +47,7 @@ export const ContentSection = styled.div`
 
   @media screen and (max-width: 1200px) {
     max-width: 100%;
-    margin-bottom: 40px;
+    margin-top: 40px;
   }
 `
 
