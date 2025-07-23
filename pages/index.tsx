@@ -25,11 +25,16 @@ const Home: React.FC = () => {
   const [sentSuccess, setSentSuccess] = useState<boolean>(false)
 
   const sendContact = useCallback((values: ContactFormValues) => {
-    sendMessage(values)
+    sendMessage({
+      name: `${values.firstName} ${values.lastName}`,
+      email: values.email,
+      company: values.company,
+      message: values.message,
+    })
     setSentSuccess(true)
     setTimeout(() => {
       setSentSuccess(false)
-    }, 10000)
+    }, 3000)
   }, [])
 
   return (

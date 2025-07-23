@@ -1,3 +1,4 @@
+'use client'
 import type { ContactFormValues } from '@/types'
 import React, { ChangeEvent, FormEvent, useState } from 'react'
 import { Container, Row, Success, Wrapper } from './styles'

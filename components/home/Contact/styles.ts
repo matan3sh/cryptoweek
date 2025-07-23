@@ -20,13 +20,13 @@ export const Container = styled.div`
   }
 `
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.form`
   display: flex;
   flex-direction: column;
   gap: 15px;
 `
 
-export const Row = styled.form`
+export const Row = styled.div`
   display: flex;
   gap: 25px;
 

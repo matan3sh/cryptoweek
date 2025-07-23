@@ -54,8 +54,10 @@ export interface ContactProps {
 }
 
 export interface ContactFormValues {
-  name: string
+  firstName: string
+  lastName: string
   email: string
+  company: string
   message: string
 }
 
