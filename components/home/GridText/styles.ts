@@ -60,11 +60,10 @@ export const List = styled.div`
     background: #fff;
     border-radius: 16px;
     padding: 24px;
-    border: 1px solid rgba(0, 0, 0, 0.04);
 
     @media screen and (max-width: 768px) {
-      max-width: 240px;
-      padding: 20px;
+      max-width: 220px;
+      padding: 18px;
       border-radius: 12px;
     }
 

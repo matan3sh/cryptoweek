@@ -62,18 +62,19 @@ export const List = styled.div`
     object-fit: contain;
     background: #fff;
     border-radius: 12px;
-    border: 1px solid rgba(0, 0, 0, 0.04);
 
     @media screen and (max-width: 768px) {
-      padding: 20px;
-      min-height: 120px;
+      padding: 16px;
+      min-height: 100px;
+      max-width: 150px;
       border-radius: 8px;
     }
 
     @media screen and (max-width: 475px) {
-      padding: 16px;
-      min-height: 100px;
-      max-width: 100%;
+      padding: 12px;
+      min-height: 80px;
+      max-width: 120px;
+      border-radius: 6px;
     }
   }
 `
