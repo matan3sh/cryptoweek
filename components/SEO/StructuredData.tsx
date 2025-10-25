@@ -1,7 +1,8 @@
 import Head from 'next/head'
-import { getSiteSettings } from '@/lib/content/static'
+import type { SiteSettings } from '@/lib/content/interfaces'
 
 interface EventStructuredDataProps {
+  settings: SiteSettings
   eventName: string
   startDate: string
   endDate: string
@@ -19,6 +20,7 @@ interface EventStructuredDataProps {
 }
 
 interface OrganizationStructuredDataProps {
+  settings: SiteSettings
   name: string
   url: string
   logo: string
@@ -29,11 +31,16 @@ interface OrganizationStructuredDataProps {
   }
 }
 
+interface WebsiteStructuredDataProps {
+  settings: SiteSettings
+}
+
 /**
  * Event Structured Data Component
  * Adds JSON-LD schema for events to improve SEO and enable rich snippets
  */
 export const EventStructuredData: React.FC<EventStructuredDataProps> = ({
+  settings,
   eventName,
   startDate,
   endDate,
@@ -43,7 +50,6 @@ export const EventStructuredData: React.FC<EventStructuredDataProps> = ({
   url,
   organizer,
 }) => {
-  const settings = getSiteSettings()
   const fullImageUrl = image.startsWith('http')
     ? image
     : `${settings.seo.siteUrl}${image}`
@@ -96,8 +102,7 @@ export const EventStructuredData: React.FC<EventStructuredDataProps> = ({
  */
 export const OrganizationStructuredData: React.FC<
   OrganizationStructuredDataProps
-> = ({ name, url, logo, sameAs, contactPoint }) => {
-  const settings = getSiteSettings()
+> = ({ settings, name, url, logo, sameAs, contactPoint }) => {
   const fullLogoUrl = logo.startsWith('http')
     ? logo
     : `${settings.seo.siteUrl}${logo}`
@@ -132,8 +137,7 @@ export const OrganizationStructuredData: React.FC<
  * Website Structured Data Component
  * Adds basic website schema
  */
-export const WebsiteStructuredData: React.FC = () => {
-  const settings = getSiteSettings()
+export const WebsiteStructuredData: React.FC<WebsiteStructuredDataProps> = ({ settings }) => {
 
   const structuredData = {
     '@context': 'https://schema.org',

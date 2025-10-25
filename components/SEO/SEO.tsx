@@ -1,7 +1,8 @@
 import Head from 'next/head'
-import { getSiteSettings } from '@/lib/content/static'
+import type { SiteSettings } from '@/lib/content/interfaces'
 
 interface SEOProps {
+  settings: SiteSettings
   title?: string
   description?: string
   image?: string
@@ -14,6 +15,7 @@ interface SEOProps {
  * SEO component for managing meta tags
  * Provides comprehensive SEO support including Open Graph and Twitter Cards
  *
+ * @param settings - Site settings (passed from page)
  * @param title - Page title (defaults to site title)
  * @param description - Page description (defaults to site description)
  * @param image - Social share image URL (defaults to site OG image)
@@ -22,6 +24,7 @@ interface SEOProps {
  * @param noindex - Whether to prevent indexing (defaults to false)
  */
 export const SEO: React.FC<SEOProps> = ({
+  settings,
   title,
   description,
   image,
@@ -29,7 +32,6 @@ export const SEO: React.FC<SEOProps> = ({
   type = 'website',
   noindex = false,
 }) => {
-  const settings = getSiteSettings()
 
   // Use provided values or fall back to site defaults
   const seoTitle = title || settings.title

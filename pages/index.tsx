@@ -14,13 +14,16 @@ import { SkipToContent } from '@/components/SkipToContent'
 
 import {
   getHomePage,
+  getSiteSettings,
+  getNavigationLinks,
   getPartnerLogoUrls,
   getSupporterLogoUrls,
   getLegacySpeakersData,
   getLegacyTeamData,
-} from '@/lib/content/static'
+} from '@/lib/content'
 import { sendMessage } from '@/services'
-import type { ContactFormValues } from '@/types'
+import type { ContactFormValues, HomePage, SiteSettings, NavigationLink } from '@/types'
+import type { GetStaticProps } from 'next'
 
 const MainContainer = styled.main`
   max-width: 1200px;
@@ -41,17 +44,28 @@ const MainContainer = styled.main`
   }
 `
 
-const Home: React.FC = () => {
+interface HomeProps {
+  settings: SiteSettings
+  navLinks: NavigationLink[]
+  homePage: HomePage
+  partnersData: string[]
+  supportersData: string[]
+  speakersData: Array<{ name: string; role: string; image: string }>
+  teamData: Array<{ name: string; role: string; image: string }>
+}
+
+const Home: React.FC<HomeProps> = ({
+  settings,
+  navLinks,
+  homePage,
+  partnersData,
+  supportersData,
+  speakersData,
+  teamData,
+}) => {
   const [sentSuccess, setSentSuccess] = useState<boolean>(false)
   const [error, setError] = useState<string>('')
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false)
-
-  // Load content from content layer
-  const homePage = getHomePage()
-  const partnersData = getPartnerLogoUrls()
-  const supportersData = getSupporterLogoUrls()
-  const speakersData = getLegacySpeakersData()
-  const teamData = getLegacyTeamData()
 
   const sendContact = useCallback(async (values: ContactFormValues) => {
     setIsSubmitting(true)
@@ -78,10 +92,10 @@ const Home: React.FC = () => {
 
   return (
     <>
-      <SEO />
-      <WebsiteStructuredData />
+      <SEO settings={settings} />
+      <WebsiteStructuredData settings={settings} />
       <SkipToContent />
-      <Header />
+      <Header settings={settings} navLinks={navLinks} />
       <MainContainer id="main-content">
         <Feature />
         <GridSection
@@ -113,9 +127,34 @@ const Home: React.FC = () => {
           isSubmitting={isSubmitting}
         />
       </MainContainer>
-      <Footer />
+      <Footer settings={settings} />
     </>
   )
+}
+
+// Fetch data from Sanity at build time
+export const getStaticProps: GetStaticProps<HomeProps> = async () => {
+  const settings = await getSiteSettings()
+  const navLinks = await getNavigationLinks()
+  const homePage = await getHomePage()
+  const partnersData = await getPartnerLogoUrls()
+  const supportersData = await getSupporterLogoUrls()
+  const speakersData = await getLegacySpeakersData()
+  const teamData = await getLegacyTeamData()
+
+  return {
+    props: {
+      settings,
+      navLinks,
+      homePage,
+      partnersData,
+      supportersData,
+      speakersData,
+      teamData,
+    },
+    // Revalidate every hour (ISR)
+    revalidate: 3600,
+  }
 }
 
 export default Home

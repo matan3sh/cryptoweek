@@ -1,13 +1,16 @@
-import { getSiteSettings } from '@/lib/content/static'
+import type { SiteSettings } from '@/lib/content/interfaces'
 import { memo } from 'react'
 import { Container } from './styles'
+
+interface FooterProps {
+  settings: SiteSettings
+}
 
 /**
  * Footer component - Site footer with copyright and contact
  * Memoized because settings rarely change
  */
-const Footer: React.FC = () => {
-  const settings = getSiteSettings()
+const Footer: React.FC<FooterProps> = ({ settings }) => {
 
   return (
     <Container as="footer" role="contentinfo">

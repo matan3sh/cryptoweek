@@ -1,6 +1,4 @@
-import { fadeInUp, staggerContainer } from '@/components/animations'
 import type { ContactFormValues } from '@/types'
-import { AnimatePresence, motion } from 'framer-motion'
 import React, { ChangeEvent, FormEvent, useState } from 'react'
 import { Container, Row, Success, Wrapper } from './styles'
 
@@ -89,23 +87,13 @@ const Contact: React.FC<ContactProps> = ({
   }
 
   return (
-    <Container
-      as={motion.div}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: '-100px' }}
-      variants={staggerContainer}
-    >
-      <motion.h1 variants={fadeInUp}>Contact</motion.h1>
+    <Container>
+      <h1>Contact</h1>
 
-      <Wrapper
-        as={motion.form}
-        onSubmit={handleSubmit}
-        variants={staggerContainer}
-      >
-        <Row as={motion.div} variants={fadeInUp}>
+      <Wrapper as="form" onSubmit={handleSubmit}>
+        <Row>
           <div style={{ width: '100%' }}>
-            <motion.input
+            <input
               type="text"
               name="firstName"
               placeholder="First Name"
@@ -114,16 +102,6 @@ const Contact: React.FC<ContactProps> = ({
               required
               aria-invalid={!!errors.firstName}
               aria-describedby={errors.firstName ? 'firstName-error' : undefined}
-              whileFocus={{
-                scale: 1.02,
-                boxShadow: '0 0 20px rgba(102, 126, 234, 0.3)',
-                borderColor: '#667eea',
-              }}
-              whileHover={{
-                scale: 1.01,
-                transition: { duration: 0.2 },
-              }}
-              transition={{ duration: 0.3 }}
             />
             {errors.firstName && (
               <span
@@ -140,7 +118,7 @@ const Contact: React.FC<ContactProps> = ({
             )}
           </div>
           <div style={{ width: '100%' }}>
-            <motion.input
+            <input
               type="text"
               name="lastName"
               placeholder="Last Name"
@@ -149,16 +127,6 @@ const Contact: React.FC<ContactProps> = ({
               required
               aria-invalid={!!errors.lastName}
               aria-describedby={errors.lastName ? 'lastName-error' : undefined}
-              whileFocus={{
-                scale: 1.02,
-                boxShadow: '0 0 20px rgba(102, 126, 234, 0.3)',
-                borderColor: '#667eea',
-              }}
-              whileHover={{
-                scale: 1.01,
-                transition: { duration: 0.2 },
-              }}
-              transition={{ duration: 0.3 }}
             />
             {errors.lastName && (
               <span
@@ -176,9 +144,9 @@ const Contact: React.FC<ContactProps> = ({
           </div>
         </Row>
 
-        <Row as={motion.div} variants={fadeInUp}>
+        <Row>
           <div style={{ width: '100%' }}>
-            <motion.input
+            <input
               type="email"
               id="email"
               name="email"
@@ -188,16 +156,6 @@ const Contact: React.FC<ContactProps> = ({
               required
               aria-invalid={!!errors.email}
               aria-describedby={errors.email ? 'email-error' : undefined}
-              whileFocus={{
-                scale: 1.02,
-                boxShadow: '0 0 20px rgba(102, 126, 234, 0.3)',
-                borderColor: '#667eea',
-              }}
-              whileHover={{
-                scale: 1.01,
-                transition: { duration: 0.2 },
-              }}
-              transition={{ duration: 0.3 }}
             />
             {errors.email && (
               <span
@@ -214,29 +172,19 @@ const Contact: React.FC<ContactProps> = ({
             )}
           </div>
           <div style={{ width: '100%' }}>
-            <motion.input
+            <input
               type="text"
               name="company"
               placeholder="Company"
               onChange={handleInputChange}
               value={values.company}
-              whileFocus={{
-                scale: 1.02,
-                boxShadow: '0 0 20px rgba(102, 126, 234, 0.3)',
-                borderColor: '#667eea',
-              }}
-              whileHover={{
-                scale: 1.01,
-                transition: { duration: 0.2 },
-              }}
-              transition={{ duration: 0.3 }}
             />
           </div>
         </Row>
 
-        <Row as={motion.div} variants={fadeInUp}>
+        <Row>
           <div style={{ width: '100%' }}>
-            <motion.textarea
+            <textarea
               rows={12}
               name="message"
               placeholder="Message"
@@ -245,16 +193,6 @@ const Contact: React.FC<ContactProps> = ({
               required
               aria-invalid={!!errors.message}
               aria-describedby={errors.message ? 'message-error' : undefined}
-              whileFocus={{
-                scale: 1.02,
-                boxShadow: '0 0 20px rgba(102, 126, 234, 0.3)',
-                borderColor: '#667eea',
-              }}
-              whileHover={{
-                scale: 1.01,
-                transition: { duration: 0.2 },
-              }}
-              transition={{ duration: 0.3 }}
             />
             {errors.message && (
               <span
@@ -272,87 +210,34 @@ const Contact: React.FC<ContactProps> = ({
           </div>
         </Row>
 
-        <AnimatePresence>
-          {success && (
-            <motion.div
-              initial={{ opacity: 0, y: 20, scale: 0.9 }}
-              animate={{
-                opacity: 1,
-                y: 0,
-                scale: 1,
-                boxShadow: '0 0 30px rgba(34, 197, 94, 0.3)',
-              }}
-              exit={{
-                opacity: 0,
-                y: -20,
-                scale: 0.9,
-                transition: { duration: 0.3 },
-              }}
-              transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
-            >
-              <Success>We&apos;ve got your message!</Success>
-            </motion.div>
-          )}
-          {error && (
-            <motion.div
-              initial={{ opacity: 0, y: 20, scale: 0.9 }}
-              animate={{
-                opacity: 1,
-                y: 0,
-                scale: 1,
-                boxShadow: '0 0 30px rgba(239, 68, 68, 0.3)',
-              }}
-              exit={{
-                opacity: 0,
-                y: -20,
-                scale: 0.9,
-                transition: { duration: 0.3 },
-              }}
-              transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
-              style={{
-                backgroundColor: '#fee2e2',
-                color: '#991b1b',
-                padding: '1rem',
-                borderRadius: '0.5rem',
-                marginBottom: '1rem',
-                textAlign: 'center',
-              }}
-            >
-              {error}
-            </motion.div>
-          )}
-        </AnimatePresence>
+        {success && <Success>We&apos;ve got your message!</Success>}
+        {error && (
+          <div
+            style={{
+              backgroundColor: '#fee2e2',
+              color: '#991b1b',
+              padding: '1rem',
+              borderRadius: '0.5rem',
+              marginBottom: '1rem',
+              textAlign: 'center',
+            }}
+          >
+            {error}
+          </div>
+        )}
 
-        <Row as={motion.div} variants={fadeInUp}>
-          <motion.button
+        <Row>
+          <button
             className="button"
             type="submit"
             disabled={isSubmitting}
-            whileHover={
-              !isSubmitting
-                ? {
-                    scale: 1.05,
-                    y: -2,
-                    boxShadow: '0 10px 30px rgba(102, 126, 234, 0.4)',
-                  }
-                : {}
-            }
-            whileTap={
-              !isSubmitting
-                ? {
-                    scale: 0.95,
-                    transition: { duration: 0.1 },
-                  }
-                : {}
-            }
-            transition={{ duration: 0.3 }}
             style={{
               opacity: isSubmitting ? 0.7 : 1,
               cursor: isSubmitting ? 'not-allowed' : 'pointer',
             }}
           >
             {isSubmitting ? 'Sending...' : 'Send'}
-          </motion.button>
+          </button>
         </Row>
       </Wrapper>
     </Container>

@@ -1,5 +1,4 @@
-import { getSiteSettings } from '@/lib/content/static'
-import type { NavigationLink } from '@/lib/content/interfaces'
+import type { NavigationLink, SiteSettings } from '@/lib/content/interfaces'
 import type { FC } from 'react'
 import {
   DropDownButton,
@@ -15,10 +14,10 @@ interface DropDownProps {
   toggle: () => void
   isOpen: boolean
   data: NavigationLink[]
+  settings: SiteSettings
 }
 
-const DropDown: FC<DropDownProps> = ({ toggle, isOpen, data }) => {
-  const settings = getSiteSettings()
+const DropDown: FC<DropDownProps> = ({ toggle, isOpen, data, settings }) => {
 
   return (
     <DropDownContainer
