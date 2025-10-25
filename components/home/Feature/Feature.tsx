@@ -63,19 +63,15 @@ const Feature: FC<FeatureProps> = ({ hero }) => {
         </ContentSection>
 
         <HeroImageSection>
-          {hero.heroImage && (
-            <Image
-              src={hero.heroImage.src}
-              alt={hero.heroImage.alt || 'Hero Illustration'}
-              width={hero.heroImage.width || 600}
-              height={hero.heroImage.height || 520}
-              priority
-              quality={90}
-              style={{ maxWidth: '100%', height: 'auto' }}
-              placeholder={hero.heroImage.blurDataUrl ? 'blur' : 'empty'}
-              blurDataURL={hero.heroImage.blurDataUrl}
-            />
-          )}
+          <Image
+            src="/static/images/feature/illustration.png"
+            alt="Hero Illustration"
+            width={600}
+            height={520}
+            priority
+            quality={90}
+            style={{ maxWidth: '100%', height: 'auto' }}
+          />
         </HeroImageSection>
       </Wrapper>
     </Container>

@@ -21,7 +21,6 @@ import {
   getLegacySpeakersData,
   getLegacyTeamData,
 } from '@/lib/content'
-import { sendMessage } from '@/services'
 import type { ContactFormValues } from '@/types'
 import type { HomePage, SiteSettings, NavigationLink } from '@/lib/content/interfaces'
 import type { GetStaticProps } from 'next'
@@ -73,18 +72,25 @@ const Home: React.FC<HomeProps> = ({
     setError('')
 
     try {
-      await sendMessage({
-        name: `${values.firstName} ${values.lastName}`,
-        email: values.email,
-        company: values.company,
-        message: values.message,
+      const response = await fetch('/api/send-message', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(values),
       })
+
+      if (!response.ok) {
+        const errorData = await response.json()
+        throw new Error(errorData.message || 'Failed to send message')
+      }
+
       setSentSuccess(true)
       setTimeout(() => {
         setSentSuccess(false)
       }, 3000)
     } catch (err) {
-      setError('Failed to send message. Please try again.')
+      setError(err instanceof Error ? err.message : 'Failed to send message. Please try again.')
       console.error('Send contact error:', err)
     } finally {
       setIsSubmitting(false)
@@ -122,6 +128,7 @@ const Home: React.FC<HomeProps> = ({
           link={homePage.team.identifier}
         />
         <Contact
+          config={settings.contactSection}
           onSubmit={sendContact}
           success={sentSuccess}
           error={error}

@@ -1,8 +1,10 @@
 import type { ContactFormValues } from '@/types'
+import type { ContactSection } from '@/lib/content/interfaces'
 import React, { ChangeEvent, FormEvent, useState } from 'react'
 import { Container, Row, Success, Wrapper } from './styles'
 
 interface ContactProps {
+  config: ContactSection
   onSubmit: (values: ContactFormValues) => Promise<void>
   success: boolean
   error?: string
@@ -10,6 +12,7 @@ interface ContactProps {
 }
 
 const Contact: React.FC<ContactProps> = ({
+  config,
   onSubmit,
   success,
   error,
@@ -23,6 +26,8 @@ const Contact: React.FC<ContactProps> = ({
     message: '',
   })
   const [errors, setErrors] = useState<Partial<ContactFormValues>>({})
+  const [honeypot, setHoneypot] = useState('')
+  const [formStartTime] = useState(() => Date.now())
 
   const handleInputChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -40,24 +45,24 @@ const Contact: React.FC<ContactProps> = ({
 
     // First name validation
     if (!values.firstName.trim()) {
-      newErrors.firstName = 'First name is required'
+      newErrors.firstName = config.validationMessages.firstNameRequired
     }
 
     // Last name validation
     if (!values.lastName.trim()) {
-      newErrors.lastName = 'Last name is required'
+      newErrors.lastName = config.validationMessages.lastNameRequired
     }
 
     // Email validation
     if (!values.email.trim()) {
-      newErrors.email = 'Email is required'
+      newErrors.email = config.validationMessages.emailRequired
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) {
-      newErrors.email = 'Please enter a valid email address'
+      newErrors.email = config.validationMessages.emailInvalid
     }
 
     // Message validation
     if (!values.message.trim()) {
-      newErrors.message = 'Message is required'
+      newErrors.message = config.validationMessages.messageRequired
     }
 
     setErrors(newErrors)
@@ -71,7 +76,14 @@ const Contact: React.FC<ContactProps> = ({
       return // Don't submit if validation fails
     }
 
-    await onSubmit(values)
+    // Add spam prevention fields
+    const submissionData = {
+      ...values,
+      honeypot, // Hidden field to catch bots
+      _formStartTime: formStartTime, // Track time to fill form
+    }
+
+    await onSubmit(submissionData as any)
 
     // Only clear form if submission was successful
     if (!error) {
@@ -88,15 +100,34 @@ const Contact: React.FC<ContactProps> = ({
 
   return (
     <Container>
-      <h1>Contact</h1>
+      <h1>{config.title}</h1>
 
       <Wrapper as="form" onSubmit={handleSubmit}>
+        {/* Honeypot field - hidden from users but bots will fill it */}
+        <input
+          type="text"
+          name="website"
+          value={honeypot}
+          onChange={(e) => setHoneypot(e.target.value)}
+          style={{
+            position: 'absolute',
+            left: '-9999px',
+            width: '1px',
+            height: '1px',
+            opacity: 0,
+            pointerEvents: 'none',
+          }}
+          tabIndex={-1}
+          autoComplete="off"
+          aria-hidden="true"
+        />
+
         <Row>
           <div style={{ width: '100%' }}>
             <input
               type="text"
               name="firstName"
-              placeholder="First Name"
+              placeholder={config.fieldLabels.firstName}
               onChange={handleInputChange}
               value={values.firstName}
               required
@@ -121,7 +152,7 @@ const Contact: React.FC<ContactProps> = ({
             <input
               type="text"
               name="lastName"
-              placeholder="Last Name"
+              placeholder={config.fieldLabels.lastName}
               onChange={handleInputChange}
               value={values.lastName}
               required
@@ -150,7 +181,7 @@ const Contact: React.FC<ContactProps> = ({
               type="email"
               id="email"
               name="email"
-              placeholder="Email"
+              placeholder={config.fieldLabels.email}
               onChange={handleInputChange}
               value={values.email}
               required
@@ -175,7 +206,7 @@ const Contact: React.FC<ContactProps> = ({
             <input
               type="text"
               name="company"
-              placeholder="Company"
+              placeholder={config.fieldLabels.company}
               onChange={handleInputChange}
               value={values.company}
             />
@@ -187,7 +218,7 @@ const Contact: React.FC<ContactProps> = ({
             <textarea
               rows={12}
               name="message"
-              placeholder="Message"
+              placeholder={config.fieldLabels.message}
               onChange={handleInputChange}
               value={values.message}
               required
@@ -210,7 +241,7 @@ const Contact: React.FC<ContactProps> = ({
           </div>
         </Row>
 
-        {success && <Success>We&apos;ve got your message!</Success>}
+        {success && <Success>{config.messages.success}</Success>}
         {error && (
           <div
             style={{
@@ -236,7 +267,7 @@ const Contact: React.FC<ContactProps> = ({
               cursor: isSubmitting ? 'not-allowed' : 'pointer',
             }}
           >
-            {isSubmitting ? 'Sending...' : 'Send'}
+            {isSubmitting ? config.buttonText.submitting : config.buttonText.default}
           </button>
         </Row>
       </Wrapper>

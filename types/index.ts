@@ -48,22 +48,9 @@ export interface SectionProps {
   data: SectionData
 }
 
-export interface ContactProps {
-  onSubmit: (values: ContactFormValues) => void
-  success: boolean
-}
-
 export interface ContactFormValues {
   firstName: string
   lastName: string
-  email: string
-  company: string
-  message: string
-}
-
-// Service Types
-export interface SendMessageRequest {
-  name: string
   email: string
   company: string
   message: string

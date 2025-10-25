@@ -114,6 +114,13 @@ export default defineType({
       description: 'Main navigation menu items',
       validation: (Rule) => Rule.max(8),
     },
+    {
+      name: 'contactSection',
+      title: 'Contact Form Configuration',
+      type: 'contactSection',
+      description: 'Contact form text and messages',
+      validation: (Rule) => Rule.required(),
+    },
   ],
   preview: {
     prepare() {

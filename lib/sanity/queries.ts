@@ -65,6 +65,33 @@ const companyLogoFragment = groq`
   displayHeight
 `
 
+const contactSectionFragment = groq`
+  title,
+  fieldLabels {
+    firstName,
+    lastName,
+    email,
+    company,
+    message
+  },
+  buttonText {
+    default,
+    submitting
+  },
+  messages {
+    success,
+    error,
+    rateLimitError
+  },
+  validationMessages {
+    firstNameRequired,
+    lastNameRequired,
+    emailRequired,
+    emailInvalid,
+    messageRequired
+  }
+`
+
 // ============================================
 // SITE SETTINGS QUERIES
 // ============================================
@@ -105,6 +132,9 @@ export const SITE_SETTINGS_QUERY = groq`
     eventUrl,
     navigation[] {
       ${navigationLinkFragment}
+    },
+    contactSection {
+      ${contactSectionFragment}
     }
   }
 `

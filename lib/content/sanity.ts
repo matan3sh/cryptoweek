@@ -159,6 +159,7 @@ export async function getSiteSettings(): Promise<SiteSettings> {
     primaryCta: data.primaryCta,
     eventUrl: data.eventUrl || null,
     navigation: data.navigation || [],
+    contactSection: data.contactSection,
   }
 }
 

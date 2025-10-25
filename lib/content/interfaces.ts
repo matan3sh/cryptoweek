@@ -47,6 +47,7 @@ export interface SiteSettings {
   primaryCta: CallToAction
   eventUrl: string
   navigation: NavigationLink[]
+  contactSection: ContactSection
 }
 
 /**
@@ -214,6 +215,36 @@ export interface SocialLink {
   platform: 'twitter' | 'linkedin' | 'instagram' | 'facebook' | 'github' | 'website'
   url: string
   handle?: string
+}
+
+/**
+ * Contact form configuration
+ */
+export interface ContactSection {
+  title: string
+  fieldLabels: {
+    firstName: string
+    lastName: string
+    email: string
+    company: string
+    message: string
+  }
+  buttonText: {
+    default: string
+    submitting: string
+  }
+  messages: {
+    success: string
+    error: string
+    rateLimitError: string
+  }
+  validationMessages: {
+    firstNameRequired: string
+    lastNameRequired: string
+    emailRequired: string
+    emailInvalid: string
+    messageRequired: string
+  }
 }
 
 // ============================================
