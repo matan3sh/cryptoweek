@@ -138,18 +138,9 @@ export const NavLink = styled.a<NavItemProps>`
   background: var(--glass-white);
   border: 1px solid var(--border-glass);
   border-radius: var(--radius-sm);
-  transition: all 0.3s ease;
   -webkit-backdrop-filter: var(--blur-sm);
   backdrop-filter: var(--blur-sm);
   font-size: 14px;
-
-  &:hover {
-    color: #667eea;
-    background: var(--glass-white-medium);
-    border-color: var(--border-glass-strong);
-    box-shadow: var(--glow-purple);
-    transform: translateY(-1px);
-  }
 `
 
 export const NavButton = styled.a`
@@ -162,17 +153,10 @@ export const NavButton = styled.a`
   border: 1px solid var(--border-glass);
   cursor: pointer;
   text-decoration: none;
-  transition: all 0.3s ease;
   font-size: 14px;
   box-shadow: var(--glow-purple);
   -webkit-backdrop-filter: var(--blur-sm);
   backdrop-filter: var(--blur-sm);
-
-  &:hover {
-    background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
-    transform: translateY(-2px);
-    box-shadow: var(--glow-purple-strong);
-  }
 `
 
 export const MobileMenuButton = styled.button`
@@ -216,7 +200,6 @@ export const BottomNavItem = styled.a`
     padding: 8px 12px;
     text-decoration: none;
     color: #1a202c;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     border-radius: var(--radius-sm);
     cursor: pointer;
     background: var(--glass-white);
@@ -227,14 +210,6 @@ export const BottomNavItem = styled.a`
     font-size: 13px;
     font-weight: 500;
     white-space: nowrap;
-
-    &:hover {
-      color: #667eea;
-      background: var(--glass-white-medium);
-      border-color: var(--border-glass-strong);
-      box-shadow: var(--glow-purple);
-      transform: translateY(-1px);
-    }
   }
 
   @media screen and (max-width: 480px) {
@@ -259,18 +234,11 @@ export const MobileNavButton = styled.a`
     border: 1px solid var(--border-glass);
     cursor: pointer;
     text-decoration: none;
-    transition: all 0.3s ease;
     font-size: 13px;
     font-family: 'Moderat-Medium', sans-serif;
     box-shadow: var(--glow-purple);
     -webkit-backdrop-filter: var(--blur-sm);
     backdrop-filter: var(--blur-sm);
-
-    &:hover {
-      background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
-      transform: translateY(-2px);
-      box-shadow: var(--glow-purple-strong);
-    }
   }
 
   @media screen and (max-width: 480px) {
