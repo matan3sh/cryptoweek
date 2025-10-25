@@ -7,7 +7,7 @@
  * @module lib/content/sanity
  */
 
-import {sanityClient} from '@/lib/sanity/client'
+import {sanityClientWithToken} from '@/lib/sanity/client'
 import {
   SITE_SETTINGS_QUERY,
   HOME_PAGE_QUERY,
@@ -16,6 +16,10 @@ import {
   ALL_PARTNERS_QUERY,
   ALL_SUPPORTERS_QUERY,
 } from '@/lib/sanity/queries'
+
+// Use the token-based client (no CDN) for server-side fetching
+// This ensures we always get fresh content during ISR builds
+const sanityClient = sanityClientWithToken
 
 import type {
   SiteSettings,
