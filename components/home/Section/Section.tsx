@@ -1,24 +1,37 @@
 import { fadeInUp, staggerContainer, textReveal } from '@/components/animations'
-import type { SectionData } from '@/types'
+import type { ContentSection } from '@/lib/content/interfaces'
 import { motion, useInView } from 'framer-motion'
-import { useRef } from 'react'
+import { useRef, memo } from 'react'
 import { Container, Wrapper } from './styles'
 
 interface SectionProps {
-  data: SectionData
+  data: ContentSection
 }
 
+/**
+ * Section component - Displays content section with background
+ * Memoized with custom comparison to prevent re-renders when data hasn't changed
+ */
 const Section: React.FC<SectionProps> = ({ data }) => {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
+
+  // Map semantic theme to color value
+  const themeColors = {
+    light: '#fff',
+    dark: '#3f354d',
+  }
+
+  const textColor = data._legacyColor || themeColors[data.theme]
+  const backgroundImage = data.backgroundImage || ''
 
   return (
     <Container
       as={motion.div}
       ref={ref}
       style={{
-        color: data.color,
-        backgroundImage: `url(${data.bg})`,
+        color: textColor,
+        backgroundImage: `url(${backgroundImage})`,
       }}
       initial="hidden"
       animate={isInView ? 'visible' : 'hidden'}
@@ -68,4 +81,13 @@ const Section: React.FC<SectionProps> = ({ data }) => {
   )
 }
 
-export default Section
+// Memoize with custom comparison function
+// Only re-render if content actually changed
+export default memo(Section, (prev, next) => {
+  return (
+    prev.data.title === next.data.title &&
+    prev.data.subtitle === next.data.subtitle &&
+    prev.data.theme === next.data.theme &&
+    prev.data.backgroundImage === next.data.backgroundImage
+  )
+})

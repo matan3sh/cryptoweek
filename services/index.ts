@@ -1,15 +1,4 @@
-export interface SendMessageRequest {
-  name: string
-  email: string
-  company: string
-  message: string
-}
-
-export interface ApiResponse {
-  success: boolean
-  message?: string
-  error?: string
-}
+import type { SendMessageRequest, ApiResponse } from '@/types'
 
 /**
  * Sends a contact form message to the API

@@ -1,0 +1,99 @@
+{
+  "hero": {
+    "headline": "Calling Israel's Top Crypto Talents",
+    "title": "Crypto",
+    "titleHighlight": "Week",
+    "subtitle": "13th December - 16th December",
+    "description": "Join global crypto leaders, VC firms and promising blockchain companies unveiling the future trends from the world's top Crypto Week!",
+    "heroImage": {
+      "src": "/images/hero/hero-3d-crypto.png",
+      "alt": "3D Crypto Week Illustration",
+      "width": 600,
+      "height": 520
+    },
+    "cta": {
+      "text": "Get early access",
+      "url": "https://hopin.com/events/israel-crypto-week",
+      "openInNewTab": true,
+      "style": "primary"
+    },
+    "featuredPartners": [
+      {
+        "name": "WeDiggIT",
+        "logo": {
+          "src": "/static/images/feature/partners/WeDiggIT.png",
+          "alt": "WeDiggIT logo",
+          "width": 242,
+          "height": 45
+        },
+        "displayWidth": "242px",
+        "displayHeight": "45px"
+      },
+      {
+        "name": "Celsius",
+        "logo": {
+          "src": "/static/images/feature/partners/Celsius.png",
+          "alt": "Celsius logo",
+          "width": 165,
+          "height": 38
+        },
+        "displayWidth": "165px",
+        "displayHeight": "38px"
+      },
+      {
+        "name": "Digital_Bank",
+        "logo": {
+          "src": "/static/images/feature/partners/Digital_Bank.png",
+          "alt": "Digital Bank logo",
+          "width": 113,
+          "height": 44
+        },
+        "displayWidth": "113px",
+        "displayHeight": "44px"
+      },
+      {
+        "name": "ZenGo",
+        "logo": {
+          "src": "/static/images/feature/partners/ZenGo.png",
+          "alt": "ZenGo logo",
+          "width": 121,
+          "height": 52
+        },
+        "displayWidth": "121px",
+        "displayHeight": "52px"
+      }
+    ]
+  },
+  "sections": {
+    "about": {
+      "title": "New to cryptocurrency? No problem. Digital assets are here to stay, join us to learn & connect.",
+      "subtitle": "We're showcasing the best crypto companies, leaders on one Coin Nations Global Summit",
+      "theme": "dark",
+      "backgroundImage": "/static/images/about/bg.png",
+      "_legacyColor": "#3f354d"
+    },
+    "invite": {
+      "title": "Coin Nations Summit invites you to discover a whole new world of crypto possibilities.",
+      "subtitle": "Trading digital assets is changing the way the world thinks about money and finance. Join the best 2021 Coin Nations Summit to take part in the new world economy.",
+      "theme": "light",
+      "backgroundImage": "/static/images/invite/bg.png",
+      "_legacyColor": "#fff"
+    }
+  },
+  "partners": {
+    "title": "Our Partners",
+    "identifier": "Partners"
+  },
+  "supporters": {
+    "title": "Supporters",
+    "identifier": "Supporters"
+  },
+  "speakers": {
+    "title": "Our Speakers",
+    "identifier": "Speakers"
+  },
+  "team": {
+    "title": "Our Team",
+    "identifier": "Team"
+  }
+}

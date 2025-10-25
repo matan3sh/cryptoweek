@@ -1,4 +1,4 @@
-import { headerLinks } from '@/data'
+import { getNavigationLinks, getSiteSettings } from '@/lib/content/static'
 import { AnimatePresence, motion } from 'framer-motion'
 import type { FC } from 'react'
 import { useCallback, useEffect, useState } from 'react'
@@ -16,6 +16,10 @@ import {
 const Header: FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const [scrollNav, setScrollNav] = useState<boolean>(false)
+
+  // Load content from content layer
+  const settings = getSiteSettings()
+  const navLinks = getNavigationLinks()
 
   const toggle = useCallback(() => {
     setIsOpen((prev) => !prev)
@@ -39,12 +43,13 @@ const Header: FC = () => {
   return (
     <>
       <AnimatePresence>
-        <DropDown isOpen={isOpen} toggle={toggle} data={headerLinks} />
+        <DropDown isOpen={isOpen} toggle={toggle} data={navLinks} />
       </AnimatePresence>
 
       <NavContainer
         as={motion.header}
         $scrollNav={scrollNav}
+        role="banner"
         initial={{ y: -100, opacity: 0 }}
         animate={{
           y: 0,
@@ -60,12 +65,15 @@ const Header: FC = () => {
       >
         <NavWrapper
           as={motion.nav}
+          role="navigation"
+          aria-label="Main navigation"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.4 }}
         >
           <motion.a
             href="#Feature"
+            aria-label={`${settings.logo.text} - Go to top`}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             transition={{ duration: 0.2 }}
@@ -81,7 +89,8 @@ const Header: FC = () => {
                 transition: { duration: 0.2 },
               }}
             >
-              Crypto<span>Week</span>
+              {settings.logo.text.split('Week')[0]}
+              <span>Week</span>
             </LogoText>
           </motion.a>
 
@@ -91,7 +100,7 @@ const Header: FC = () => {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4, duration: 0.4 }}
           >
-            {headerLinks.map((link, key) => (
+            {navLinks.map((link, key) => (
               <motion.div
                 key={`nav-link-${key}-${link.title}`}
                 initial={{ y: -20, opacity: 0 }}
@@ -104,7 +113,7 @@ const Header: FC = () => {
                 whileHover={{ y: -2 }}
                 whileTap={{ y: 0 }}
               >
-                <NavLink href={link.link} $scrollNav={scrollNav}>
+                <NavLink href={link.url} $scrollNav={scrollNav}>
                   {link.title}
                 </NavLink>
               </motion.div>
@@ -126,24 +135,36 @@ const Header: FC = () => {
               whileTap={{ scale: 0.95 }}
             >
               <NavButton
-                href="https://hopin.com/events/israel-crypto-week"
-                target="_blank"
-                rel="noopener noreferrer"
+                href={settings.primaryCta.url}
+                target={settings.primaryCta.openInNewTab ? '_blank' : undefined}
+                rel={settings.primaryCta.openInNewTab ? 'noopener noreferrer' : undefined}
               >
-                Get Early Access
+                {settings.primaryCta.text}
               </NavButton>
             </motion.div>
           </NavLinks>
 
-          <motion.div
+          <motion.button
+            onClick={toggle}
+            aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}
+            aria-expanded={isOpen}
+            aria-controls="mobile-navigation"
             initial={{ x: 30, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.5 }}
             whileHover={{ scale: 1.1, rotate: 90 }}
             whileTap={{ scale: 0.9 }}
+            style={{
+              background: 'transparent',
+              border: 'none',
+              cursor: 'pointer',
+              padding: 0,
+              display: 'flex',
+              alignItems: 'center',
+            }}
           >
-            <MenuBars onClick={toggle} $scrollNav={scrollNav} />
-          </motion.div>
+            <MenuBars $scrollNav={scrollNav} />
+          </motion.button>
         </NavWrapper>
       </NavContainer>
     </>

@@ -1,20 +1,30 @@
+import { getSiteSettings } from '@/lib/content/static'
+import { memo } from 'react'
 import { Container } from './styles'
 
+/**
+ * Footer component - Site footer with copyright and contact
+ * Memoized because settings rarely change
+ */
 const Footer: React.FC = () => {
+  const settings = getSiteSettings()
+
   return (
-    <Container>
-      <h2>Coin Nations &#169; 2021 copyright all right reserved</h2>
-      <h3>
+    <Container as="footer" role="contentinfo">
+      <p>
+        {settings.footer.copyrightText} &#169; {settings.footer.year}
+      </p>
+      <p>
         <a
-          href="mailto:info@coinnations.com"
-          target="_blank"
-          rel="noopener noreferrer"
+          href={`mailto:${settings.footer.email}`}
+          aria-label={`Send email to ${settings.footer.email}`}
         >
-          info@coinnations.com
+          {settings.footer.email}
         </a>
-      </h3>
+      </p>
     </Container>
   )
 }
 
-export default Footer
+// Memoize: Settings don't change during runtime
+export default memo(Footer)

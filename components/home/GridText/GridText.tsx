@@ -1,6 +1,6 @@
 import { fadeInUp, staggerContainer, textReveal } from '@/components/animations'
 import { motion, useInView } from 'framer-motion'
-import { useRef } from 'react'
+import { useRef, memo } from 'react'
 import Image from 'next/image'
 import { Container, List } from './styles'
 
@@ -16,6 +16,10 @@ interface GridTextProps {
   link: string
 }
 
+/**
+ * GridText component - Displays a grid of people (speakers/team) with photos
+ * Memoized with custom comparison to prevent re-renders when data hasn't changed
+ */
 const GridText: React.FC<GridTextProps> = ({ title, data, link }) => {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
@@ -93,4 +97,17 @@ const GridText: React.FC<GridTextProps> = ({ title, data, link }) => {
   )
 }
 
-export default GridText
+// Memoize with custom comparison function
+// Only re-render if data, title, or link actually changed
+export default memo(GridText, (prev, next) => {
+  return (
+    prev.title === next.title &&
+    prev.link === next.link &&
+    prev.data.length === next.data.length &&
+    prev.data.every((item, i) =>
+      item.name === next.data[i].name &&
+      item.image === next.data[i].image &&
+      item.role === next.data[i].role
+    )
+  )
+})

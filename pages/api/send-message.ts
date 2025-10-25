@@ -1,11 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-
-export interface SendMessageRequest {
-  name: string
-  email: string
-  company: string
-  message: string
-}
+import type { SendMessageRequest } from '@/types'
 
 export default async function handler(
   req: NextApiRequest,

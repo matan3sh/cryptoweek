@@ -1,0 +1,51 @@
+{
+  "title": "Cryptoweek.co.il - Calling Israel's Top Crypto Talents",
+  "description": "Join global crypto leaders, VC firms and promising blockchain companies unveiling the future trends from the world's top Crypto Week!",
+  "keywords": [
+    "crypto bitcoin",
+    "ethereum",
+    "revolut",
+    "kraken",
+    "visa",
+    "circle"
+  ],
+  "seo": {
+    "siteUrl": "https://cryptoweek.co.il",
+    "siteName": "CryptoWeek Israel",
+    "locale": "en_US",
+    "ogImage": {
+      "url": "/static/images/metadata_img.png",
+      "width": 1200,
+      "height": 630,
+      "alt": "CryptoWeek Israel - Calling Israel's Top Crypto Talents"
+    },
+    "twitterHandle": "@cryptoweek"
+  },
+  "logo": {
+    "text": "CryptoWeek"
+  },
+  "footer": {
+    "copyrightText": "Coin Nations copyright all right reserved",
+    "year": 2021,
+    "email": "info@coinnations.com"
+  },
+  "primaryCta": {
+    "text": "Get Early Access",
+    "url": "https://hopin.com/events/israel-crypto-week",
+    "openInNewTab": true,
+    "style": "primary"
+  },
+  "eventUrl": "https://hopin.com/events/israel-crypto-week",
+  "navigation": [
+    {
+      "title": "Speakers",
+      "url": "#Speakers",
+      "openInNewTab": false
+    },
+    {
+      "title": "Discord",
+      "url": "#Discord",
+      "openInNewTab": false
+    }
+  ]
+}

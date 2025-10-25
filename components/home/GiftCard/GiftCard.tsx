@@ -1,6 +1,11 @@
 import Image from 'next/image'
+import { memo } from 'react'
 import { Container } from './styles'
 
+/**
+ * GiftCard component - Completely static content
+ * Memoized to prevent unnecessary re-renders
+ */
 const GiftCard: React.FC = () => {
   return (
     <Container>
@@ -21,4 +26,5 @@ const GiftCard: React.FC = () => {
   )
 }
 
-export default GiftCard
+// Memoize: This component has no props and never changes
+export default memo(GiftCard)

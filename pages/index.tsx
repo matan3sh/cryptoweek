@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import { useCallback, useState } from 'react'
 
 import {
@@ -9,15 +8,16 @@ import {
   Section,
 } from '@/components/home'
 import { Footer, Header } from '@/components/layout'
+import { SEO, WebsiteStructuredData } from '@/components/SEO'
+import { SkipToContent } from '@/components/SkipToContent'
 
 import {
-  about,
-  invite,
-  ourPartnersData,
-  ourSpeakersData,
-  ourSupportersData,
-  ourTeamData,
-} from '@/data'
+  getHomePage,
+  getPartnerLogoUrls,
+  getSupporterLogoUrls,
+  getLegacySpeakersData,
+  getLegacyTeamData,
+} from '@/lib/content/static'
 import { sendMessage } from '@/services'
 import type { ContactFormValues } from '@/types'
 
@@ -25,6 +25,13 @@ const Home: React.FC = () => {
   const [sentSuccess, setSentSuccess] = useState<boolean>(false)
   const [error, setError] = useState<string>('')
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false)
+
+  // Load content from content layer
+  const homePage = getHomePage()
+  const partnersData = getPartnerLogoUrls()
+  const supportersData = getSupporterLogoUrls()
+  const speakersData = getLegacySpeakersData()
+  const teamData = getLegacyTeamData()
 
   const sendContact = useCallback(async (values: ContactFormValues) => {
     setIsSubmitting(true)
@@ -51,39 +58,41 @@ const Home: React.FC = () => {
 
   return (
     <>
-      <Head>
-        <title>Cryptoweek.co.il - Calling Israel&apos;s Top Crypto Talents</title>
-        <meta
-          name="description"
-          content="Join global crypto leaders, VC firms and promising blockchain companies unveiling the future trends from the world&apos;s top Crypto Week!"
-        />
-        <meta
-          name="keywords"
-          content="crypto bitcoin, ethereum, revolut, kraken, visa, circle"
-        />
-      </Head>
+      <SEO />
+      <WebsiteStructuredData />
+      <SkipToContent />
       <Header />
-      <Feature />
-      <GridSection
-        data={ourPartnersData}
-        title="Our Partners"
-        link="Partners"
-      />
-      <GridSection
-        data={ourSupportersData}
-        title="Supporters"
-        link="Supporters"
-      />
-      <Section data={about} />
-      <GridText title="Our Speakers" data={ourSpeakersData} link="Speakers" />
-      <Section data={invite} />
-      <GridText title="Our Team" data={ourTeamData} link="Team" />
-      <Contact
-        onSubmit={sendContact}
-        success={sentSuccess}
-        error={error}
-        isSubmitting={isSubmitting}
-      />
+      <main id="main-content">
+        <Feature />
+        <GridSection
+          data={partnersData}
+          title={homePage.partners.title}
+          link={homePage.partners.identifier}
+        />
+        <GridSection
+          data={supportersData}
+          title={homePage.supporters.title}
+          link={homePage.supporters.identifier}
+        />
+        <Section data={homePage.sections.about} />
+        <GridText
+          title={homePage.speakers.title}
+          data={speakersData}
+          link={homePage.speakers.identifier}
+        />
+        <Section data={homePage.sections.invite} />
+        <GridText
+          title={homePage.team.title}
+          data={teamData}
+          link={homePage.team.identifier}
+        />
+        <Contact
+          onSubmit={sendContact}
+          success={sentSuccess}
+          error={error}
+          isSubmitting={isSubmitting}
+        />
+      </main>
       <Footer />
     </>
   )

@@ -65,13 +65,15 @@ export interface ContactFormValues {
 export interface SendMessageRequest {
   name: string
   email: string
+  company: string
   message: string
 }
 
-export interface SendMessageResponse {
+export interface ApiResponse<T = any> {
   success: boolean
-  message?: string
+  data?: T
   error?: string
+  message?: string
 }
 
 // Styled Components Theme Types
@@ -118,14 +120,6 @@ export interface PageProps {
 export interface LayoutProps {
   children: ReactNode
   params?: { [key: string]: string | string[] }
-}
-
-// API Route Types
-export interface ApiResponse<T = any> {
-  success: boolean
-  data?: T
-  error?: string
-  message?: string
 }
 
 // Error Types
