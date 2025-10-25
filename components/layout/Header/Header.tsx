@@ -6,6 +6,7 @@ import DropDown from '../DropDown/DropDown'
 import {
   LogoText,
   MenuBars,
+  MobileMenuButton,
   NavButton,
   NavContainer,
   NavLink,
@@ -144,7 +145,8 @@ const Header: FC = () => {
             </motion.div>
           </NavLinks>
 
-          <motion.button
+          <MobileMenuButton
+            as={motion.button}
             onClick={toggle}
             aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}
             aria-expanded={isOpen}
@@ -154,17 +156,9 @@ const Header: FC = () => {
             transition={{ delay: 0.3, duration: 0.5 }}
             whileHover={{ scale: 1.1, rotate: 90 }}
             whileTap={{ scale: 0.9 }}
-            style={{
-              background: 'transparent',
-              border: 'none',
-              cursor: 'pointer',
-              padding: 0,
-              display: 'flex',
-              alignItems: 'center',
-            }}
           >
             <MenuBars $scrollNav={scrollNav} />
-          </motion.button>
+          </MobileMenuButton>
         </NavWrapper>
       </NavContainer>
     </>

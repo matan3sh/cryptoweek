@@ -1,4 +1,5 @@
 import { useCallback, useState } from 'react'
+import styled from 'styled-components'
 
 import {
   Contact,
@@ -20,6 +21,25 @@ import {
 } from '@/lib/content/static'
 import { sendMessage } from '@/services'
 import type { ContactFormValues } from '@/types'
+
+const MainContainer = styled.main`
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 120px 40px 0 40px;
+
+  @media screen and (max-width: 1024px) {
+    max-width: 100%;
+    padding: 110px 30px 0 30px;
+  }
+
+  @media screen and (max-width: 768px) {
+    padding: 100px 20px 0 20px;
+  }
+
+  @media screen and (max-width: 480px) {
+    padding: 90px 12px 0 12px;
+  }
+`
 
 const Home: React.FC = () => {
   const [sentSuccess, setSentSuccess] = useState<boolean>(false)
@@ -62,7 +82,7 @@ const Home: React.FC = () => {
       <WebsiteStructuredData />
       <SkipToContent />
       <Header />
-      <main id="main-content">
+      <MainContainer id="main-content">
         <Feature />
         <GridSection
           data={partnersData}
@@ -92,7 +112,7 @@ const Home: React.FC = () => {
           error={error}
           isSubmitting={isSubmitting}
         />
-      </main>
+      </MainContainer>
       <Footer />
     </>
   )

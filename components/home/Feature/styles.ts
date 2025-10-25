@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-  background: linear-gradient(135deg, #f8faff 0%, #ffffff 50%, #f0f4ff 100%);
+  background: #ffffff;
   height: 100vh;
   width: 100%;
   position: relative;
@@ -15,7 +15,6 @@ export const Container = styled.div`
   }
 
   @media screen and (max-width: 860px) {
-    background: linear-gradient(135deg, #f8faff 0%, #ffffff 100%);
     min-height: 70vh;
   }
 
@@ -25,21 +24,19 @@ export const Container = styled.div`
 `
 
 export const Wrapper = styled.div`
-  max-width: 1620px;
+  max-width: 1200px;
   width: 100%;
   margin: 0 auto;
-  padding: 0 40px;
   color: #1a202c;
   display: flex;
   align-items: center;
   min-height: 100vh;
-  padding-top: 80px;
   position: relative;
   z-index: 2;
 
-  @media screen and (max-width: 1820px) {
-    width: 95%;
-    padding: 80px 2.5% 0;
+  @media screen and (max-width: 1400px) {
+    max-width: 100%;
+    padding: 80px 40px 0;
   }
 
   @media screen and (max-width: 1200px) {
@@ -50,39 +47,43 @@ export const Wrapper = styled.div`
   }
 
   @media screen and (max-width: 860px) {
-    padding-top: 80px;
+    padding: 80px 30px 0;
   }
 
   @media screen and (max-width: 520px) {
-    padding-top: 70px;
+    padding: 70px 20px 0;
   }
 `
 
 export const ContentSection = styled.div`
-  flex: 1;
-  max-width: 600px;
+  flex: 1.2;
+  max-width: 650px;
   z-index: 3;
 
   @media screen and (max-width: 1200px) {
     max-width: 100%;
-    margin-top: 10px;
+    margin-top: 40px;
+  }
+
+  @media screen and (max-width: 860px) {
+    margin-top: 30px;
   }
 
   @media screen and (max-width: 520px) {
-    margin-top: 5px;
+    margin-top: 20px;
   }
 `
 
 export const HeroImageSection = styled.div`
-  flex: 2.5;
+  flex: 1;
   display: flex;
   justify-content: flex-end;
   align-items: center;
   position: relative;
-  margin-left: 40px;
+  margin-left: 60px;
 
   @media screen and (max-width: 1400px) {
-    margin-left: 20px;
+    margin-left: 40px;
   }
   @media screen and (max-width: 1200px) {
     margin-left: 0;
@@ -107,19 +108,16 @@ export const HeroImageSection = styled.div`
 export const HeroImage = styled.img`
   width: 100%;
   height: auto;
-  max-width: 1100px;
-  min-width: 700px;
+  max-width: 700px;
   object-fit: contain;
-  filter: drop-shadow(0 20px 40px rgba(102, 126, 234, 0.15));
-  transform: translateX(-20px);
+  filter: drop-shadow(0 20px 40px rgba(102, 126, 234, 0.2));
+  border-radius: var(--radius-xl);
 
   @media screen and (max-width: 1400px) {
-    max-width: 800px;
-    min-width: 400px;
+    max-width: 600px;
   }
   @media screen and (max-width: 1200px) {
     max-width: 500px;
-    min-width: 0;
   }
   @media screen and (max-width: 860px) {
     max-width: 350px;
@@ -130,36 +128,46 @@ export const HeroImage = styled.img`
 `
 
 export const Headline = styled.h2`
-  font-size: 22px;
-  line-height: 28px;
-  letter-spacing: -0.2665834426879883px;
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: -0.2px;
   text-align: left;
-  margin-bottom: 10px;
-  color: #4a5568;
-  font-weight: 500;
+  margin-bottom: 12px;
+  color: #667eea;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 
   @media screen and (max-width: 860px) {
-    font-size: 18px;
-    line-height: 24px;
+    font-size: 16px;
+    line-height: 22px;
     text-align: center;
   }
 `
 
 export const Title = styled.h1`
   font-family: 'Moderat-Bold';
-  font-size: 130px;
-  line-height: 136px;
-  letter-spacing: -1.0362775325775146px;
+  font-size: 72px;
+  line-height: 80px;
+  letter-spacing: -2px;
   text-align: left;
-  width: 403px;
-  margin: 0;
+  margin: 0 0 20px 0;
   color: #1a202c;
 
+  @media screen and (max-width: 1200px) {
+    font-size: 56px;
+    line-height: 64px;
+  }
+
   @media screen and (max-width: 860px) {
-    width: 100%;
     font-size: 48px;
     line-height: 56px;
     text-align: center;
+  }
+
+  @media screen and (max-width: 520px) {
+    font-size: 36px;
+    line-height: 44px;
   }
 
   span {
@@ -171,121 +179,146 @@ export const Title = styled.h1`
 `
 
 export const Subtitle = styled.h3`
-  font-size: 28px;
-  font-family: 'Moderat-Light';
-  margin: 15px 0;
+  font-size: 24px;
+  font-family: 'Moderat-Medium';
+  margin: 0 0 16px 0;
   color: #2d3748;
-  font-weight: 400;
+  font-weight: 500;
+  text-align: left;
 
   @media screen and (max-width: 860px) {
     font-size: 20px;
     text-align: center;
   }
+
+  @media screen and (max-width: 520px) {
+    font-size: 18px;
+  }
 `
 
-export const Description = styled.h5`
-  font-size: 22px;
-  font-family: 'Moderat-Light';
-  margin: 15px 0;
-  width: 484px;
+export const Description = styled.p`
+  font-size: 18px;
+  font-family: 'Moderat-Regular';
+  margin: 0 0 24px 0;
   line-height: 28px;
   color: #4a5568;
   font-weight: 400;
+  text-align: left;
 
   @media screen and (max-width: 860px) {
-    width: 95%;
-    line-height: 24px;
+    line-height: 26px;
     font-size: 16px;
     text-align: center;
-    margin: 15px auto;
   }
   @media screen and (max-width: 520px) {
-    line-height: 22px;
-    font-size: 14px;
-    width: 100%;
-    padding: 0 1rem;
+    line-height: 24px;
+    font-size: 15px;
   }
 `
 
 export const FeatureButton = styled.a`
   font-family: 'Moderat-Medium';
-  background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
-  width: 246px;
-  height: 70px;
+  background: var(--bg-gradient-secondary);
+  padding: 18px 40px;
   color: #fff;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  margin-top: 25px;
-  border-radius: 55px;
-  font-size: 18px;
-  gap: 15px;
+  border-radius: var(--radius-sm);
+  font-size: 16px;
+  font-weight: 600;
+  gap: 12px;
   text-decoration: none;
-  transition: all 0.3s ease-in-out;
-  box-shadow: 0 4px 20px rgba(26, 32, 44, 0.2);
+  transition: all 0.3s ease;
+  box-shadow: var(--glow-purple);
+  border: 1px solid var(--border-glass);
+  -webkit-backdrop-filter: var(--blur-sm);
+  backdrop-filter: var(--blur-sm);
 
   &:hover {
     cursor: pointer;
     transform: translateY(-2px);
-    box-shadow: 0 8px 30px rgba(26, 32, 44, 0.3);
-    background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+    box-shadow: var(--glow-purple-strong);
+    background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
   }
 
   @media screen and (max-width: 860px) {
-    font-size: 16px;
-    width: 199px;
-    height: 45px;
-    margin: 15px auto;
+    font-size: 15px;
+    padding: 16px 32px;
+    margin: 0 auto;
+    display: flex;
   }
   @media screen and (max-width: 520px) {
     font-size: 14px;
-    width: 159px;
-    height: 35px;
+    padding: 14px 28px;
   }
 
   svg {
-    transform: translateY(3px);
-    @media screen and (max-width: 520px) {
-      transform: translateY(0px);
-    }
+    transition: transform 0.3s ease;
+  }
+
+  &:hover svg {
+    transform: translateX(4px);
   }
 `
 
 export const FeaturePartners = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 24px;
-  margin-top: 55px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-top: 32px;
   align-items: center;
+  justify-items: start;
 
   @media screen and (max-width: 860px) {
-    justify-content: center;
-    margin-top: 40px;
-    gap: 20px;
+    justify-items: center;
+    margin-top: 24px;
+    gap: 16px;
   }
 
   @media screen and (max-width: 520px) {
-    gap: 16px;
-    margin-top: 32px;
+    gap: 12px;
+    margin-top: 20px;
   }
 
   img {
+    width: 100%;
+    max-width: 280px;
+    height: 100px;
     object-fit: contain;
-    opacity: 0.8;
-    filter: grayscale(10%);
-    border-radius: 8px;
-    padding: 8px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
+    opacity: 0.7;
+    filter: grayscale(20%);
+    border-radius: var(--radius-sm);
+    padding: 24px 32px;
+    background: var(--glass-white);
+    border: 1px solid var(--border-glass);
+    -webkit-backdrop-filter: var(--blur-sm);
+    backdrop-filter: var(--blur-sm);
+    transition: all 0.3s ease;
+
+    &:hover {
+      opacity: 1;
+      filter: grayscale(0%);
+      transform: translateY(-2px);
+      box-shadow: var(--glow-purple);
+    }
+
+    @media screen and (max-width: 1024px) {
+      max-width: 240px;
+      padding: 20px 28px;
+      height: 85px;
+    }
 
     @media screen and (max-width: 768px) {
-      padding: 6px;
-      border-radius: 6px;
+      max-width: 200px;
+      padding: 16px 24px;
+      height: 70px;
     }
 
     @media screen and (max-width: 520px) {
-      width: 35%;
-      padding: 4px;
+      max-width: 160px;
+      padding: 12px 16px;
+      height: 60px;
     }
   }
 `

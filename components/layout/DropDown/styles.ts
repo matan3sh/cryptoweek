@@ -10,47 +10,84 @@ export const DropDownContainer = styled.div<DropDownContainerProps>`
   z-index: 101;
   width: 100%;
   height: 100%;
-  background: #fff;
-  display: grid;
+  background: rgba(255, 255, 255, 0.95);
+  -webkit-backdrop-filter: var(--blur-xl);
+  backdrop-filter: var(--blur-xl);
+  box-shadow: var(--shadow-glass-md);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
   top: 0;
   left: 0;
-  transition: 0.3s ease-in-out;
+  transition: all 0.3s ease;
   opacity: ${({ $isOpen }) => ($isOpen ? '1' : '0')};
   top: ${({ $isOpen }) => ($isOpen ? '0' : '-100%')};
 `
 
 export const Icon = styled.div`
   position: absolute;
-  top: 1.5rem;
-  right: 1rem;
-  font-size: 2rem;
+  top: 28px;
+  right: 40px;
+  font-size: 1.5rem;
   cursor: pointer;
   outline: none;
+  padding: 12px;
+  border-radius: var(--radius-full);
+  background: var(--glass-surface-light);
+  border: 1px solid var(--border-glass);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 16px rgba(31, 38, 135, 0.1);
+
+  &:hover {
+    box-shadow: var(--glow-purple);
+    background: var(--glass-white-strong);
+    transform: rotate(90deg);
+  }
+
   > svg {
-    color: #333;
+    color: #1a202c;
+  }
+
+  @media screen and (max-width: 768px) {
+    top: 20px;
+    right: 20px;
+  }
+
+  @media screen and (max-width: 480px) {
+    top: 16px;
+    right: 12px;
+    padding: 10px;
   }
 `
 
 export const ExitIcon = styled(CloseIcon)`
-  color: #333 !important;
+  color: #1a202c !important;
 `
 
 export const DropDownWrapper = styled.div`
-  color: #333;
+  color: #1a202c;
 `
 
 export const DropDownMenu = styled.div`
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: repeat(2, 80px);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
   text-align: center;
-  margin-bottom: 4rem;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   font-weight: 500;
+  max-width: 400px;
+  width: 90%;
+  padding: var(--space-lg);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-lg);
+  background: var(--glass-surface-light);
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
 
   @media screen and (max-width: 480px) {
-    grid-template-rows: repeat(2, 60px);
+    max-width: 90%;
+    padding: var(--space-md);
+    gap: 12px;
   }
 `
 
@@ -60,16 +97,27 @@ export const DropDownLink = styled.a`
   justify-content: center;
   text-decoration: none;
   list-style: none;
-  color: #333;
+  color: #1a202c;
   cursor: pointer;
-  transition: 0.4s ease-in-out;
-  padding: 8px 16px;
-  border-radius: 6px;
-  margin: 0 20px;
+  transition: all 0.3s ease;
+  padding: 16px 24px;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid var(--border-glass);
+  font-weight: 500;
+  font-size: 16px;
 
   &:hover {
     color: #667eea;
-    background: rgba(102, 126, 234, 0.1);
+    background: var(--glass-white-medium);
+    border-color: var(--border-glass-strong);
+    box-shadow: var(--glow-purple);
+    transform: translateY(-2px);
+  }
+
+  @media screen and (max-width: 480px) {
+    padding: 14px 20px;
+    font-size: 15px;
   }
 `
 
@@ -77,22 +125,30 @@ export const DropDownButton = styled.a`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 240px;
-  height: 48px;
-  margin: 0 auto;
-  border-radius: 8px;
-  font-weight: 500;
-  background: #667eea;
+  width: 100%;
+  padding: 16px 24px;
+  margin-top: 8px;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  background: var(--bg-gradient-secondary);
   color: white;
-  border: none;
+  border: 1px solid var(--border-glass);
   cursor: pointer;
   text-decoration: none;
-  transition: all 0.3s ease-in-out;
-  font-size: 14px;
+  transition: all 0.3s ease;
+  font-size: 16px;
+  box-shadow: var(--glow-purple);
+  -webkit-backdrop-filter: var(--blur-sm);
+  backdrop-filter: var(--blur-sm);
 
   &:hover {
-    background: #5a67d8;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+    background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+    transform: translateY(-2px);
+    box-shadow: var(--glow-purple-strong);
+  }
+
+  @media screen and (max-width: 480px) {
+    padding: 14px 20px;
+    font-size: 15px;
   }
 `
