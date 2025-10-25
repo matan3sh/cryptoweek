@@ -105,28 +105,6 @@ export const HeroImageSection = styled.div`
   }
 `
 
-export const HeroImage = styled.img`
-  width: 100%;
-  height: auto;
-  max-width: 700px;
-  object-fit: contain;
-  filter: drop-shadow(0 20px 40px rgba(102, 126, 234, 0.2));
-  border-radius: var(--radius-xl);
-
-  @media screen and (max-width: 1400px) {
-    max-width: 600px;
-  }
-  @media screen and (max-width: 1200px) {
-    max-width: 500px;
-  }
-  @media screen and (max-width: 860px) {
-    max-width: 350px;
-  }
-  @media screen and (max-width: 520px) {
-    max-width: 280px;
-  }
-`
-
 export const Headline = styled.h2`
   font-size: 18px;
   line-height: 24px;

@@ -1,7 +1,2 @@
 export { default as CloseIcon } from '@mui/icons-material/Close'
 export { default as MenuIcon } from '@mui/icons-material/Menu'
-export { default as HomeIcon } from '@mui/icons-material/Home'
-export { default as InfoIcon } from '@mui/icons-material/Info'
-export { default as PeopleIcon } from '@mui/icons-material/People'
-export { default as EventIcon } from '@mui/icons-material/Event'
-export { default as ContactMailIcon } from '@mui/icons-material/ContactMail'

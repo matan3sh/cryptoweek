@@ -200,7 +200,7 @@ const Header: FC = () => {
               }}
               whileTap={{ scale: 0.95 }}
             >
-              {settings.primaryCta.text}
+              Access
             </MobileNavButton>
           </MobileNavLinks>
         </NavWrapper>

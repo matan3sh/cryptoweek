@@ -25,13 +25,6 @@ export const invite: SectionData = {
 }
 
 export const ourPartnersData: string[] = [
-  // '/images/our_partners/Money2020_ByAscential_Logo_BlackRGB-2.jpeg',
-  // '/images/our_partners/IHK-FHK-vertical.png',
-  // '/images/our_partners/forein-affairs.png',
-  // '/images/our_partners/Logo_curve_black.png',
-  // '/images/our_partners/121623007_403125854420377_6033313637829888335_n.jpg',
-  // '/images/our_partners/Tipalti-Color_Tipalti_Wordmark_Registered-MC-D.jpg',
-  // '/images/our_partners/MSStartups_wordmark-Bold-black-2048x223-1.png',
   '/images/our_partners/visa.png',
   '/images/our_partners/circle.jpeg',
   '/images/our_partners/Nuvei.png',
@@ -41,15 +34,12 @@ export const ourPartnersData: string[] = [
 
 export const ourSupportersData: string[] = [
   '/images/our_supporters/MoonWhiteOnBlackSquare.png',
-  // '/images/our_supporters/Collider_Labs.png',
   '/images/our_supporters/Draper.png',
   '/images/our_supporters/simetria.io.png',
   '/images/our_supporters/CM_Logo.png',
   '/images/our_supporters/BCB-GROUP-LOGO-BLUE-RGB.png',
   '/images/our_supporters/Blockchain_BLUE_BG.png',
-  // '/images/our_supporters/WBD_Black.png',
   '/images/our_supporters/FF_LogoFinal_Black5-optimized.png',
-  // '/images/our_supporters/Aleph.png',
   '/images/our_supporters/ZenGo_Logo.png',
   '/images/our_supporters/Simplex_logo.png',
   '/images/our_supporters/IMG_9649.jpg',
@@ -125,11 +115,6 @@ export const ourSpeakersData: SpeakerData[] = [
     image: '/images/our_speakers/Ken_Kruger.png',
     role: 'Founder & CEO - Moon',
   },
-  // {
-  //   name: 'Peter McCormack',
-  //   image: '/images/our_speakers/Peter_McCormack.png',
-  //   role: 'Host of What Bitcoin Did',
-  // },
   {
     name: 'Alex Mashinsky',
     image: '/images/our_speakers/Alex_Mashinsky.png',
@@ -145,26 +130,6 @@ export const ourSpeakersData: SpeakerData[] = [
     image: '/images/our_speakers/oriol.jpg',
     role: 'Management and Strategy Consultant, FinTech Advisor',
   },
-  // {
-  //   name: 'Helene Podsadni Nilsson',
-  //   image: '/images/our_speakers/helene.png',
-  //   role: 'Head of Fintechs, Nordics & Baltics, Visa',
-  // },
-  // {
-  //   name: 'Roberto Croci',
-  //   image: '/images/our_speakers/roberrto.jpg',
-  //   role: 'Managing Director, Microsoft for Startups MEA',
-  // },
-  // {
-  //   name: 'Kylin Kalani',
-  //   image: '/images/our_speakers/Kylin_Kalani.png',
-  //   role: 'Leading NFT Model and Actress',
-  // },
-  // {
-  //   name: 'Ziv Keinan',
-  //   image: '/images/our_speakers/Ziv_Keinan.png',
-  //   role: 'Co-Founder and CEO, Simetria',
-  // },
   {
     name: 'Alex Adelman',
     image: '/images/our_speakers/Alex_Adelman.png',
@@ -195,22 +160,6 @@ export const ourSpeakersData: SpeakerData[] = [
     image: '/images/our_speakers/Ilan_Steiner.png',
     role: 'COO Simetria',
   },
-  // {
-  //   name: 'Michael Eisenberg',
-  //   image: '/images/our_speakers/Michael.png',
-  //   role: 'Co-Founder & Equal Partner, Aleph',
-  // },
-  // {
-  //   name: 'Richie Santosdiaz',
-  //   image: '/images/our_speakers/Richie_Santosdiaz.png',
-  //   role: 'Economic Development Advisor - Head of MEA - The Fintech Times & Fintech Power 50',
-  // },
-  // {
-  //   name: 'Yonat Vaks',
-  //   image: '/images/our_speakers/Yonat_Vaks.png',
-  //   role: 'Cryptoartist',
-  // },
-
   {
     name: 'Nimrod Lehavi',
     image: '/images/our_speakers/Nimrod_Lehavi.png',
@@ -221,26 +170,11 @@ export const ourSpeakersData: SpeakerData[] = [
     image: '/images/our_speakers/Ouriel_Ohayon.png',
     role: 'CEO, Co-Founder - ZenGo',
   },
-  // {
-  //   name: 'Natalie Brunell',
-  //   image: '/images/our_speakers/Natalie_Brunell.png',
-  //   role: 'Founder, Coin Stories Podcast',
-  // },
-  // {
-  //   name: 'Avishay Ovadia',
-  //   image: '/images/our_speakers/Avishay_Ovadia.png',
-  //   role: 'Founding Partner, Collider Labs',
-  // },
   {
     name: 'Aly Madhavji',
     image: '/images/our_speakers/Aly_Madhavji.png',
     role: 'Managing Partner, Blockchain Founders Fund',
   },
-  // {
-  //   name: 'Jorge Cortes',
-  //   image: '/images/our_speakers/Jorge_Cortes.png',
-  //   role: 'Co- founder, BitBasel and UnifyIT Inc',
-  // },
   {
     name: 'Aleks Svetski',
     image: '/images/our_speakers/Aleks_Svetski.png',
@@ -286,11 +220,6 @@ export const ourSpeakersData: SpeakerData[] = [
     image: '/images/our_speakers/Lior_Lamesh.png',
     role: 'Co-Founder and CEO at GK8',
   },
-  // {
-  //   name: 'Mark Smargon',
-  //   image: '/images/our_speakers/Mark_Smargon.png',
-  //   role: 'CEO at Fuse.io',
-  // },
   {
     name: 'Ivan Soto-Wright',
     image: '/images/our_speakers/Ivan_Soto-Wright.png',
@@ -346,11 +275,6 @@ export const ourSpeakersData: SpeakerData[] = [
     image: '/images/our_speakers/Bored_Elon_Musk.png',
     role: '@BoredElonMusk',
   },
-  // {
-  //   name: 'Eléonore Blanc',
-  //   image: '/images/our_speakers/Eleonore_Blanc.png',
-  //   role: 'Founder CryptoCanal & Humans of Crypto Podcast',
-  // },
   {
     name: 'Jonathan Knegtel',
     image: '/images/our_speakers/Jonathan_Knegtel.png',
