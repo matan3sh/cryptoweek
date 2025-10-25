@@ -4,9 +4,12 @@ import type { FC } from 'react'
 import { useCallback, useEffect, useState } from 'react'
 import DropDown from '../DropDown/DropDown'
 import {
+  BottomNavItem,
   LogoText,
   MenuBars,
   MobileMenuButton,
+  MobileNavButton,
+  MobileNavLinks,
   NavButton,
   NavContainer,
   NavLink,
@@ -159,6 +162,47 @@ const Header: FC = () => {
           >
             <MenuBars $scrollNav={scrollNav} />
           </MobileMenuButton>
+
+          {/* Bottom Navigation for Mobile */}
+          <MobileNavLinks
+            as={motion.div}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.4, duration: 0.4 }}
+          >
+            {navLinks.slice(0, 2).map((link, key) => (
+              <BottomNavItem
+                key={`bottom-nav-${key}-${link.title}`}
+                href={link.url}
+                as={motion.a}
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{
+                  delay: 0.5 + key * 0.1,
+                  duration: 0.4,
+                }}
+                whileTap={{ scale: 0.95 }}
+              >
+                {link.title}
+              </BottomNavItem>
+            ))}
+
+            <MobileNavButton
+              href={settings.primaryCta.url}
+              target={settings.primaryCta.openInNewTab ? '_blank' : undefined}
+              rel={settings.primaryCta.openInNewTab ? 'noopener noreferrer' : undefined}
+              as={motion.a}
+              initial={{ y: 20, opacity: 0, scale: 0.9 }}
+              animate={{ y: 0, opacity: 1, scale: 1 }}
+              transition={{
+                delay: 0.7,
+                duration: 0.5,
+              }}
+              whileTap={{ scale: 0.95 }}
+            >
+              {settings.primaryCta.text}
+            </MobileNavButton>
+          </MobileNavLinks>
         </NavWrapper>
       </NavContainer>
     </>

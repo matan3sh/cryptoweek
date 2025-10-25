@@ -35,26 +35,35 @@ export const NavContainer = styled.header<NavContainerProps>`
   }
 
   @media screen and (max-width: 768px) {
-    top: 20px;
-    width: calc(100% - 32px);
-    height: 68px;
-    border-radius: var(--radius-xl);
-    box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.18),
-                0 0 0 1px rgba(255, 255, 255, 0.15) inset;
-  }
-
-  @media screen and (max-width: 480px) {
-    top: 16px;
-    width: calc(100% - 24px);
-    height: 64px;
+    top: auto;
+    bottom: 16px;
+    left: 0;
+    right: 0;
+    width: calc(100% - 40px);
+    max-width: 720px;
+    height: auto;
     border-radius: var(--radius-lg);
-    background: rgba(255, 255, 255, 0.85);
+    padding: 0;
+    margin: 0 auto;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2),
+                0 0 0 1px rgba(255, 255, 255, 0.2) inset,
+                0 -4px 16px 0 rgba(102, 126, 234, 0.1);
+    background: rgba(255, 255, 255, 0.9);
     -webkit-backdrop-filter: var(--blur-xl);
     backdrop-filter: var(--blur-xl);
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15),
-                0 0 0 1px rgba(255, 255, 255, 0.2) inset,
-                0 4px 16px 0 rgba(102, 126, 234, 0.1);
   }
+
+  @media screen and (max-width: 520px) {
+    bottom: 12px;
+    width: calc(100% - 24px);
+    max-width: 480px;
+  }
+
+  @media screen and (max-width: 380px) {
+    width: calc(100% - 16px);
+    border-radius: var(--radius-md);
+  }
+
 `
 
 export const NavWrapper = styled.nav`
@@ -66,11 +75,12 @@ export const NavWrapper = styled.nav`
   height: 100%;
 
   @media screen and (max-width: 768px) {
-    padding: 0 20px;
+    padding: 12px 20px;
+    justify-content: space-between;
   }
 
   @media screen and (max-width: 480px) {
-    padding: 0 16px;
+    padding: 10px 16px;
   }
 `
 
@@ -98,12 +108,12 @@ export const LogoText = styled.h1<NavItemProps>`
   }
 
   @media screen and (max-width: 768px) {
-    font-size: 26px;
+    font-size: 20px;
+    display: block;
   }
 
   @media screen and (max-width: 480px) {
-    font-size: 22px;
-    text-shadow: 0 2px 12px rgba(102, 126, 234, 0.15);
+    font-size: 18px;
   }
 `
 
@@ -172,10 +182,6 @@ export const MobileMenuButton = styled.button`
   padding: 0;
   display: none;
   align-items: center;
-
-  @media screen and (max-width: 768px) {
-    display: flex;
-  }
 `
 
 export const MenuBars = styled(MenuIcon)<NavItemProps>`
@@ -184,38 +190,91 @@ export const MenuBars = styled(MenuIcon)<NavItemProps>`
   cursor: pointer;
   font-size: 1.75rem !important;
   transition: all 0.3s ease;
-  padding: 8px;
-  border-radius: var(--radius-md);
-  background: rgba(255, 255, 255, 0.6);
-  border: 1px solid var(--border-glass);
-  -webkit-backdrop-filter: var(--blur-sm);
-  backdrop-filter: var(--blur-sm);
-  box-shadow: 0 2px 8px rgba(31, 38, 135, 0.1);
+`
 
-  &:hover {
-    transform: scale(1.05);
-    color: #667eea !important;
-    fill: #667eea !important;
-    box-shadow: 0 4px 16px rgba(102, 126, 234, 0.2);
-    background: rgba(255, 255, 255, 0.8);
-  }
+export const MobileNavLinks = styled.div`
+  display: none;
 
   @media screen and (max-width: 768px) {
-    font-size: 1.75rem !important;
-    padding: 8px;
-    width: 44px;
-    height: 44px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    gap: 8px;
   }
 
   @media screen and (max-width: 480px) {
-    font-size: 1.5rem !important;
-    padding: 8px;
-    width: 40px;
-    height: 40px;
-    background: rgba(255, 255, 255, 0.75);
-    border: 1.5px solid rgba(102, 126, 234, 0.3);
+    gap: 6px;
+  }
+`
+
+export const BottomNavItem = styled.a`
+  display: none;
+
+  @media screen and (max-width: 768px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 12px;
+    text-decoration: none;
+    color: #1a202c;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    background: var(--glass-white);
+    border: 1px solid var(--border-glass);
+    -webkit-backdrop-filter: var(--blur-sm);
+    backdrop-filter: var(--blur-sm);
+    font-family: 'Moderat-Medium', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    white-space: nowrap;
+
+    &:hover {
+      color: #667eea;
+      background: var(--glass-white-medium);
+      border-color: var(--border-glass-strong);
+      box-shadow: var(--glow-purple);
+      transform: translateY(-1px);
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+`
+
+export const MobileNavButton = styled.a`
+  display: none;
+
+  @media screen and (max-width: 768px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-sm);
+    font-weight: 500;
+    background: var(--bg-gradient-secondary);
+    white-space: nowrap;
+    padding: 8px 16px;
+    color: white;
+    border: 1px solid var(--border-glass);
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 13px;
+    font-family: 'Moderat-Medium', sans-serif;
+    box-shadow: var(--glow-purple);
+    -webkit-backdrop-filter: var(--blur-sm);
+    backdrop-filter: var(--blur-sm);
+
+    &:hover {
+      background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+      transform: translateY(-2px);
+      box-shadow: var(--glow-purple-strong);
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    padding: 6px 12px;
+    font-size: 12px;
   }
 `
