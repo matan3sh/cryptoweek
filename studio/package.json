@@ -30,6 +30,7 @@
     "@types/react": "^18.3.0",
     "eslint": "^8.57.0",
     "prettier": "^3.2.5",
+    "sanity-codegen": "^0.9.8",
     "tsx": "^4.20.6",
     "typescript": "^5.0.0"
   }

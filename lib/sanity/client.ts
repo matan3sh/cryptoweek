@@ -1,11 +1,18 @@
 /**
  * Sanity Client Configuration
  *
- * Configures the Sanity client for use with Next.js Pages Router
+ * Configures type-safe Sanity clients for use with Next.js Pages Router
  * Supports both client-side and server-side usage
+ *
+ * Phase 3: Added TypeScript type safety with generated types
+ * Run `npm run typegen` to regenerate types after schema changes
  */
 
 import {createClient} from 'next-sanity'
+
+// Import generated types from Sanity schema
+// These types are auto-generated from studio/schemas
+export type * as SanityTypes from '@/types/sanity-gen'
 
 // Configuration
 export const config = {

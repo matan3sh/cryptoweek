@@ -8,7 +8,8 @@
     "start": "next start -p $PORT",
     "type-check": "tsc --noEmit",
     "lint": "next lint",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "npm run build",
+    "typegen": "cd studio && npm run typegen && cp sanity.types.ts ../types/sanity-gen.ts && echo '✅ Types generated and copied to /types/sanity-gen.ts'"
   },
   "dependencies": {
     "@emotion/react": "^11.13.0",
