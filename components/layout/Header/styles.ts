@@ -18,13 +18,14 @@ export const NavContainer = styled.header<NavContainerProps>`
   width: calc(100% - 80px);
   height: 70px;
   margin: 0 auto;
-  background: var(--glass-surface-light);
-  -webkit-backdrop-filter: var(--blur-lg);
-  backdrop-filter: var(--blur-lg);
+  background: rgba(255, 255, 255, 0.9);
+  -webkit-backdrop-filter: var(--blur-xl);
+  backdrop-filter: var(--blur-xl);
   border: 1px solid var(--border-glass);
   border-radius: var(--radius-lg);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2),
-              0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+              0 0 0 1px rgba(255, 255, 255, 0.2) inset,
+              0 4px 16px 0 rgba(102, 126, 234, 0.1);
   transition: all 0.3s ease-in-out;
   z-index: 1000;
   display: flex;
@@ -35,8 +36,7 @@ export const NavContainer = styled.header<NavContainerProps>`
   }
 
   @media screen and (max-width: 768px) {
-    top: auto;
-    bottom: 16px;
+    top: 16px;
     left: 0;
     right: 0;
     width: calc(100% - 40px);
@@ -47,14 +47,14 @@ export const NavContainer = styled.header<NavContainerProps>`
     margin: 0 auto;
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2),
                 0 0 0 1px rgba(255, 255, 255, 0.2) inset,
-                0 -4px 16px 0 rgba(102, 126, 234, 0.1);
+                0 4px 16px 0 rgba(102, 126, 234, 0.1);
     background: rgba(255, 255, 255, 0.9);
     -webkit-backdrop-filter: var(--blur-xl);
     backdrop-filter: var(--blur-xl);
   }
 
   @media screen and (max-width: 520px) {
-    bottom: 12px;
+    top: 12px;
     width: calc(100% - 24px);
     max-width: 480px;
   }

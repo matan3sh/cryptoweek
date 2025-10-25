@@ -33,11 +33,11 @@ const MainContainer = styled.main`
   }
 
   @media screen and (max-width: 768px) {
-    padding: 20px 20px 110px 20px;
+    padding: 100px 20px 20px 20px;
   }
 
   @media screen and (max-width: 480px) {
-    padding: 16px 12px 100px 12px;
+    padding: 90px 12px 20px 12px;
   }
 `
 
