@@ -96,8 +96,8 @@ export interface HeroSection {
   titleHighlight: string // The part of title to highlight (e.g., "Week")
   subtitle: string
   description: string
-  backgroundImage?: string
-  heroImage?: ImageAsset
+  backgroundImage?: string | null
+  heroImage?: ImageAsset | null
   cta: CallToAction
   featuredPartners: CompanyLogo[]
 }

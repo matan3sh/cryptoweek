@@ -90,12 +90,13 @@ export default defineType({
       media: 'logo',
     },
     prepare({title, tier, featured, media}) {
-      const tierEmoji = {
+      const tierEmojis: Record<string, string> = {
         platinum: '⭐',
         gold: '🥇',
         silver: '🥈',
         supporter: '🤝',
-      }[tier] || '🏢'
+      }
+      const tierEmoji = tierEmojis[tier] || '🏢'
 
       return {
         title: title,

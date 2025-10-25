@@ -7,7 +7,7 @@ export default defineType({
   type: 'document',
   icon: HomeIcon,
   // Singleton: Only one document of this type can exist
-  __experimental_actions: ['update', 'publish'],
+  // __experimental_actions: ['update', 'publish'], // Removed: no longer supported in current Sanity version
   fields: [
     {
       name: 'hero',

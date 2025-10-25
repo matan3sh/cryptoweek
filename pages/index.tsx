@@ -22,7 +22,8 @@ import {
   getLegacyTeamData,
 } from '@/lib/content'
 import { sendMessage } from '@/services'
-import type { ContactFormValues, HomePage, SiteSettings, NavigationLink } from '@/types'
+import type { ContactFormValues } from '@/types'
+import type { HomePage, SiteSettings, NavigationLink } from '@/lib/content/interfaces'
 import type { GetStaticProps } from 'next'
 
 const MainContainer = styled.main`

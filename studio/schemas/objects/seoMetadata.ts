@@ -65,6 +65,7 @@ export default defineType({
       validation: (Rule) =>
         Rule.custom((handle) => {
           if (!handle) return true
+          if (typeof handle !== 'string') return true
           return handle.startsWith('@') || 'Twitter handle must start with @'
         }),
     },

@@ -101,7 +101,7 @@ interface SanityCompanyLogo {
  * Transform Sanity image to ImageAsset format
  */
 function transformSanityImage(sanityImage?: SanityImage) {
-  if (!sanityImage?.asset) return null
+  if (!sanityImage?.asset) return undefined
 
   return {
     src: sanityImage.asset.url,
@@ -197,11 +197,11 @@ export async function getHomePage(): Promise<HomePage> {
       subtitle: data.hero.subtitle,
       description: data.hero.description,
       backgroundImage: data.hero.backgroundImage?.asset?.url || null,
-      heroImage: transformSanityImage(data.hero.heroImage) || null,
+      heroImage: transformSanityImage(data.hero.heroImage) ?? null,
       cta: data.hero.cta,
       featuredPartners: (data.hero.featuredPartners || []).map((partner: SanityCompanyLogo) => ({
         name: partner.name,
-        logo: transformSanityImage(partner.logo),
+        logo: transformSanityImage(partner.logo) || { src: '', alt: '' },
         displayWidth: partner.displayWidth,
         displayHeight: partner.displayHeight,
       })),
@@ -261,7 +261,7 @@ export async function getAllSpeakers(): Promise<Person[]> {
     company: speaker.company,
     image: transformSanityImage(speaker.image) || { src: '', alt: '' },
     bio: speaker.bio,
-    socialLinks: speaker.socialLinks || [],
+    socialLinks: (speaker.socialLinks || []) as any,
     featured: speaker.featured,
     order: speaker.order,
     type: 'speaker' as const,
@@ -280,7 +280,7 @@ export async function getAllTeamMembers(): Promise<Person[]> {
     company: member.company,
     image: transformSanityImage(member.image) || { src: '', alt: '' },
     bio: member.bio,
-    socialLinks: member.socialLinks || [],
+    socialLinks: (member.socialLinks || []) as any,
     featured: member.featured,
     order: member.order,
     type: 'team' as const,
