@@ -35,15 +35,25 @@ export const NavContainer = styled.header<NavContainerProps>`
   }
 
   @media screen and (max-width: 768px) {
-    top: 16px;
-    width: calc(100% - 40px);
-    height: 64px;
+    top: 20px;
+    width: calc(100% - 32px);
+    height: 68px;
+    border-radius: var(--radius-xl);
+    box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.18),
+                0 0 0 1px rgba(255, 255, 255, 0.15) inset;
   }
 
   @media screen and (max-width: 480px) {
-    top: 12px;
+    top: 16px;
     width: calc(100% - 24px);
-    height: 60px;
+    height: 64px;
+    border-radius: var(--radius-lg);
+    background: rgba(255, 255, 255, 0.85);
+    -webkit-backdrop-filter: var(--blur-xl);
+    backdrop-filter: var(--blur-xl);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15),
+                0 0 0 1px rgba(255, 255, 255, 0.2) inset,
+                0 4px 16px 0 rgba(102, 126, 234, 0.1);
   }
 `
 
@@ -88,11 +98,12 @@ export const LogoText = styled.h1<NavItemProps>`
   }
 
   @media screen and (max-width: 768px) {
-    font-size: 24px;
+    font-size: 26px;
   }
 
   @media screen and (max-width: 480px) {
-    font-size: 20px;
+    font-size: 22px;
+    text-shadow: 0 2px 12px rgba(102, 126, 234, 0.15);
   }
 `
 
@@ -168,19 +179,43 @@ export const MobileMenuButton = styled.button`
 `
 
 export const MenuBars = styled(MenuIcon)<NavItemProps>`
-  color: #1a202c;
+  color: #1a202c !important;
+  fill: #1a202c !important;
   cursor: pointer;
-  font-size: 2rem;
+  font-size: 1.75rem !important;
   transition: all 0.3s ease;
   padding: 8px;
-  border-radius: var(--radius-full);
-  background: var(--glass-white);
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.6);
   border: 1px solid var(--border-glass);
+  -webkit-backdrop-filter: var(--blur-sm);
+  backdrop-filter: var(--blur-sm);
+  box-shadow: 0 2px 8px rgba(31, 38, 135, 0.1);
 
   &:hover {
-    transform: scale(1.1);
-    color: #667eea;
-    box-shadow: var(--glow-purple);
-    background: var(--glass-white-medium);
+    transform: scale(1.05);
+    color: #667eea !important;
+    fill: #667eea !important;
+    box-shadow: 0 4px 16px rgba(102, 126, 234, 0.2);
+    background: rgba(255, 255, 255, 0.8);
+  }
+
+  @media screen and (max-width: 768px) {
+    font-size: 1.75rem !important;
+    padding: 8px;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media screen and (max-width: 480px) {
+    font-size: 1.5rem !important;
+    padding: 8px;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.75);
+    border: 1.5px solid rgba(102, 126, 234, 0.3);
   }
 `
