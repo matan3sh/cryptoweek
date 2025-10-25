@@ -90,6 +90,7 @@ export default class MyDocument extends Document {
             async
             src="https://www.googletagmanager.com/gtag/js?id=AW-804331550"
           />
+          {/* eslint-disable-next-line @next/next/next-script-for-ga */}
           <script
             dangerouslySetInnerHTML={{
               __html: `window.dataLayer = window.dataLayer || [];

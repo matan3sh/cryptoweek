@@ -48,6 +48,6 @@ export function getClient(preview = false) {
  * @param req - Next.js request object
  * @returns boolean
  */
-export function isPreviewMode(req?: any): boolean {
+export function isPreviewMode(req?: { preview?: boolean }): boolean {
   return req?.preview || false
 }

@@ -67,6 +67,12 @@ interface SanityImage {
   }
 }
 
+interface SanitySocialLink {
+  platform: 'twitter' | 'linkedin' | 'instagram' | 'facebook' | 'github' | 'website'
+  url: string
+  handle?: string
+}
+
 interface SanityPerson {
   _id: string
   name: string
@@ -75,11 +81,7 @@ interface SanityPerson {
   company?: string
   image?: SanityImage
   bio?: string
-  socialLinks?: Array<{
-    platform: string
-    url: string
-    handle?: string
-  }>
+  socialLinks?: SanitySocialLink[]
   featured?: boolean
   order?: number
 }
@@ -129,6 +131,10 @@ export async function getSiteSettings(): Promise<SiteSettings> {
 
   if (!data) {
     throw new Error('Site settings not found in Sanity')
+  }
+
+  if (!data.contactSection) {
+    throw new Error('contactSection is missing from Sanity siteSettings')
   }
 
   return {
@@ -266,7 +272,7 @@ export async function getAllSpeakers(): Promise<Person[]> {
     company: speaker.company,
     image: transformSanityImage(speaker.image) || { src: '', alt: '' },
     bio: speaker.bio,
-    socialLinks: (speaker.socialLinks || []) as any,
+    socialLinks: speaker.socialLinks || [],
     featured: speaker.featured,
     order: speaker.order,
     type: 'speaker' as const,
@@ -285,7 +291,7 @@ export async function getAllTeamMembers(): Promise<Person[]> {
     company: member.company,
     image: transformSanityImage(member.image) || { src: '', alt: '' },
     bio: member.bio,
-    socialLinks: (member.socialLinks || []) as any,
+    socialLinks: member.socialLinks || [],
     featured: member.featured,
     order: member.order,
     type: 'team' as const,

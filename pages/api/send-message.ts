@@ -15,9 +15,6 @@ setInterval(() => {
   }
 }, 60 * 60 * 1000)
 
-// Submission time tracker to detect bots (too fast = bot)
-const submissionTimeTracker = new Map<string, number>()
-
 interface ContactSubmissionBody {
   firstName: string
   lastName: string

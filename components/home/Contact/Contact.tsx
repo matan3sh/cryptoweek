@@ -1,11 +1,11 @@
-import type { ContactFormValues } from '@/types'
+import type { ContactFormValues, ContactSubmissionData } from '@/types'
 import type { ContactSection } from '@/lib/content/interfaces'
 import React, { ChangeEvent, FormEvent, useState } from 'react'
 import { Container, Row, Success, Wrapper } from './styles'
 
 interface ContactProps {
   config: ContactSection
-  onSubmit: (values: ContactFormValues) => Promise<void>
+  onSubmit: (values: ContactSubmissionData) => Promise<void>
   success: boolean
   error?: string
   isSubmitting?: boolean
@@ -77,13 +77,13 @@ const Contact: React.FC<ContactProps> = ({
     }
 
     // Add spam prevention fields
-    const submissionData = {
+    const submissionData: ContactSubmissionData = {
       ...values,
       honeypot, // Hidden field to catch bots
       _formStartTime: formStartTime, // Track time to fill form
     }
 
-    await onSubmit(submissionData as any)
+    await onSubmit(submissionData)
 
     // Only clear form if submission was successful
     if (!error) {

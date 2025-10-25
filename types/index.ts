@@ -56,6 +56,11 @@ export interface ContactFormValues {
   message: string
 }
 
+export interface ContactSubmissionData extends ContactFormValues {
+  honeypot?: string
+  _formStartTime?: number
+}
+
 export interface ApiResponse<T = any> {
   success: boolean
   data?: T
