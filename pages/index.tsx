@@ -1,17 +1,26 @@
 import { useCallback, useState } from 'react'
+import dynamic from 'next/dynamic'
 import styled from 'styled-components'
 
-import {
-  Contact,
-  Feature,
-  GridSection,
-  GridText,
-  Section,
-} from '@/components/home'
+import { Feature } from '@/components/home'
 import { Footer, Header } from '@/components/layout'
 import { SEO, WebsiteStructuredData } from '@/components/SEO'
 import { SkipToContent } from '@/components/SkipToContent'
 import FeatureBoundary from '@/components/FeatureBoundary'
+
+// Lazy load below-the-fold components for better performance
+const GridSection = dynamic(() => import('@/components/home/GridSection/GridSection'), {
+  loading: () => <div style={{ minHeight: '400px' }} />,
+})
+const Section = dynamic(() => import('@/components/home/Section/Section'), {
+  loading: () => <div style={{ minHeight: '300px' }} />,
+})
+const GridText = dynamic(() => import('@/components/home/GridText/GridText'), {
+  loading: () => <div style={{ minHeight: '600px' }} />,
+})
+const Contact = dynamic(() => import('@/components/home/Contact/Contact'), {
+  loading: () => <div style={{ minHeight: '500px' }} />,
+})
 
 import {
   getHomePage,

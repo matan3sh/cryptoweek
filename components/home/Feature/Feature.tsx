@@ -1,4 +1,5 @@
 import type { FC } from 'react'
+import { memo } from 'react'
 import Image from 'next/image'
 import {
   Container,
@@ -19,6 +20,10 @@ interface FeatureProps {
   hero: HeroSection
 }
 
+/**
+ * Feature component - Hero section with CTA and featured partners
+ * Memoized to prevent re-renders when hero data hasn't changed
+ */
 const Feature: FC<FeatureProps> = ({ hero }) => {
   return (
     <Container id="Feature">
@@ -78,4 +83,5 @@ const Feature: FC<FeatureProps> = ({ hero }) => {
   )
 }
 
-export default Feature
+// Memoize: Hero data rarely changes during runtime
+export default memo(Feature)
