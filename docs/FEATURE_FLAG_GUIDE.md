@@ -1,27 +1,36 @@
 # Content Source Feature Flag
 
-This project supports toggling between **Sanity CMS** and **Static JSON** content sources using an environment variable.
+**Phase 1 Enhanced** - Now with automatic fallback, validation, and error handling.
+
+This project supports toggling between **Sanity CMS** and **Static JSON** content sources using an environment variable, with automatic fallback if Sanity fails.
 
 ## 🚀 Quick Start
 
-### Use Sanity CMS (Default)
+### Use Sanity CMS with Automatic Fallback (Recommended)
 ```bash
 # In .env.local
 NEXT_PUBLIC_USE_SANITY=true
 ```
+✅ Fetches from Sanity CMS
+✅ Automatically falls back to static content if Sanity fails
+✅ Retry logic for transient errors
 
-### Use Static JSON Files
+### Use Static JSON Files Only
 ```bash
 # In .env.local
 NEXT_PUBLIC_USE_SANITY=false
 ```
+✅ Fast builds, no API calls
+✅ Works offline
+✅ No Sanity setup required
 
 ## 📋 How It Works
 
 The unified content layer (`/lib/content/index.ts`) automatically routes to the appropriate data source based on the `NEXT_PUBLIC_USE_SANITY` environment variable:
 
-- **`true`**: Fetches content from Sanity CMS (requires Sanity setup)
+- **`true`**: Fetches content from Sanity CMS with automatic fallback to static content
 - **`false`**: Uses static JSON files from `/content/` and `/data/` directories
+- **`undefined`**: Defaults to static content with a warning
 
 ## 🔄 Switching Between Sources
 
@@ -150,8 +159,71 @@ npm run dev
 - Restart dev server after editing JSON files
 - Clear `.next` cache: `rm -rf .next`
 
+## 🛡️ Automatic Fallback System (Phase 1)
+
+### How Fallback Works
+
+When `NEXT_PUBLIC_USE_SANITY=true`, the system:
+
+1. **Tries Sanity First** - Fetches content from Sanity CMS
+2. **Retries on Failure** - Up to 2 retry attempts with exponential backoff
+3. **Falls Back Automatically** - If all retries fail, uses static content
+4. **Logs Everything** - Clear console messages for debugging
+
+### Example Console Output
+
+**Successful Fetch:**
+```
+📦 Content Source: ☁️  Sanity CMS
+[Sanity] ✅ Site Settings loaded successfully
+```
+
+**Fallback Scenario:**
+```
+📦 Content Source: ☁️  Sanity CMS
+[Sanity] ⚠️  Site Settings failed (attempt 1/3), retrying...
+[Sanity] ⚠️  Site Settings failed (attempt 2/3), retrying...
+[Sanity] ❌ Site Settings failed after 3 attempts: Network timeout
+[Sanity] 🔄 Falling back to static content for Site Settings
+```
+
+### Testing Fallback
+
+**Method 1: Break the Sanity Token**
+```bash
+# Temporarily use invalid token in .env.local
+SANITY_API_TOKEN=invalid-token-for-testing
+
+# Restart dev server
+npm run dev
+
+# Should see fallback messages in console
+```
+
+**Method 2: Disconnect Network**
+1. Start dev server with Sanity enabled
+2. Disconnect internet
+3. Refresh page
+4. Should load with static content
+
+## 🎯 Runtime Information
+
+### Check Current Content Source
+
+```typescript
+import { getContentSourceInfo } from '@/lib/content'
+
+const info = getContentSourceInfo()
+console.log(info)
+// {
+//   usingSanity: true,
+//   source: 'sanity',
+//   env: 'true'
+// }
+```
+
 ## 📖 See Also
 
-- [SANITY_MIGRATION.md](./docs/SANITY_MIGRATION.md) - Full Sanity setup guide
-- [CONTENT_LAYER.md](./docs/CONTENT_LAYER.md) - Content architecture
-- [MIGRATION_QUICKSTART.md](./MIGRATION_QUICKSTART.md) - Quick migration guide
+- **[ERROR_HANDLING.md](./ERROR_HANDLING.md)** - ⭐ NEW: Complete error handling guide
+- [SANITY_MIGRATION.md](./SANITY_MIGRATION.md) - Full Sanity setup guide
+- [CONTENT_LAYER.md](./CONTENT_LAYER.md) - Content architecture

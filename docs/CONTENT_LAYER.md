@@ -1,6 +1,8 @@
 # Content Layer Documentation
 
-The content layer is an abstraction between data storage and components, designed for type safety and future CMS integration.
+**Phase 1 Enhanced** - Now with automatic fallback and error handling.
+
+The content layer is an abstraction between data storage and components, designed for type safety, reliability, and future CMS integration.
 
 ---
 
@@ -14,6 +16,9 @@ The content layer is an abstraction between data storage and components, designe
 - ✅ Easy CMS migration path
 - ✅ Content/code separation
 - ✅ Reusable transformations
+- ✅ **NEW:** Automatic fallback (Sanity → Static)
+- ✅ **NEW:** Retry logic for transient failures
+- ✅ **NEW:** Error boundaries for isolated failures
 
 ---
 
@@ -542,4 +547,12 @@ const title = settings.title  // TypeScript will help
 
 ---
 
-**Last Updated:** 2025-10-25
+## See Also
+
+- **[ERROR_HANDLING.md](./ERROR_HANDLING.md)** - Phase 1 error handling and fallback system
+- **[FEATURE_FLAG_GUIDE.md](./FEATURE_FLAG_GUIDE.md)** - Toggle between Sanity and static content
+- **[SANITY_MIGRATION.md](./SANITY_MIGRATION.md)** - Complete Sanity migration guide
+
+---
+
+**Last Updated:** 2025-10-25 (Phase 1 Enhanced)

@@ -11,6 +11,7 @@ import {
 import { Footer, Header } from '@/components/layout'
 import { SEO, WebsiteStructuredData } from '@/components/SEO'
 import { SkipToContent } from '@/components/SkipToContent'
+import FeatureBoundary from '@/components/FeatureBoundary'
 
 import {
   getHomePage,
@@ -21,7 +22,7 @@ import {
   getLegacySpeakersData,
   getLegacyTeamData,
 } from '@/lib/content'
-import type { ContactFormValues } from '@/types'
+import type { ContactSubmissionData } from '@/types'
 import type { HomePage, SiteSettings, NavigationLink } from '@/lib/content/interfaces'
 import type { GetStaticProps } from 'next'
 
@@ -67,7 +68,7 @@ const Home: React.FC<HomeProps> = ({
   const [error, setError] = useState<string>('')
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false)
 
-  const sendContact = useCallback(async (values: ContactFormValues) => {
+  const sendContact = useCallback(async (values: ContactSubmissionData) => {
     setIsSubmitting(true)
     setError('')
 
@@ -104,36 +105,59 @@ const Home: React.FC<HomeProps> = ({
       <SkipToContent />
       <Header settings={settings} navLinks={navLinks} />
       <MainContainer id="main-content">
-        <Feature hero={homePage.hero} />
-        <GridSection
-          data={partnersData}
-          title={homePage.partners.title}
-          link={homePage.partners.identifier}
-        />
-        <GridSection
-          data={supportersData}
-          title={homePage.supporters.title}
-          link={homePage.supporters.identifier}
-        />
-        <Section data={homePage.sections.about} />
-        <GridText
-          title={homePage.speakers.title}
-          data={speakersData}
-          link={homePage.speakers.identifier}
-        />
-        <Section data={homePage.sections.invite} />
-        <GridText
-          title={homePage.team.title}
-          data={teamData}
-          link={homePage.team.identifier}
-        />
-        <Contact
-          config={settings.contactSection}
-          onSubmit={sendContact}
-          success={sentSuccess}
-          error={error}
-          isSubmitting={isSubmitting}
-        />
+        <FeatureBoundary featureName="hero section">
+          <Feature hero={homePage.hero} />
+        </FeatureBoundary>
+
+        <FeatureBoundary featureName="partners section">
+          <GridSection
+            data={partnersData}
+            title={homePage.partners.title}
+            link={homePage.partners.identifier}
+          />
+        </FeatureBoundary>
+
+        <FeatureBoundary featureName="supporters section">
+          <GridSection
+            data={supportersData}
+            title={homePage.supporters.title}
+            link={homePage.supporters.identifier}
+          />
+        </FeatureBoundary>
+
+        <FeatureBoundary featureName="about section">
+          <Section data={homePage.sections.about} />
+        </FeatureBoundary>
+
+        <FeatureBoundary featureName="speakers section">
+          <GridText
+            title={homePage.speakers.title}
+            data={speakersData}
+            link={homePage.speakers.identifier}
+          />
+        </FeatureBoundary>
+
+        <FeatureBoundary featureName="invite section">
+          <Section data={homePage.sections.invite} />
+        </FeatureBoundary>
+
+        <FeatureBoundary featureName="team section">
+          <GridText
+            title={homePage.team.title}
+            data={teamData}
+            link={homePage.team.identifier}
+          />
+        </FeatureBoundary>
+
+        <FeatureBoundary featureName="contact form">
+          <Contact
+            config={settings.contactSection}
+            onSubmit={sendContact}
+            success={sentSuccess}
+            error={error}
+            isSubmitting={isSubmitting}
+          />
+        </FeatureBoundary>
       </MainContainer>
       <Footer settings={settings} />
     </>

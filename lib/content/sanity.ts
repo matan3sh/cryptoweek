@@ -4,6 +4,11 @@
  * This module provides the same API as static.ts but fetches from Sanity.
  * Drop-in replacement - just change your imports from './static' to './sanity'
  *
+ * Features:
+ * - Automatic fallback to static content if Sanity fails
+ * - Retry logic for transient failures
+ * - Comprehensive error logging
+ *
  * @module lib/content/sanity
  */
 
@@ -16,10 +21,77 @@ import {
   ALL_PARTNERS_QUERY,
   ALL_SUPPORTERS_QUERY,
 } from '@/lib/sanity/queries'
+import * as staticContent from './static'
 
 // Use the token-based client (no CDN) for server-side fetching
 // This ensures we always get fresh content during ISR builds
 const sanityClient = sanityClientWithToken
+
+// ============================================
+// ERROR HANDLING & FALLBACK LOGIC
+// ============================================
+
+/**
+ * Wrapper for Sanity fetch operations with automatic fallback to static content
+ *
+ * Features:
+ * - Automatic retry on transient failures (up to 2 retries)
+ * - Falls back to static content if Sanity is unavailable
+ * - Comprehensive error logging for debugging
+ *
+ * @param queryFn - Function that fetches from Sanity
+ * @param fallbackFn - Function that returns static content
+ * @param errorContext - Description of what's being fetched (for logging)
+ * @param retries - Number of retry attempts (default: 2)
+ * @returns Data from Sanity or static content
+ */
+async function fetchWithFallback<T>(
+  queryFn: () => Promise<T>,
+  fallbackFn: () => T | Promise<T>,
+  errorContext: string,
+  retries: number = 2
+): Promise<T> {
+  let lastError: Error | null = null
+
+  // Attempt to fetch from Sanity with retries
+  for (let attempt = 0; attempt <= retries; attempt++) {
+    try {
+      const result = await queryFn()
+
+      // Validate result is not null/undefined
+      if (!result) {
+        throw new Error(`${errorContext}: Query returned null/undefined`)
+      }
+
+      // Success! Return Sanity data
+      if (attempt > 0) {
+        console.log(`[Sanity] ✅ ${errorContext} succeeded on retry ${attempt}`)
+      }
+      return result
+
+    } catch (error) {
+      lastError = error as Error
+
+      // Log retry attempts
+      if (attempt < retries) {
+        console.warn(`[Sanity] ⚠️  ${errorContext} failed (attempt ${attempt + 1}/${retries + 1}), retrying...`)
+        // Exponential backoff: 100ms, 200ms, 400ms...
+        await new Promise(resolve => setTimeout(resolve, 100 * Math.pow(2, attempt)))
+      }
+    }
+  }
+
+  // All retries failed - fall back to static content
+  console.error(`[Sanity] ❌ ${errorContext} failed after ${retries + 1} attempts:`, lastError?.message)
+  console.log(`[Sanity] 🔄 Falling back to static content for ${errorContext}`)
+
+  try {
+    return await fallbackFn()
+  } catch (fallbackError) {
+    console.error(`[Sanity] ❌ CRITICAL: Both Sanity and static fallback failed for ${errorContext}:`, fallbackError)
+    throw new Error(`Failed to load ${errorContext} from both Sanity and static sources`)
+  }
+}
 
 import type {
   SiteSettings,
@@ -127,46 +199,52 @@ function transformSanityImage(sanityImage?: SanityImage) {
  * @returns Site settings object
  */
 export async function getSiteSettings(): Promise<SiteSettings> {
-  const data = await sanityClient.fetch(SITE_SETTINGS_QUERY)
+  return fetchWithFallback(
+    async (): Promise<SiteSettings> => {
+      const data = await sanityClient.fetch(SITE_SETTINGS_QUERY)
 
-  if (!data) {
-    throw new Error('Site settings not found in Sanity')
-  }
+      if (!data) {
+        throw new Error('Site settings not found in Sanity')
+      }
 
-  if (!data.contactSection) {
-    throw new Error('contactSection is missing from Sanity siteSettings')
-  }
+      if (!data.contactSection) {
+        throw new Error('contactSection is missing from Sanity siteSettings')
+      }
 
-  return {
-    title: data.title,
-    description: data.description,
-    keywords: data.keywords || [],
-    seo: {
-      siteUrl: data.seo.siteUrl,
-      siteName: data.seo.siteName,
-      locale: data.seo.locale,
-      ogImage: {
-        url: data.seo.ogImage?.image?.asset?.url || '',
-        width: data.seo.ogImage?.width || 1200,
-        height: data.seo.ogImage?.height || 630,
-        alt: data.seo.ogImage?.image?.alt || '',
-      },
-      twitterHandle: data.seo.twitterHandle || null,
+      return {
+        title: data.title,
+        description: data.description,
+        keywords: data.keywords || [],
+        seo: {
+          siteUrl: data.seo.siteUrl,
+          siteName: data.seo.siteName,
+          locale: data.seo.locale,
+          ogImage: {
+            url: data.seo.ogImage?.image?.asset?.url ?? '',
+            width: data.seo.ogImage?.width ?? 1200,
+            height: data.seo.ogImage?.height ?? 630,
+            alt: data.seo.ogImage?.image?.alt ?? '',
+          },
+          twitterHandle: data.seo.twitterHandle,
+        },
+        logo: {
+          text: data.logo.text,
+          url: data.logo.image?.asset?.url ?? null,
+        },
+        footer: {
+          copyrightText: data.footer.copyrightText,
+          year: data.footer.year,
+          email: data.footer.email,
+        },
+        primaryCta: data.primaryCta,
+        eventUrl: data.eventUrl ?? null,
+        navigation: data.navigation || [],
+        contactSection: data.contactSection,
+      }
     },
-    logo: {
-      text: data.logo.text,
-      url: data.logo.image?.asset?.url || null,
-    },
-    footer: {
-      copyrightText: data.footer.copyrightText,
-      year: data.footer.year,
-      email: data.footer.email,
-    },
-    primaryCta: data.primaryCta,
-    eventUrl: data.eventUrl || null,
-    navigation: data.navigation || [],
-    contactSection: data.contactSection,
-  }
+    () => Promise.resolve(staticContent.getSiteSettings()),
+    'Site Settings'
+  )
 }
 
 /**
@@ -194,66 +272,72 @@ export async function getNavigationLinks(): Promise<NavigationLink[]> {
  * @returns Home page content
  */
 export async function getHomePage(): Promise<HomePage> {
-  const data = await sanityClient.fetch(HOME_PAGE_QUERY)
+  return fetchWithFallback(
+    async (): Promise<HomePage> => {
+      const data = await sanityClient.fetch(HOME_PAGE_QUERY)
 
-  if (!data) {
-    throw new Error('Home page not found in Sanity')
-  }
+      if (!data) {
+        throw new Error('Home page not found in Sanity')
+      }
 
-  return {
-    hero: {
-      headline: data.hero.headline,
-      title: data.hero.title,
-      titleHighlight: data.hero.titleHighlight,
-      subtitle: data.hero.subtitle,
-      description: data.hero.description,
-      backgroundImage: data.hero.backgroundImage?.asset?.url || null,
-      heroImage: transformSanityImage(data.hero.heroImage) ?? null,
-      cta: data.hero.cta,
-      featuredPartners: (data.hero.featuredPartners || []).map((partner: SanityCompanyLogo) => ({
-        name: partner.name,
-        logo: transformSanityImage(partner.logo) || { src: '', alt: '' },
-        displayWidth: partner.displayWidth,
-        displayHeight: partner.displayHeight,
-      })),
+      return {
+        hero: {
+          headline: data.hero.headline,
+          title: data.hero.title,
+          titleHighlight: data.hero.titleHighlight,
+          subtitle: data.hero.subtitle,
+          description: data.hero.description,
+          backgroundImage: data.hero.backgroundImage?.asset?.url ?? null,
+          heroImage: transformSanityImage(data.hero.heroImage) ?? null,
+          cta: data.hero.cta,
+          featuredPartners: (data.hero.featuredPartners || []).map((partner: SanityCompanyLogo) => ({
+            name: partner.name,
+            logo: transformSanityImage(partner.logo) || { src: '', alt: '' },
+            displayWidth: partner.displayWidth,
+            displayHeight: partner.displayHeight,
+          })),
+        },
+        sections: {
+          about: {
+            title: data.aboutSection.title,
+            subtitle: data.aboutSection.subtitle,
+            theme: data.aboutSection.theme,
+            // Use static background images, not from Sanity
+            backgroundImage: '/static/images/about/bg.png',
+          },
+          invite: {
+            title: data.inviteSection.title,
+            subtitle: data.inviteSection.subtitle,
+            theme: data.inviteSection.theme,
+            // Use static background images, not from Sanity
+            backgroundImage: '/static/images/invite/bg.png',
+          },
+        },
+        partners: {
+          title: data.partnersTitle,
+          identifier: 'Partners',
+          companies: data.partners || [],
+        },
+        supporters: {
+          title: data.supportersTitle,
+          identifier: 'Supporters',
+          companies: data.supporters || [],
+        },
+        speakers: {
+          title: data.speakersTitle,
+          identifier: 'Speakers',
+          people: data.speakers || [],
+        },
+        team: {
+          title: data.teamTitle,
+          identifier: 'Team',
+          people: data.team || [],
+        },
+      }
     },
-    sections: {
-      about: {
-        title: data.aboutSection.title,
-        subtitle: data.aboutSection.subtitle,
-        theme: data.aboutSection.theme,
-        // Use static background images, not from Sanity
-        backgroundImage: '/static/images/about/bg.png',
-      },
-      invite: {
-        title: data.inviteSection.title,
-        subtitle: data.inviteSection.subtitle,
-        theme: data.inviteSection.theme,
-        // Use static background images, not from Sanity
-        backgroundImage: '/static/images/invite/bg.png',
-      },
-    },
-    partners: {
-      title: data.partnersTitle,
-      identifier: 'Partners',
-      companies: data.partners || [],
-    },
-    supporters: {
-      title: data.supportersTitle,
-      identifier: 'Supporters',
-      companies: data.supporters || [],
-    },
-    speakers: {
-      title: data.speakersTitle,
-      identifier: 'Speakers',
-      people: data.speakers || [],
-    },
-    team: {
-      title: data.teamTitle,
-      identifier: 'Team',
-      people: data.team || [],
-    },
-  }
+    () => Promise.resolve(staticContent.getHomePage()),
+    'Home Page'
+  )
 }
 
 // ============================================
@@ -264,70 +348,94 @@ export async function getHomePage(): Promise<HomePage> {
  * Get all speakers from Sanity
  */
 export async function getAllSpeakers(): Promise<Person[]> {
-  const speakers: SanityPerson[] = await sanityClient.fetch(ALL_SPEAKERS_QUERY)
-  return (speakers || []).map((speaker) => ({
-    id: speaker._id,
-    name: speaker.name,
-    role: speaker.role,
-    company: speaker.company,
-    image: transformSanityImage(speaker.image) || { src: '', alt: '' },
-    bio: speaker.bio,
-    socialLinks: speaker.socialLinks || [],
-    featured: speaker.featured,
-    order: speaker.order,
-    type: 'speaker' as const,
-  }))
+  return fetchWithFallback(
+    async (): Promise<Person[]> => {
+      const speakers: SanityPerson[] = await sanityClient.fetch(ALL_SPEAKERS_QUERY)
+      return (speakers || []).map((speaker) => ({
+        id: speaker._id,
+        name: speaker.name,
+        role: speaker.role,
+        company: speaker.company,
+        image: transformSanityImage(speaker.image) || { src: '', alt: '' },
+        bio: speaker.bio,
+        socialLinks: speaker.socialLinks || [],
+        featured: speaker.featured,
+        order: speaker.order,
+        type: 'speaker' as const,
+      }))
+    },
+    () => Promise.resolve(staticContent.getAllSpeakers()),
+    'Speakers'
+  )
 }
 
 /**
  * Get all team members from Sanity
  */
 export async function getAllTeamMembers(): Promise<Person[]> {
-  const team: SanityPerson[] = await sanityClient.fetch(ALL_TEAM_QUERY)
-  return (team || []).map((member) => ({
-    id: member._id,
-    name: member.name,
-    role: member.role,
-    company: member.company,
-    image: transformSanityImage(member.image) || { src: '', alt: '' },
-    bio: member.bio,
-    socialLinks: member.socialLinks || [],
-    featured: member.featured,
-    order: member.order,
-    type: 'team' as const,
-  }))
+  return fetchWithFallback(
+    async (): Promise<Person[]> => {
+      const team: SanityPerson[] = await sanityClient.fetch(ALL_TEAM_QUERY)
+      return (team || []).map((member) => ({
+        id: member._id,
+        name: member.name,
+        role: member.role,
+        company: member.company,
+        image: transformSanityImage(member.image) || { src: '', alt: '' },
+        bio: member.bio,
+        socialLinks: member.socialLinks || [],
+        featured: member.featured,
+        order: member.order,
+        type: 'team' as const,
+      }))
+    },
+    () => Promise.resolve(staticContent.getAllTeamMembers()),
+    'Team Members'
+  )
 }
 
 /**
  * Get all partners from Sanity
  */
 export async function getAllPartners(): Promise<Company[]> {
-  const partners: SanityCompany[] = await sanityClient.fetch(ALL_PARTNERS_QUERY)
-  return (partners || []).map((partner) => ({
-    id: partner._id,
-    name: partner.name,
-    logo: transformSanityImage(partner.logo) || { src: '', alt: '' },
-    website: partner.website,
-    tier: partner.tier,
-    featured: partner.featured,
-    order: partner.order,
-  }))
+  return fetchWithFallback(
+    async (): Promise<Company[]> => {
+      const partners: SanityCompany[] = await sanityClient.fetch(ALL_PARTNERS_QUERY)
+      return (partners || []).map((partner) => ({
+        id: partner._id,
+        name: partner.name,
+        logo: transformSanityImage(partner.logo) || { src: '', alt: '' },
+        website: partner.website,
+        tier: partner.tier,
+        featured: partner.featured,
+        order: partner.order,
+      }))
+    },
+    () => Promise.resolve(staticContent.getAllPartners()),
+    'Partners'
+  )
 }
 
 /**
  * Get all supporters from Sanity
  */
 export async function getAllSupporters(): Promise<Company[]> {
-  const supporters: SanityCompany[] = await sanityClient.fetch(ALL_SUPPORTERS_QUERY)
-  return (supporters || []).map((supporter) => ({
-    id: supporter._id,
-    name: supporter.name,
-    logo: transformSanityImage(supporter.logo) || { src: '', alt: '' },
-    website: supporter.website,
-    tier: supporter.tier,
-    featured: supporter.featured,
-    order: supporter.order,
-  }))
+  return fetchWithFallback(
+    async (): Promise<Company[]> => {
+      const supporters: SanityCompany[] = await sanityClient.fetch(ALL_SUPPORTERS_QUERY)
+      return (supporters || []).map((supporter) => ({
+        id: supporter._id,
+        name: supporter.name,
+        logo: transformSanityImage(supporter.logo) || { src: '', alt: '' },
+        website: supporter.website,
+        tier: supporter.tier,
+        featured: supporter.featured,
+        order: supporter.order,
+      }))
+    },
+    () => Promise.resolve(staticContent.getAllSupporters()),
+    'Supporters'
+  )
 }
 
 // ============================================

@@ -45,7 +45,7 @@ export interface SiteSettings {
     email: string
   }
   primaryCta: CallToAction
-  eventUrl: string
+  eventUrl: string | null
   navigation: NavigationLink[]
   contactSection: ContactSection
 }

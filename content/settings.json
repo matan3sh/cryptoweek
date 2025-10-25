@@ -47,5 +47,31 @@
       "url": "#Discord",
       "openInNewTab": false
     }
-  ]
+  ],
+  "contactSection": {
+    "title": "Get In Touch",
+    "fieldLabels": {
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email Address",
+      "company": "Company",
+      "message": "Message"
+    },
+    "buttonText": {
+      "default": "Send Message",
+      "submitting": "Sending..."
+    },
+    "messages": {
+      "success": "Thank you for your message! We'll get back to you soon.",
+      "error": "Something went wrong. Please try again.",
+      "rateLimitError": "Too many requests. Please try again later."
+    },
+    "validationMessages": {
+      "firstNameRequired": "First name is required",
+      "lastNameRequired": "Last name is required",
+      "emailRequired": "Email is required",
+      "emailInvalid": "Please enter a valid email address",
+      "messageRequired": "Message is required"
+    }
+  }
 }

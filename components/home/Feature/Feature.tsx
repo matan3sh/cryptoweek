@@ -64,7 +64,7 @@ const Feature: FC<FeatureProps> = ({ hero }) => {
 
         <HeroImageSection>
           <Image
-            src="/static/images/feature/illustration.png"
+            src="/static/images/feature/feature.png"
             alt="Hero Illustration"
             width={600}
             height={520}

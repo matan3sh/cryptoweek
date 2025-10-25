@@ -1,52 +1,56 @@
 # Sanity Migration Quick Start Guide
 
-**Ready to migrate?** Follow these steps to get started immediately.
+**Note:** This project is already set up with Sanity. This guide is for reference or setting up additional environments.
 
 ---
 
 ## Prerequisites
 
-- ✅ User token: `skk7qnygiFfw1cHyyJe4KteGwLYAIxFE7mM8tJjfidBa9RJPAHOFBQTbUwHfdlYkb0kOrAMp3gvYe8VaJKVL1j5IWNyRyWb0faIupL71l9wEupIrsHuLKOGklKvYyiCg0nUN9mA54q9tAajs9fcoM5SrYPbfsfonN7S6G6W2c3AnAd7Urftx`
 - ✅ Node.js 18+ installed
-- ✅ Project at `/Users/matanshaviro/Documents/nextjs/cryptoweek`
+- ✅ Sanity account (sign up at sanity.io)
+- ✅ Project repository cloned
 
 ---
 
-## Step 1: Initialize Sanity (15 minutes)
+## Step 1: Get Sanity API Token
 
-```bash
-cd /Users/matanshaviro/Documents/nextjs/cryptoweek
+1. Go to [sanity.io/manage](https://sanity.io/manage)
+2. Select your project
+3. Navigate to **API** → **Tokens**
+4. Click **Add New Token**
+5. Name: "Production Token"
+6. Permissions: **Editor**
+7. Copy the generated token (you'll need it in Step 2)
 
-# Initialize Sanity Studio
-npx sanity@latest init \
-  --project-plan free \
-  --dataset production \
-  --output-path ./studio
-
-# When prompted:
-# - Create new project? Yes
-# - Project name: cryptoweek
-# - Dataset: production
-# - Template: Clean project with no predefined schemas
-```
-
-**Save the Project ID that's generated!**
+**⚠️ Important:** Keep your API token secure! Never commit it to git.
 
 ---
 
 ## Step 2: Configure Environment Variables
 
-Create `/Users/matanshaviro/Documents/nextjs/cryptoweek/.env.local`:
+Create `.env.local` in the project root:
 
 ```env
-# Replace YOUR_PROJECT_ID with actual ID from Step 1
-NEXT_PUBLIC_SANITY_PROJECT_ID=YOUR_PROJECT_ID
+# Feature Flag
+NEXT_PUBLIC_USE_SANITY=true
+
+# Sanity Project Configuration
+NEXT_PUBLIC_SANITY_PROJECT_ID=your-project-id-here
 NEXT_PUBLIC_SANITY_DATASET=production
-SANITY_API_TOKEN=skk7qnygiFfw1cHyyJe4KteGwLYAIxFE7mM8tJjfidBa9RJPAHOFBQTbUwHfdlYkb0kOrAMp3gvYe8VaJKVL1j5IWNyRyWb0faIupL71l9wEupIrsHuLKOGklKvYyiCg0nUN9mA54q9tAajs9fcoM5SrYPbfsfonN7S6G6W2c3AnAd7Urftx
-SANITY_PREVIEW_SECRET=your-random-secret-string-here
+NEXT_PUBLIC_SANITY_API_VERSION=2024-01-25
+
+# Sanity API Token (from Step 1)
+SANITY_API_TOKEN=your-token-here
+
+# Preview Mode Secrets (generate random strings)
+SANITY_PREVIEW_SECRET=generate-random-string
+SANITY_REVALIDATE_SECRET=generate-random-string
+
+# Site URL
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
 ```
 
-Create `/Users/matanshaviro/Documents/nextjs/cryptoweek/studio/.env.local`:
+Create `studio/.env.local`:
 
 ```env
 # Same project ID as above

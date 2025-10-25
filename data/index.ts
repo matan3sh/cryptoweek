@@ -161,53 +161,8 @@ export const ourSpeakersData: SpeakerData[] = [
     role: 'COO Simetria',
   },
   {
-    name: 'Nimrod Lehavi',
-    image: '/images/our_speakers/Nimrod_Lehavi.png',
-    role: 'Co-founder and CEO - Simplex',
-  },
-  {
-    name: 'Ouriel Ohayon',
-    image: '/images/our_speakers/Ouriel_Ohayon.png',
-    role: 'CEO, Co-Founder - ZenGo',
-  },
-  {
-    name: 'Aly Madhavji',
-    image: '/images/our_speakers/Aly_Madhavji.png',
-    role: 'Managing Partner, Blockchain Founders Fund',
-  },
-  {
-    name: 'Aleks Svetski',
-    image: '/images/our_speakers/Aleks_Svetski.png',
-    role: 'Founder @ Amber.app & Host of Wake Up Podcast',
-  },
-  {
-    name: 'Patrick Stanley',
-    image: '/images/our_speakers/Patrick_Stanley.png',
-    role: 'Creator of CityCoins',
-  },
-  {
-    name: 'Lex Sokolin',
-    image: '/images/our_speakers/Lex_Sokolin.png',
-    role: 'Global Fintech Co-Head at ConsenSys',
-  },
-  {
-    name: 'Kellogg Fairbank',
-    image: '/images/our_speakers/Kellogg_Fairbank.png',
-    role: 'CEO at Nash',
-  },
-  {
-    name: 'Jeff Marsilio',
-    image: '/images/our_speakers/Jeff_Marsilio.png',
-    role: "CEO, Co-Founder at Nifty's, Inc.",
-  },
-  {
-    name: 'Raphael Tetro',
-    image: '/images/our_speakers/Raphael_Tetro.png',
-    role: 'SVP Merchant Services at Nuvei',
-  },
-  {
-    name: 'Alexander Mitrovich',
-    image: '/images/our_speakers/Alexander_Mitrovich.png',
+    name: 'Alexander Barabanov',
+    image: '/images/our_speakers/Alexander_Barabanov.png',
     role: 'Co-founder, CEO at Unique',
   },
   {
