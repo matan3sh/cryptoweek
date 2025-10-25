@@ -13,29 +13,29 @@ import {
   Wrapper,
 } from './styles'
 
-import { featurPartners } from '@/data'
+import type { HeroSection } from '@/lib/content/interfaces'
 
-const Feature: FC = () => {
+interface FeatureProps {
+  hero: HeroSection
+}
+
+const Feature: FC<FeatureProps> = ({ hero }) => {
   return (
     <Container id="Feature">
       <Wrapper>
         <ContentSection>
-          <Headline>Calling Israel&apos;s Top Crypto Talents</Headline>
+          <Headline>{hero.headline}</Headline>
           <Title>
-            Crypto <span>Week</span>
+            {hero.title} <span>{hero.titleHighlight}</span>
           </Title>
-          <Subtitle>13th December - 16th December</Subtitle>
-          <Description>
-            Join global crypto leaders, VC firms and promising blockchain
-            companies unveiling the future trends from the world&apos;s top Crypto
-            Week!
-          </Description>
+          <Subtitle>{hero.subtitle}</Subtitle>
+          <Description>{hero.description}</Description>
           <FeatureButton
-            href="https://hopin.com/events/israel-crypto-week"
-            target="_blank"
-            rel="noopener noreferrer"
+            href={hero.cta.url}
+            target={hero.cta.openInNewTab ? '_blank' : '_self'}
+            rel={hero.cta.openInNewTab ? 'noopener noreferrer' : undefined}
           >
-            <span>Get early access</span>
+            <span>{hero.cta.text}</span>
             <svg
               width="8"
               height="15"
@@ -48,13 +48,13 @@ const Feature: FC = () => {
           </FeatureButton>
 
           <FeaturePartners>
-            {featurPartners.map((logo) => (
+            {hero.featuredPartners.map((partner) => (
               <Image
-                key={`feature-partner-${logo.name}`}
-                src={`/static/images/feature/partners/${logo.name}.png`}
-                alt={`${logo.name} logo`}
-                height={parseInt(logo.height)}
-                width={parseInt(logo.width)}
+                key={`feature-partner-${partner.name}`}
+                src={partner.logo.src}
+                alt={partner.logo.alt || `${partner.name} logo`}
+                height={partner.logo.height || parseInt(partner.displayHeight || '40')}
+                width={partner.logo.width || parseInt(partner.displayWidth || '120')}
                 quality={85}
                 loading="lazy"
               />
@@ -63,15 +63,19 @@ const Feature: FC = () => {
         </ContentSection>
 
         <HeroImageSection>
-          <Image
-            src="/images/hero/hero-3d-crypto.png"
-            alt="3D Crypto Week Illustration"
-            width={600}
-            height={520}
-            priority
-            quality={90}
-            style={{ maxWidth: '100%', height: 'auto' }}
-          />
+          {hero.heroImage && (
+            <Image
+              src={hero.heroImage.src}
+              alt={hero.heroImage.alt || 'Hero Illustration'}
+              width={hero.heroImage.width || 600}
+              height={hero.heroImage.height || 520}
+              priority
+              quality={90}
+              style={{ maxWidth: '100%', height: 'auto' }}
+              placeholder={hero.heroImage.blurDataUrl ? 'blur' : 'empty'}
+              blurDataURL={hero.heroImage.blurDataUrl}
+            />
+          )}
         </HeroImageSection>
       </Wrapper>
     </Container>

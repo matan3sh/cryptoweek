@@ -98,7 +98,7 @@ const Home: React.FC<HomeProps> = ({
       <SkipToContent />
       <Header settings={settings} navLinks={navLinks} />
       <MainContainer id="main-content">
-        <Feature />
+        <Feature hero={homePage.hero} />
         <GridSection
           data={partnersData}
           title={homePage.partners.title}
