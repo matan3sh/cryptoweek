@@ -1,5 +1,5 @@
-'use client'
 import type { FC } from 'react'
+import Image from 'next/image'
 import {
   Container,
   ContentSection,
@@ -7,7 +7,6 @@ import {
   FeatureButton,
   FeaturePartners,
   Headline,
-  HeroImage,
   HeroImageSection,
   Subtitle,
   Title,
@@ -21,14 +20,14 @@ const Feature: FC = () => {
     <Container id="Feature">
       <Wrapper>
         <ContentSection>
-          <Headline>Calling Israel's Top Crypto Talents</Headline>
+          <Headline>Calling Israel&apos;s Top Crypto Talents</Headline>
           <Title>
             Crypto <span>Week</span>
           </Title>
           <Subtitle>13th December - 16th December</Subtitle>
           <Description>
             Join global crypto leaders, VC firms and promising blockchain
-            companies unveiling the future trends from the world's top Crypto
+            companies unveiling the future trends from the world&apos;s top Crypto
             Week!
           </Description>
           <FeatureButton
@@ -49,24 +48,29 @@ const Feature: FC = () => {
           </FeatureButton>
 
           <FeaturePartners>
-            {featurPartners.map((logo, index) => (
-              <img
-                key={`feature-partner-${index}-${logo.name}`}
+            {featurPartners.map((logo) => (
+              <Image
+                key={`feature-partner-${logo.name}`}
                 src={`/static/images/feature/partners/${logo.name}.png`}
                 alt={`${logo.name} logo`}
-                height={logo.height}
-                width={logo.width}
+                height={parseInt(logo.height)}
+                width={parseInt(logo.width)}
+                quality={85}
+                loading="lazy"
               />
             ))}
           </FeaturePartners>
         </ContentSection>
 
         <HeroImageSection>
-          <HeroImage
+          <Image
             src="/images/hero/hero-3d-crypto.png"
             alt="3D Crypto Week Illustration"
-            width="600"
-            height="520"
+            width={600}
+            height={520}
+            priority
+            quality={90}
+            style={{ maxWidth: '100%', height: 'auto' }}
           />
         </HeroImageSection>
       </Wrapper>

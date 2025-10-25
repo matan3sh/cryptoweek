@@ -1,4 +1,3 @@
-'use client'
 import { fadeInUp, staggerContainer, textReveal } from '@/components/animations'
 import type { SectionData } from '@/types'
 import { motion, useInView } from 'framer-motion'

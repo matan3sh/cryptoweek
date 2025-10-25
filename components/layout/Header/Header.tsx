@@ -1,4 +1,3 @@
-'use client'
 import { headerLinks } from '@/data'
 import { AnimatePresence, motion } from 'framer-motion'
 import type { FC } from 'react'

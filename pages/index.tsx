@@ -23,29 +23,39 @@ import type { ContactFormValues } from '@/types'
 
 const Home: React.FC = () => {
   const [sentSuccess, setSentSuccess] = useState<boolean>(false)
+  const [error, setError] = useState<string>('')
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false)
 
-  const sendContact = useCallback((values: ContactFormValues) => {
-    sendMessage({
-      name: `${values.firstName} ${values.lastName}`,
-      email: values.email,
-      company: values.company,
-      message: values.message,
-    })
-    setSentSuccess(true)
-    setTimeout(() => {
-      setSentSuccess(false)
-    }, 3000)
+  const sendContact = useCallback(async (values: ContactFormValues) => {
+    setIsSubmitting(true)
+    setError('')
+
+    try {
+      await sendMessage({
+        name: `${values.firstName} ${values.lastName}`,
+        email: values.email,
+        company: values.company,
+        message: values.message,
+      })
+      setSentSuccess(true)
+      setTimeout(() => {
+        setSentSuccess(false)
+      }, 3000)
+    } catch (err) {
+      setError('Failed to send message. Please try again.')
+      console.error('Send contact error:', err)
+    } finally {
+      setIsSubmitting(false)
+    }
   }, [])
 
   return (
     <>
       <Head>
-        <title>Cryptoweek.co.il - Calling Israel's Top Crypto Talents</title>
+        <title>Cryptoweek.co.il - Calling Israel&apos;s Top Crypto Talents</title>
         <meta
           name="description"
-          content="Join global crypto leaders, VC firms and promising blockchain
-          companies unveiling the future trends from the world's top Crypto
-          Week!"
+          content="Join global crypto leaders, VC firms and promising blockchain companies unveiling the future trends from the world&apos;s top Crypto Week!"
         />
         <meta
           name="keywords"
@@ -68,7 +78,12 @@ const Home: React.FC = () => {
       <GridText title="Our Speakers" data={ourSpeakersData} link="Speakers" />
       <Section data={invite} />
       <GridText title="Our Team" data={ourTeamData} link="Team" />
-      <Contact onSubmit={sendContact} success={sentSuccess} />
+      <Contact
+        onSubmit={sendContact}
+        success={sentSuccess}
+        error={error}
+        isSubmitting={isSubmitting}
+      />
       <Footer />
     </>
   )

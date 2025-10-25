@@ -1,7 +1,7 @@
-'use client'
 import { fadeInUp, staggerContainer, textReveal } from '@/components/animations'
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
+import Image from 'next/image'
 import { Container, List } from './styles'
 
 interface GridTextItem {
@@ -34,7 +34,7 @@ const GridText: React.FC<GridTextProps> = ({ title, data, link }) => {
       <List as={motion.div} variants={staggerContainer}>
         {data.map((item, key) => (
           <motion.div
-            key={key}
+            key={`${item.name}-${item.image}`}
             variants={fadeInUp}
             whileInView={{
               opacity: 1,
@@ -66,15 +66,24 @@ const GridText: React.FC<GridTextProps> = ({ title, data, link }) => {
               transition: { duration: 0.1 },
             }}
           >
-            <motion.img
-              src={item.image}
-              alt={item.name}
+            <motion.div
+              style={{ position: 'relative', width: '100%', height: 'auto' }}
               whileHover={{
                 scale: 1.05,
                 rotate: [0, -1, 1, 0],
                 transition: { duration: 0.3 },
               }}
-            />
+            >
+              <Image
+                src={item.image}
+                alt={item.name}
+                width={300}
+                height={300}
+                quality={85}
+                loading="lazy"
+                style={{ maxWidth: '100%', height: 'auto', borderRadius: '8px' }}
+              />
+            </motion.div>
             <motion.h2 variants={textReveal}>{item.name}</motion.h2>
             <motion.h3 variants={textReveal}>{item.role}</motion.h3>
           </motion.div>

@@ -15,7 +15,7 @@ export default async function handler(
     return res.status(405).json({ message: 'Method not allowed' })
   }
 
-  const { name, email, company, message } = req.body as SendMessageRequest
+  const { name, email, company: _company, message } = req.body as SendMessageRequest
 
   // Validate required fields
   if (!name || !email || !message) {

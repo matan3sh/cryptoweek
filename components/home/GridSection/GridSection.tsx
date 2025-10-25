@@ -1,7 +1,7 @@
-'use client'
 import { fadeInUp, staggerContainer } from '@/components/animations'
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
+import Image from 'next/image'
 import { Container, List } from './styles'
 
 interface GridSectionProps {
@@ -27,10 +27,8 @@ const GridSection: React.FC<GridSectionProps> = ({ data, title, link }) => {
 
       <List as={motion.div} variants={staggerContainer}>
         {data.map((partner, key) => (
-          <motion.img
-            key={key}
-            src={partner}
-            alt=""
+          <motion.div
+            key={partner}
             variants={fadeInUp}
             whileInView={{
               opacity: 1,
@@ -62,7 +60,18 @@ const GridSection: React.FC<GridSectionProps> = ({ data, title, link }) => {
               scale: 0.98,
               transition: { duration: 0.1 },
             }}
-          />
+            style={{ position: 'relative', width: '100%', height: 'auto' }}
+          >
+            <Image
+              src={partner}
+              alt="Partner logo"
+              width={200}
+              height={100}
+              quality={85}
+              loading="lazy"
+              style={{ maxWidth: '100%', height: 'auto' }}
+            />
+          </motion.div>
         ))}
       </List>
     </Container>
