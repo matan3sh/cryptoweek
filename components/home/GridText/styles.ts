@@ -8,16 +8,16 @@ export const Container = styled.div`
   margin: 0 auto;
   max-width: 1200px;
   width: 100%;
-  background: #ffffff;
-  padding: 100px 40px;
+  background: ${props => props.theme.colors.bgWhite};
+  padding: 100px ${props => props.theme.spacing.lg};
   position: relative;
 
   > h1 {
-    font-family: 'Moderat-Bold';
-    color: #1a202c;
-    font-size: 48px;
+    font-family: ${props => props.theme.fonts.bold};
+    color: ${props => props.theme.colors.textPrimary};
+    font-size: ${props => props.theme.fontSizes['5xl']};
     margin-bottom: 56px;
-    font-weight: 900;
+    font-weight: ${props => props.theme.fontWeights.bold};
     text-align: center;
     letter-spacing: -1px;
     position: relative;
@@ -131,12 +131,12 @@ export const List = styled.div`
     }
 
     > h2 {
-      font-family: 'Moderat-Bold';
-      font-size: 20px;
-      font-weight: 700;
-      margin: 0 0 8px 0;
-      color: #1a202c;
-      line-height: 1.3;
+      font-family: ${props => props.theme.fonts.bold};
+      font-size: ${props => props.theme.fontSizes.xl};
+      font-weight: ${props => props.theme.fontWeights.bold};
+      margin: 0 0 ${props => props.theme.spacing.xs} 0;
+      color: ${props => props.theme.colors.textPrimary};
+      line-height: ${props => props.theme.lineHeights.tight};
       position: relative;
       z-index: 1;
 
@@ -150,11 +150,11 @@ export const List = styled.div`
     }
 
     > h3 {
-      font-family: 'Moderat-Medium';
-      font-size: 15px;
-      color: #667eea;
-      line-height: 1.4;
-      font-weight: 600;
+      font-family: ${props => props.theme.fonts.medium};
+      font-size: ${props => props.theme.fontSizes.sm};
+      color: ${props => props.theme.colors.primary};
+      line-height: ${props => props.theme.lineHeights.normal};
+      font-weight: ${props => props.theme.fontWeights.medium};
       margin: 0;
       position: relative;
       z-index: 1;

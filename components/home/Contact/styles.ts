@@ -8,15 +8,15 @@ export const Container = styled.div`
   margin: 0 auto;
   max-width: 1200px;
   width: 100%;
-  padding: 80px 40px;
-  background: #ffffff;
+  padding: ${props => props.theme.spacing.xl} ${props => props.theme.spacing.lg};
+  background: ${props => props.theme.colors.bgWhite};
 
   > h1 {
-    font-family: 'Moderat-Bold';
-    font-size: 48px;
-    margin-bottom: 48px;
-    font-weight: 900;
-    color: #1a202c;
+    font-family: ${props => props.theme.fonts.bold};
+    font-size: ${props => props.theme.fontSizes['5xl']};
+    margin-bottom: ${props => props.theme.spacing.xl};
+    font-weight: ${props => props.theme.fontWeights.bold};
+    color: ${props => props.theme.colors.textPrimary};
     text-align: center;
     letter-spacing: -1px;
 
@@ -75,25 +75,25 @@ export const Row = styled.div`
   }
 
   input {
-    font-family: 'Moderat-Regular', sans-serif;
+    font-family: ${props => props.theme.fonts.body};
     width: 100%;
-    background: rgba(255, 255, 255, 0.6);
+    background: ${props => props.theme.colors.glass.surfaceMedium};
     border: 1.5px solid rgba(102, 126, 234, 0.2);
     border-radius: var(--radius-sm);
     padding: 14px 18px;
-    color: #1a202c;
-    font-size: 15px;
-    transition: all 0.3s ease;
+    color: ${props => props.theme.colors.textPrimary};
+    font-size: ${props => props.theme.fontSizes.sm};
+    transition: ${props => props.theme.transitions.base};
     -webkit-backdrop-filter: var(--blur-sm);
     backdrop-filter: var(--blur-sm);
 
     &::placeholder {
-      color: #718096;
+      color: ${props => props.theme.colors.textMuted};
     }
 
     &:focus {
       outline: none;
-      border-color: #667eea;
+      border-color: ${props => props.theme.colors.primary};
       border-width: 2px;
       box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
       background: rgba(255, 255, 255, 0.8);
@@ -101,28 +101,28 @@ export const Row = styled.div`
   }
 
   textarea {
-    font-family: 'Moderat-Regular', sans-serif;
-    color: #1a202c;
+    font-family: ${props => props.theme.fonts.body};
+    color: ${props => props.theme.colors.textPrimary};
     width: 100%;
-    background: rgba(255, 255, 255, 0.6);
+    background: ${props => props.theme.colors.glass.surfaceMedium};
     border: 1.5px solid rgba(102, 126, 234, 0.2);
     border-radius: var(--radius-sm);
     padding: 14px 18px;
-    font-size: 15px;
+    font-size: ${props => props.theme.fontSizes.sm};
     min-height: 120px;
     resize: vertical;
-    transition: all 0.3s ease;
+    transition: ${props => props.theme.transitions.base};
     -webkit-backdrop-filter: var(--blur-sm);
     backdrop-filter: var(--blur-sm);
 
     &::placeholder {
-      font-family: 'Moderat-Regular', sans-serif;
-      color: #718096;
+      font-family: ${props => props.theme.fonts.body};
+      color: ${props => props.theme.colors.textMuted};
     }
 
     &:focus {
       outline: none;
-      border-color: #667eea;
+      border-color: ${props => props.theme.colors.primary};
       border-width: 2px;
       box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
       background: rgba(255, 255, 255, 0.8);
@@ -131,15 +131,15 @@ export const Row = styled.div`
 
   .button {
     margin-left: auto;
-    color: #fff;
+    color: ${props => props.theme.colors.textWhite};
     border: 1px solid var(--border-glass);
     background: var(--bg-gradient-secondary);
     padding: 14px 32px;
     border-radius: var(--radius-sm);
-    font-size: 16px;
-    font-weight: 600;
-    font-family: 'Moderat-Medium';
-    transition: all 0.3s ease;
+    font-size: ${props => props.theme.fontSizes.md};
+    font-weight: ${props => props.theme.fontWeights.medium};
+    font-family: ${props => props.theme.fonts.medium};
+    transition: ${props => props.theme.transitions.base};
     box-shadow: var(--glow-purple);
     -webkit-backdrop-filter: var(--blur-sm);
     backdrop-filter: var(--blur-sm);
@@ -166,9 +166,9 @@ export const Row = styled.div`
 `
 
 export const Success = styled.span`
-  margin-top: 8px;
-  font-size: 14px;
-  color: #48bb78;
-  font-weight: 500;
+  margin-top: ${props => props.theme.spacing.xs};
+  font-size: ${props => props.theme.fontSizes.sm};
+  color: ${props => props.theme.colors.success};
+  font-weight: ${props => props.theme.fontWeights.medium};
   text-align: center;
 `

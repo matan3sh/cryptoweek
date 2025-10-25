@@ -6,18 +6,18 @@ export const Container = styled.div`
   align-items: center;
   margin: 0 auto;
   flex-direction: column;
-  background: #ffffff;
-  padding: 100px 40px;
+  background: ${props => props.theme.colors.bgWhite};
+  padding: 100px ${props => props.theme.spacing.lg};
   max-width: 1200px;
   width: 100%;
   position: relative;
 
   > h1 {
-    font-family: 'Moderat-Bold';
-    color: #1a202c;
-    font-size: 48px;
+    font-family: ${props => props.theme.fonts.bold};
+    color: ${props => props.theme.colors.textPrimary};
+    font-size: ${props => props.theme.fontSizes['5xl']};
     margin-bottom: 56px;
-    font-weight: 900;
+    font-weight: ${props => props.theme.fontWeights.bold};
     text-align: center;
     letter-spacing: -1px;
     position: relative;

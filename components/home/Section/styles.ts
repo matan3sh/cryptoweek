@@ -47,12 +47,12 @@ export const Wrapper = styled.div`
   }
 
   > h1 {
-    font-family: 'Moderat-Bold';
-    font-size: 48px;
-    line-height: 1.2;
+    font-family: ${props => props.theme.fonts.bold};
+    font-size: ${props => props.theme.fontSizes['5xl']};
+    line-height: ${props => props.theme.lineHeights.tight};
     max-width: 680px;
-    color: #1a202c;
-    margin: 0 0 24px 0;
+    color: ${props => props.theme.colors.textPrimary};
+    margin: 0 0 ${props => props.theme.spacing.md} 0;
     letter-spacing: -1px;
 
     @media screen and (max-width: 768px) {
@@ -66,12 +66,12 @@ export const Wrapper = styled.div`
   }
 
   > p {
-    font-size: 18px;
+    font-size: ${props => props.theme.fontSizes.lg};
     line-height: 28px;
-    font-family: 'Moderat-Regular';
+    font-family: ${props => props.theme.fonts.body};
     margin: 0;
     max-width: 650px;
-    color: #2d3748;
+    color: ${props => props.theme.colors.textSecondary};
 
     @media screen and (max-width: 768px) {
       font-size: 17px;

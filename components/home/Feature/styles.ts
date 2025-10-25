@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-  background: #ffffff;
+  background: ${props => props.theme.colors.bgWhite};
   height: 100vh;
   width: 100%;
   position: relative;
@@ -27,7 +27,7 @@ export const Wrapper = styled.div`
   max-width: 1200px;
   width: 100%;
   margin: 0 auto;
-  color: #1a202c;
+  color: ${props => props.theme.colors.textPrimary};
   display: flex;
   align-items: center;
   min-height: 100vh;
@@ -106,13 +106,13 @@ export const HeroImageSection = styled.div`
 `
 
 export const Headline = styled.h2`
-  font-size: 18px;
+  font-size: ${props => props.theme.fontSizes.lg};
   line-height: 24px;
   letter-spacing: -0.2px;
   text-align: left;
-  margin-bottom: 12px;
-  color: #667eea;
-  font-weight: 600;
+  margin-bottom: ${props => props.theme.spacing.xs};
+  color: ${props => props.theme.colors.primary};
+  font-weight: ${props => props.theme.fontWeights.medium};
   text-transform: uppercase;
   letter-spacing: 1px;
 
@@ -124,13 +124,13 @@ export const Headline = styled.h2`
 `
 
 export const Title = styled.h1`
-  font-family: 'Moderat-Bold';
+  font-family: ${props => props.theme.fonts.bold};
   font-size: 72px;
   line-height: 80px;
   letter-spacing: -2px;
   text-align: left;
   margin: 0 0 20px 0;
-  color: #1a202c;
+  color: ${props => props.theme.colors.textPrimary};
 
   @media screen and (max-width: 1200px) {
     font-size: 56px;
@@ -157,11 +157,11 @@ export const Title = styled.h1`
 `
 
 export const Subtitle = styled.h3`
-  font-size: 24px;
-  font-family: 'Moderat-Medium';
-  margin: 0 0 16px 0;
-  color: #2d3748;
-  font-weight: 500;
+  font-size: ${props => props.theme.fontSizes['2xl']};
+  font-family: ${props => props.theme.fonts.medium};
+  margin: 0 0 ${props => props.theme.spacing.sm} 0;
+  color: ${props => props.theme.colors.textSecondary};
+  font-weight: ${props => props.theme.fontWeights.medium};
   text-align: left;
 
   @media screen and (max-width: 860px) {
@@ -175,12 +175,12 @@ export const Subtitle = styled.h3`
 `
 
 export const Description = styled.p`
-  font-size: 18px;
-  font-family: 'Moderat-Regular';
-  margin: 0 0 24px 0;
+  font-size: ${props => props.theme.fontSizes.lg};
+  font-family: ${props => props.theme.fonts.body};
+  margin: 0 0 ${props => props.theme.spacing.md} 0;
   line-height: 28px;
-  color: #4a5568;
-  font-weight: 400;
+  color: ${props => props.theme.colors.textTertiary};
+  font-weight: ${props => props.theme.fontWeights.normal};
   text-align: left;
 
   @media screen and (max-width: 860px) {
@@ -195,19 +195,19 @@ export const Description = styled.p`
 `
 
 export const FeatureButton = styled.a`
-  font-family: 'Moderat-Medium';
+  font-family: ${props => props.theme.fonts.medium};
   background: var(--bg-gradient-secondary);
   padding: 18px 40px;
-  color: #fff;
+  color: ${props => props.theme.colors.textWhite};
   display: inline-flex;
   align-items: center;
   justify-content: center;
   border-radius: var(--radius-sm);
-  font-size: 16px;
-  font-weight: 600;
+  font-size: ${props => props.theme.fontSizes.md};
+  font-weight: ${props => props.theme.fontWeights.medium};
   gap: 12px;
   text-decoration: none;
-  transition: all 0.3s ease;
+  transition: ${props => props.theme.transitions.base};
   box-shadow: var(--glow-purple);
   border: 1px solid var(--border-glass);
   -webkit-backdrop-filter: var(--blur-sm);
