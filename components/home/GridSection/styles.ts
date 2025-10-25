@@ -6,91 +6,108 @@ export const Container = styled.div`
   align-items: center;
   margin: 0 auto;
   flex-direction: column;
-  background: #fff;
-  padding: 80px 40px;
+  background: #ffffff;
+  padding: 100px 40px;
   max-width: 1200px;
   width: 100%;
+  position: relative;
 
   > h1 {
     font-family: 'Moderat-Bold';
     color: #1a202c;
     font-size: 48px;
-    margin-bottom: 48px;
+    margin-bottom: 56px;
     font-weight: 900;
     text-align: center;
     letter-spacing: -1px;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -16px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+      border-radius: 2px;
+    }
 
     @media screen and (max-width: 768px) {
       font-size: 36px;
-      margin-bottom: 32px;
+      margin-bottom: 48px;
+
+      &::after {
+        bottom: -12px;
+        width: 60px;
+        height: 3px;
+      }
     }
 
     @media screen and (max-width: 475px) {
       font-size: 28px;
-      margin-bottom: 24px;
+      margin-bottom: 40px;
+
+      &::after {
+        bottom: -10px;
+        width: 50px;
+      }
     }
   }
 
   @media screen and (max-width: 860px) {
-    padding: 60px 30px;
+    padding: 80px 30px;
   }
 
   @media screen and (max-width: 520px) {
-    padding: 40px 20px;
+    padding: 60px 20px;
   }
 `
 
 export const List = styled.div`
   display: grid;
   place-items: center;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   width: 100%;
-  gap: 24px;
+  gap: 32px;
 
   @media screen and (max-width: 768px) {
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 24px;
   }
 
   @media screen and (max-width: 475px) {
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 16px;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
   }
 
   > img {
     width: 100%;
-    max-width: 200px;
-    padding: 32px;
-    min-height: 140px;
+    max-width: 220px;
+    padding: 40px;
+    min-height: 160px;
     object-fit: contain;
-    background: var(--glass-surface-light);
-    border: 1px solid var(--border-glass);
-    border-radius: var(--radius-lg);
-    -webkit-backdrop-filter: var(--blur-md);
-    backdrop-filter: var(--blur-md);
-    box-shadow: 0 4px 16px rgba(31, 38, 135, 0.08);
-    transition: all 0.3s ease;
-    filter: grayscale(10%);
-    opacity: 0.9;
-
-    &:hover {
-      transform: translateY(-8px);
-      box-shadow: var(--glow-purple);
-      border-color: var(--border-glass-strong);
-      filter: grayscale(0%);
-      opacity: 1;
-    }
+    background: linear-gradient(135deg,
+      rgba(255, 255, 255, 0.75) 0%,
+      rgba(255, 255, 255, 0.65) 100%);
+    border: 1.5px solid rgba(255, 255, 255, 0.4);
+    border-radius: var(--radius-xl);
+    -webkit-backdrop-filter: var(--blur-lg);
+    backdrop-filter: var(--blur-lg);
+    filter: grayscale(0%);
+    opacity: 1;
 
     @media screen and (max-width: 768px) {
-      padding: 24px;
-      min-height: 100px;
-      max-width: 160px;
+      padding: 32px;
+      min-height: 120px;
+      max-width: 180px;
     }
 
     @media screen and (max-width: 475px) {
-      padding: 16px;
-      min-height: 80px;
-      max-width: 140px;
+      padding: 24px;
+      min-height: 100px;
+      max-width: 150px;
     }
   }
 `

@@ -1,74 +1,87 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-  height: 98vh;
+  min-height: 600px;
   width: 100%;
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 80px 40px;
+
+  @media screen and (max-width: 768px) {
+    min-height: 500px;
+    padding: 60px 30px;
+  }
+
+  @media screen and (max-width: 520px) {
+    min-height: 450px;
+    padding: 40px 20px;
+  }
 `
 
 export const Wrapper = styled.div`
-  height: 100%;
+  max-width: 1200px;
   width: 100%;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-left: 175px;
-  opacity: 0;
-  transform: translateY(40px);
-  animation: fadeInUp 1.1s cubic-bezier(0.4, 0, 0.2, 1) 0.2s forwards;
-  @keyframes fadeInUp {
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  align-items: flex-start;
+  padding: 48px 40px;
+  background: var(--glass-surface-light);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-xl);
+  -webkit-backdrop-filter: var(--blur-lg);
+  backdrop-filter: var(--blur-lg);
+  box-shadow: 0 12px 48px rgba(31, 38, 135, 0.15);
+
+  @media screen and (max-width: 768px) {
+    padding: 40px 32px;
   }
-  @media screen and (max-width: 1820px) {
-    padding-left: 100px;
-  }
-  @media screen and (max-width: 1748px) {
-    padding-left: 55px;
-  }
-  @media screen and (max-width: 1700px) {
-    padding-left: 25px;
-  }
-  @media screen and (max-width: 1684px) {
-    padding-left: 75px;
-  }
-  @media screen and (max-width: 1220px) {
-    padding-left: 35px;
-  }
-  @media screen and (max-width: 420px) {
-    justify-content: flex-start;
-    padding-top: 25px;
-  }
-  @media screen and (max-width: 400px) {
-    padding-left: 15px;
+
+  @media screen and (max-width: 520px) {
+    padding: 32px 24px;
   }
 
   > h1 {
-    font-family: 'CircularStd-Medium';
-    font-size: 54px;
-    width: 680px;
+    font-family: 'Moderat-Bold';
+    font-size: 48px;
+    line-height: 1.2;
+    max-width: 680px;
+    color: #1a202c;
+    margin: 0 0 24px 0;
+    letter-spacing: -1px;
+
     @media screen and (max-width: 768px) {
-      width: 90%;
-      font-size: 42px;
+      font-size: 36px;
+      max-width: 100%;
     }
-    @media screen and (max-width: 420px) {
-      font-size: 26px;
+
+    @media screen and (max-width: 520px) {
+      font-size: 28px;
     }
   }
+
   > p {
-    font-size: 19px;
-    line-height: 25px;
-    font-family: 'CircularStd-Regular';
-    margin: 2rem 0;
-    width: 550px;
+    font-size: 18px;
+    line-height: 28px;
+    font-family: 'Moderat-Regular';
+    margin: 0;
+    max-width: 650px;
+    color: #2d3748;
+
     @media screen and (max-width: 768px) {
-      width: 90%;
-      font-size: 19px;
-      line-height: 22px;
+      font-size: 17px;
+      line-height: 26px;
+      max-width: 100%;
+    }
+
+    @media screen and (max-width: 520px) {
+      font-size: 16px;
+      line-height: 24px;
     }
   }
 `
